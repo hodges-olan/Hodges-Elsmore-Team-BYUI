@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -72,5 +73,51 @@ public class Player implements Serializable {
     public void setArmor(String armor) {
         this.armor = armor;
     }    
+
+    // public hashCode function
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.health) ^ (Double.doubleToLongBits(this.health) >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.weapon);
+        hash = 17 * hash + Objects.hashCode(this.shield);
+        hash = 17 * hash + Objects.hashCode(this.armor);
+        return hash;
+    }
+
+    // public toString function
+    @Override
+    public String toString() {
+        return "Player{" + "name=" + name + ", health=" + health + ", weapon=" + weapon + ", shield=" + shield + ", armor=" + armor + '}';
+    }
+
+    // public equals function
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Player other = (Player) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.health) != Double.doubleToLongBits(other.health)) {
+            return false;
+        }
+        if (!Objects.equals(this.weapon, other.weapon)) {
+            return false;
+        }
+        if (!Objects.equals(this.shield, other.shield)) {
+            return false;
+        }
+        if (!Objects.equals(this.armor, other.armor)) {
+            return false;
+        }
+        return true;
+    }
     
 }
