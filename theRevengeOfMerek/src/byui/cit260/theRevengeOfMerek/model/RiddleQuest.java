@@ -12,15 +12,14 @@ import java.util.Objects;
  *
  * @author co075oh
  */
-public class ShipmentQuest implements Serializable {
+public class RiddleQuest implements Serializable {
     
     // class instance variables
     private String description;
-    private String shipmentName;
-    private String shipmentDestination;
+    private double riddleNumber;
 
     // default constructor
-    public ShipmentQuest() {
+    public RiddleQuest() {
     }
 
     // public getter function
@@ -34,39 +33,28 @@ public class ShipmentQuest implements Serializable {
     }
 
     // public getter function
-    public String getShipmentName() {
-        return shipmentName;
+    public double getRiddleNumber() {
+        return riddleNumber;
     }
 
     // public setter function
-    public void setShipmentName(String shipmentName) {
-        this.shipmentName = shipmentName;
-    }
-
-    // public getter function
-    public String getShipmentDestination() {
-        return shipmentDestination;
-    }
-
-    // public setter function
-    public void setShipmentDestination(String shipmentDestination) {
-        this.shipmentDestination = shipmentDestination;
+    public void setRiddleNumber(double riddleNumber) {
+        this.riddleNumber = riddleNumber;
     }
 
     // public hashCode function
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.description);
-        hash = 47 * hash + Objects.hashCode(this.shipmentName);
-        hash = 47 * hash + Objects.hashCode(this.shipmentDestination);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.description);
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.riddleNumber) ^ (Double.doubleToLongBits(this.riddleNumber) >>> 32));
         return hash;
     }
 
     // public toString function
     @Override
     public String toString() {
-        return "ShipmentQuest{" + "description=" + description + ", shipmentName=" + shipmentName + ", shipmentDestination=" + shipmentDestination + '}';
+        return "RiddleQuest{" + "description=" + description + ", riddleNumber=" + riddleNumber + '}';
     }
 
     // public equals function
@@ -78,14 +66,11 @@ public class ShipmentQuest implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ShipmentQuest other = (ShipmentQuest) obj;
+        final RiddleQuest other = (RiddleQuest) obj;
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.shipmentName, other.shipmentName)) {
-            return false;
-        }
-        if (!Objects.equals(this.shipmentDestination, other.shipmentDestination)) {
+        if (Double.doubleToLongBits(this.riddleNumber) != Double.doubleToLongBits(other.riddleNumber)) {
             return false;
         }
         return true;

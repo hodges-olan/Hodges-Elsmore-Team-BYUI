@@ -5,13 +5,14 @@
  */
 package byui.cit260.theRevengeOfMerek.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author co075oh
  */
-public class ArtifactStrengthQuest {
+public class ArtifactStrengthQuest implements Serializable {
     
     // class instance variables
     private String description;
