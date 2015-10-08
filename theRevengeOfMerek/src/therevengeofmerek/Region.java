@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author co075oh
  */
 public class Region implements Serializable {
+    
     // class instance variables
     private String name;
     private String lord;
@@ -50,4 +51,5 @@ public class Region implements Serializable {
     public void setQuestsCompleted(double questsCompleted) {
         this.questsCompleted = questsCompleted;
     }     
+    
 }
