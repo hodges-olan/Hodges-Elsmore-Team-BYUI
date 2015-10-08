@@ -5,6 +5,8 @@
  */
 package therevengeofmerek;
 
+import byui.cit260.theRevengeOfMerek.model.Character;
+
 /**
  *
  * @author maryelsmore
