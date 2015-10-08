@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author co075oh
  */
 public class Map implements Serializable {
+    
     // class instance variables
     private double rowCount;
     private double columnCount;
@@ -39,4 +40,5 @@ public class Map implements Serializable {
     public void setColumnCount(double columnCount) {
         this.columnCount = columnCount;
     }    
+    
 }
