@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -51,5 +52,43 @@ public class Region implements Serializable {
     public void setQuestsCompleted(double questsCompleted) {
         this.questsCompleted = questsCompleted;
     }     
+
+    // public hashCode function
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Objects.hashCode(this.lord);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.questsCompleted) ^ (Double.doubleToLongBits(this.questsCompleted) >>> 32));
+        return hash;
+    }
+
+    // public toString function
+    @Override
+    public String toString() {
+        return "Region{" + "name=" + name + ", lord=" + lord + ", questsCompleted=" + questsCompleted + '}';
+    }
+
+    // public equals function
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Region other = (Region) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.lord, other.lord)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.questsCompleted) != Double.doubleToLongBits(other.questsCompleted)) {
+            return false;
+        }
+        return true;
+    }
     
 }
