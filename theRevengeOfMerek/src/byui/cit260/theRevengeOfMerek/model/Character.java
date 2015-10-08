@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author maryelsmore
  */
-public class Character implements Serializable{
+public class Character implements Serializable {
     
     //class instance variables
     private String name;
@@ -54,6 +54,5 @@ public class Character implements Serializable{
         }
         return true;
     }
- 
     
 }
