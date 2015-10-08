@@ -29,5 +29,35 @@ public class Game implements Serializable {
     public void setTotalTime(double totalTime) {
         this.totalTime = totalTime;
     }    
+
+    // public hashCode function
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
+        return hash;
+    }
+
+    // public toString function
+    @Override
+    public String toString() {
+        return "Game{" + "totalTime=" + totalTime + '}';
+    }
+
+    // public equals function
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Game other = (Game) obj;
+        if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
+            return false;
+        }
+        return true;
+    }
     
 }
