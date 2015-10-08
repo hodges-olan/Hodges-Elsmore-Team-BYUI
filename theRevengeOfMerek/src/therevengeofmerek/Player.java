@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author co075oh
  */
 public class Player implements Serializable {
+    
     // class instance variables
     private String name;
     private double health;
@@ -71,4 +72,5 @@ public class Player implements Serializable {
     public void setArmor(String armor) {
         this.armor = armor;
     }    
+    
 }
