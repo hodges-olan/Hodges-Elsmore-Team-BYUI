@@ -40,5 +40,39 @@ public class Map implements Serializable {
     public void setColumnCount(double columnCount) {
         this.columnCount = columnCount;
     }    
+
+    // public hashCode function
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.rowCount) ^ (Double.doubleToLongBits(this.rowCount) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.columnCount) ^ (Double.doubleToLongBits(this.columnCount) >>> 32));
+        return hash;
+    }
+
+    // public toString function
+    @Override
+    public String toString() {
+        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + '}';
+    }
+
+    // public equals function
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Map other = (Map) obj;
+        if (Double.doubleToLongBits(this.rowCount) != Double.doubleToLongBits(other.rowCount)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.columnCount) != Double.doubleToLongBits(other.columnCount)) {
+            return false;
+        }
+        return true;
+    }
     
 }
