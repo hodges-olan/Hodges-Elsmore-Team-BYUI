@@ -56,7 +56,10 @@ public class InventoryItem implements Serializable {
     // public hashCode function
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.inventoryType);
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.quantity) ^ (Double.doubleToLongBits(this.quantity) >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
