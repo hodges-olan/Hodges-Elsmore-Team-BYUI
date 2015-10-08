@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author co075oh
  */
 public class InventoryItem implements Serializable {
+    
     // class instance variables
     private String inventoryType;
     private double quantity;
@@ -50,4 +51,5 @@ public class InventoryItem implements Serializable {
     public void setName(String name) {
         this.name = name;
     }    
+    
 }
