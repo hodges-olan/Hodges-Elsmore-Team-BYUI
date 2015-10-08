@@ -54,6 +54,5 @@ public class Character implements Serializable {
         }
         return true;
     }
- 
     
 }
