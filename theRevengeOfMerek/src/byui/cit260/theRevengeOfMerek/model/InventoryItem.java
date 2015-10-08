@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -51,5 +52,40 @@ public class InventoryItem implements Serializable {
     public void setName(String name) {
         this.name = name;
     }    
+
+    // public hashCode function
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    // public toString function
+    @Override
+    public String toString() {
+        return "InventoryItem{" + "inventoryType=" + inventoryType + ", quantity=" + quantity + ", name=" + name + '}';
+    }
+
+    // public equals function
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InventoryItem other = (InventoryItem) obj;
+        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.quantity) != Double.doubleToLongBits(other.quantity)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
     
 }
