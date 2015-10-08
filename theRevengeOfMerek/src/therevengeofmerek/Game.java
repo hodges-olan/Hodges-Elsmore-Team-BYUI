@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author co075oh
  */
 public class Game implements Serializable {
+    
     // class instance variables
     private double totalTime;
     
@@ -28,4 +29,5 @@ public class Game implements Serializable {
     public void setTotalTime(double totalTime) {
         this.totalTime = totalTime;
     }    
+    
 }
