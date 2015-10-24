@@ -29,7 +29,7 @@ public class BattleControl {
         damage = damage * 0.8;
         
         // Return values
-        return new double[]{damage, dot};
+        return new double[]{Math.round(damage), Math.round(dot)};
     }
     
     public double reduceHealthNormal(double weapon, double strength, double armor) {
@@ -44,6 +44,6 @@ public class BattleControl {
         damage = (weapon * strength) - armor;
         
         // Return values
-        return damage;
+        return Math.round(damage);
     }
 }

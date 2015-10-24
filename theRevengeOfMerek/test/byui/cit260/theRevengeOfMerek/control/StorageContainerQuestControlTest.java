@@ -34,7 +34,7 @@ public class StorageContainerQuestControlTest {
         StorageContainerQuestControl instance = new StorageContainerQuestControl();
         boolean expResult = true;
         boolean result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #2
@@ -45,7 +45,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 200.0;
         expResult = false;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #3
@@ -56,7 +56,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 200.0;
         expResult = false;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #4
@@ -67,7 +67,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 200.0;
         expResult = false;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #5
@@ -78,7 +78,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 200.0;
         expResult = false;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #6
@@ -89,7 +89,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 201.0;
         expResult = true;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
         /********************************
          * Test Case #7
@@ -100,7 +100,7 @@ public class StorageContainerQuestControlTest {
         reqVolume = 34.0;
         expResult = true;
         result = instance.calculateVolume(radius, height, reqVolume);
-        assertEquals("Passed", expResult, result);
+        assertEquals(expResult, result);
         
     }
     
