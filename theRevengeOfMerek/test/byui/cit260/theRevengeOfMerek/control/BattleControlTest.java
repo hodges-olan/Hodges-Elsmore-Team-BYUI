@@ -39,16 +39,14 @@ public class BattleControlTest {
         /********************************
          * Test Case Loop
          */
-        int i = 0;
-        do {
+        for (int i = 0; i < 10; i++) {
             System.out.println("\tTest case #" + (i+1));
             result = instance.reduceHealthDOT(weapon[i], strength[i], armor[i]);
             resultDamage = result[0];
             resultDOT = result[1];
             assertEquals(expResultDamage[i], resultDamage, 0.0);
             assertEquals(expResultDOT[i], resultDOT, 0.0);
-            i++;
-        } while (i < 10);
+        }
 
     }
 
@@ -72,13 +70,11 @@ public class BattleControlTest {
         /********************************
          * Test Case Loop
          */
-        int i = 0;
-        do {
+        for (int i = 0; i < 10; i++) {
             System.out.println("\tTest case #" + (i+1));
             result = instance.reduceHealthNormal(weapon[i], strength[i], armor[i]);
             assertEquals(expResult[i], result, 0.0);
-            i++;
-        } while (i < 10);
+        }
         
     }
     
