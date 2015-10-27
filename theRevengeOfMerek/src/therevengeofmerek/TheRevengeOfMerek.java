@@ -23,6 +23,7 @@ public class TheRevengeOfMerek {
        StartProgramView startProgramView = new StartProgramView();
        startProgramView.startProgram();
     }
+    
     public static Game getCurrentGame() {
         return currentGame;
     }

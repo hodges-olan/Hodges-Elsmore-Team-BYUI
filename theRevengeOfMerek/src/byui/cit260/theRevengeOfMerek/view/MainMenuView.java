@@ -16,10 +16,12 @@ public class MainMenuView {
     private final String MENU = "\n"
             + "\n-----------------------------------"
             + "\n Main Menu"
-            + "\n Star Game"
-            + "\n Continue Game"
-            + "\n Help Menu"
-            + "\n Exit"
+            + "\n-----------------------------------"
+            + "\n (N)ew Game"
+            + "\n (S)ave Game"
+            + "\n (C)ontinue Game"
+            + "\n (H)elp"
+            + "\n (E)xit"
             + "\n-----------------------------------";
     
     void displayMenu() {
