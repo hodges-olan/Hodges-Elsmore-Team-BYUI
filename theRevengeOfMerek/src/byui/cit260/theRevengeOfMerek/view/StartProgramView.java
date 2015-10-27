@@ -14,19 +14,28 @@ import java.util.Scanner;
  * @author maryelsmore
  */
 public class StartProgramView {
+    
+    // Constructor Method for StartProgramView Class
     public StartProgramView() {
         
     }
+    
+    // Method to start the program
     public void startProgram() {
         
+        // Display the opening banner
         this.displayBanner();
         
+        // Get the players name
         String playersName = this.getPlayersName();
         
+        // Create a new Player instance from the player's name
         Player player = GameControl.createNewPlayer(playersName);
         
+        // Display the welcome message
         this.displayWelcomeMessage(player);
         
+        // Display the main menu
         MainMenuView mainMenu = new MainMenuView();
         mainMenu.displayMenu();
         
@@ -58,6 +67,7 @@ public class StartProgramView {
                 + "\n*********************************************************************");
     }
 
+    // Method to gather input from user for their name
     private String getPlayersName() {
         boolean valid = false;
         String playersName = null;
@@ -70,16 +80,17 @@ public class StartProgramView {
             playersName = playersName.trim();
             
             if (playersName.length() < 2) {
-                System.out.println("Invalid name - the name must be over two characters");
-         
+                System.out.println("Invalid name - the name must be over one character long");
             } else {
                 valid = true;
             }
         
         } while(!valid);
+        
         return playersName;
     } 
 
+    // Method for displaying the welcome message to the user
     private void displayWelcomeMessage(Player player) {
         System.out.println("\n\n========================================");
         System.out.println("\tWelcome to the game " + player.getName());
