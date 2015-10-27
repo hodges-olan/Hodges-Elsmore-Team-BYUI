@@ -41,6 +41,7 @@ public class StartProgramView {
         
     }
 
+    // Method to display the welcome banner
     private void displayBanner() {
         System.out.println("\n"
                 + "\n*********************************************************************"

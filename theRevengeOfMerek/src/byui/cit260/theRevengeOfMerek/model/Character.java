@@ -14,25 +14,30 @@ import java.util.Objects;
  */
 public class Character implements Serializable {
     
-    //class instance variables
+    // class instance variables
     private String name;
 
+    // default constructor class
     public Character() {
     }
 
+    // Getter method for name
     public String getName() {
         return name;
     }
 
+    // Setter method for name
     public void setName(String name) {
         this.name = name;
     }
 
+    // public toString method for Character
     @Override
     public String toString() {
         return "Character{" + "name=" + name + '}';
     }
 
+    // public hashCode method for Character
     @Override
     public int hashCode() {
         int hash = 7;
@@ -40,6 +45,7 @@ public class Character implements Serializable {
         return hash;
     }
 
+    // public equals method for Character
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

@@ -10,7 +10,11 @@ package byui.cit260.theRevengeOfMerek.control;
  * @author co075oh
  */
 public class BattleControl {
+    
+    // Public method to reduce the health of a player with a Damage over Time (DOT)
     public double[] reduceHealthDOT(double weapon, double strength, double armor) {
+        
+        // Declare variables
         double damage;
         double dot;
         
@@ -32,7 +36,10 @@ public class BattleControl {
         return new double[]{Math.round(damage), Math.round(dot)};
     }
     
+    // Public method to reduce health from a normal attack
     public double reduceHealthNormal(double weapon, double strength, double armor) {
+        
+        // Declare variables
         double damage;
         
         // Validation Checks

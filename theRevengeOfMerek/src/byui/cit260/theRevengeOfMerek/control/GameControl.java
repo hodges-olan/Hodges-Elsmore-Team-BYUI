@@ -14,19 +14,25 @@ import therevengeofmerek.TheRevengeOfMerek;
  */
 public class GameControl {
 
+    // Create the player from the name given
     public static Player createNewPlayer(String playersName) {
         
+        // Error checking
         if (playersName == null) {
             return null;
         }
+        
+        // Create new player instance
         Player player = new Player();
+        
+        // Set the name to the value given
         player.setName(playersName);
         
+        // Save the player instance to the main class
         TheRevengeOfMerek.setPlayer(player);
         
+        // Return the player instance created
         return player;
-        
-        
         
     }
     
