@@ -6,6 +6,9 @@
 package therevengeofmerek;
 
 import byui.cit260.theRevengeOfMerek.model.Character;
+import byui.cit260.theRevengeOfMerek.model.Game;
+import byui.cit260.theRevengeOfMerek.model.Player;
+import byui.cit260.theRevengeOfMerek.view.StartProgramView;
 
 /**
  *
@@ -13,13 +16,26 @@ import byui.cit260.theRevengeOfMerek.model.Character;
  */
 public class TheRevengeOfMerek {
 
-    public static void main(String[] args) {
-       Character characterOne = new Character();
-       
-       characterOne.setName("Merek");
-       
-       String characterInfo = characterOne.toString();
-       System.out.println(characterInfo);
-    }
+    private static Game currentGame = null;
+    private static Player player = null;
     
+    public static void main(String[] args) {
+       StartProgramView startProgramView = new StartProgramView();
+       startProgramView.startProgram();
+    }
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        TheRevengeOfMerek.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        TheRevengeOfMerek.player = player;
+    }
 }

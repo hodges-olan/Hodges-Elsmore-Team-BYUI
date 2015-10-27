@@ -10,5 +10,5 @@ package byui.cit260.theRevengeOfMerek.control;
  * @author co075oh
  */
 public class MapControl {
-    
+
 }

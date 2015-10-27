@@ -7,7 +7,7 @@ package byui.cit260.theRevengeOfMerek.control;
 
 /**
  *
- * @author co075oh
+ * @author maryreiko
  */
 public class InventoryControl {
     
