@@ -5,7 +5,9 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.control.GameControl;
 import java.util.Scanner;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -100,7 +102,11 @@ public class MainMenuView {
 
     // Method to start a new game
     private void startNewGame() {
-        System.out.println("The startNewGame method was called!");
+        
+        // Create and display the game menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
+        
     }
 
     // Method to retrieve a saved game
@@ -108,14 +114,18 @@ public class MainMenuView {
         System.out.println("The retrieveGame method was called!");
     }
 
-    // Method to display the help menu
-    private void displayHelpMenu() {
-        System.out.println("The displayHelpMenu method was called!");
-    }
-
     // Method to save a game
     private void saveGame() {
         System.out.println("The saveGame method was called!");
+    }
+    
+    // Method to display the help menu
+    private void displayHelpMenu() {
+        
+        // Create and display the game menu
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.displayMenu();
+        
     }
        
 }
