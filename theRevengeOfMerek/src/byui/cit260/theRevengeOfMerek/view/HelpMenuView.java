@@ -120,7 +120,40 @@ class HelpMenuView {
     }
     
     private void displayUserConsoleHelp() {
-        System.out.println("Goal Help");
+        
+        // Display the Goal of the Game help text
+        System.out.println("\n"
+                + "\n------------------------------------"
+                + "\n|        User Console Help         |"
+                + "\n|----------------------------------|"
+                + "\n| (I)nventory will show all items  |"
+                + "\n| presently in your inventory.     |"
+                + "\n|                                  |"
+                + "\n| (Q)uests will display the quests |"
+                + "\n| you have to complete to beat the |"
+                + "\n| game and their status, either    |"
+                + "\n| Complete or Unfinished.          |"
+                + "\n|                                  |"
+                + "\n| (M)ove gives you the menu where  |"
+                + "\n| you can move from city to city.  |"
+                + "\n|                                  |"
+                + "\n| (S)ave will save your current    |"
+                + "\n| progress.                        |"
+                + "\n|                                  |"
+                + "\n| (H)elp will display the help     |"
+                + "\n| menu.                            |"
+                + "\n|                                  |"
+                + "\n| (E)xit will exit the game.       |"
+                + "\n-----------------------------------|"
+                + "\n\nPress any key to return to the Help menu");
+        
+        // Wait for the user to press any key
+        String input = null;
+        Scanner keyboard = new Scanner(System.in);
+        input = keyboard.nextLine();
+        
+        // Return to the help menu
+        return;
     }
 
 }
