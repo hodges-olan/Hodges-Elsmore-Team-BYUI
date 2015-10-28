@@ -11,7 +11,7 @@ package byui.cit260.theRevengeOfMerek.view;
  */
 public class GameMenuView {
 
-    
+    // Display the Game Menu
     void displayMenu() {
         System.out.println("New instance of GameMenuView created, and displayMenu called!");
     }
