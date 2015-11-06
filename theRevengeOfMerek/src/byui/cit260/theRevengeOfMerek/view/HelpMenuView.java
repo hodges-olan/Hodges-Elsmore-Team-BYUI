@@ -74,7 +74,17 @@ class HelpMenuView {
 
     // Execute the appropriate action based on input from user
     private void doAction(char selection) {
-        switch(selection) {
+        if (selection=='G') {
+            this.displayGoalHelp();
+        } else if (selection=='U') {
+            this.displayUserConsoleHelp();
+        } else if (selection=='E') {
+            return;
+        } else {
+            System.out.println("\n Invalid Selection, Try Again");
+            return;
+        }
+        /*switch(selection) {
             case 'G':
                 this.displayGoalHelp();
                 break;
@@ -86,7 +96,7 @@ class HelpMenuView {
             default:
                 System.out.println("\n Invalid Selection, Try Again");
                 break;
-        }
+        }*/
     }
 
     private void displayGoalHelp() {
