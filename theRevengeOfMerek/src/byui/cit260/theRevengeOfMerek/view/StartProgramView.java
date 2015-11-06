@@ -104,6 +104,7 @@ public class StartProgramView {
         System.out.println("\n               Have fun!"
                 + "\n========================================");
     }
+    
 }
 
 
