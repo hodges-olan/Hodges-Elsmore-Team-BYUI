@@ -5,9 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import byui.cit260.theRevengeOfMerek.control.GameControl;
 import java.util.Scanner;
-import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
