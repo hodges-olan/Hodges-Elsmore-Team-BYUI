@@ -131,7 +131,7 @@ public class GameMenuView {
         
         // Create and display the game menu
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         
     }
  

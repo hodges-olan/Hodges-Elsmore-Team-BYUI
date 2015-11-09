@@ -11,69 +11,25 @@ import java.util.Scanner;
  *
  * @author co075oh
  */
-class HelpMenuView {
+public class HelpMenuView extends View {
 
     // Declare MENU Constant Variable
-    private final String MENU = "\n"
-        + "\n-----------------------------------"
-        + "\n|           Help Menu             |"
-        + "\n|---------------------------------|"
-        + "\n| (G)oal of the game              |"
-        + "\n| (U)ser Console - Game Console   |"
-        + "\n| (E)xit                          |"
-        + "\n|---------------------------------|";
-    
-    // Method to display the main menu
-    void displayMenu() {
-        
-        // Declare variables
-        char selection = ' ';
-        
-        // Loop to show and gather input from user in main menu
-        do {
-            // Print the main menu
-            System.out.println(MENU);
-            
-            // Gather input from the player
-            String input = this.getInput();
-            
-            // Gather the first char from the input and capitalize it
-            selection = Character.toUpperCase(input.charAt(0));
-            
-            // Invoke the switches to execute the appropriate action
-            this.doAction(selection);
-       
-        } while (selection != 'E');
-    }
-
-    // Method to gather the input from the user 
-    private String getInput() {
-        
-        // Declare variables for getInput method
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        // Loop to gather input from user until they give valid input
-        do { 
-            System.out.println("Select an Option on the Help Menu");
-            
-            input = keyboard.nextLine();
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select from the Menu Above");
-            } else {
-                valid = true;
-            }
-        
-        } while(!valid);
-        
-        return input;
+    public HelpMenuView() {
+        super("\n"
+            + "\n-----------------------------------"
+            + "\n|           Help Menu             |"
+            + "\n-----------------------------------"
+            + "\n| (G)oal of the game              |"
+            + "\n| (U)ser Consoel - Game Console   |"
+            + "\n| (E)xit                          |"
+            + "\n-----------------------------------");
     }
 
     // Execute the appropriate action based on input from user
-    private void doAction(char selection) {
+    @Override
+    public void doAction(Object obj) {
+        char selection = (char) obj;
+        
         switch(selection) {
             case 'G':
                 this.displayGoalHelp();

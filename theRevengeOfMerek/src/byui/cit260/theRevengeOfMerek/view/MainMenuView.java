@@ -76,7 +76,7 @@ public class MainMenuView extends View {
         
         // Create and display the game menu
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         
     }
     
