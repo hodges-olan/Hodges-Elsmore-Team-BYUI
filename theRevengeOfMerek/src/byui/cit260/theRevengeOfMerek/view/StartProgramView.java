@@ -37,13 +37,13 @@ public class StartProgramView {
         
         // Display the main menu
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayMenu();
+        mainMenu.display();
         
-        // Display the battle menu (This is temporary for the assignment in week 7
+        // Display the battle menu (This is temporary for the assignment in week 7)
         BattleControlView battleControl = new BattleControlView();
         battleControl.displayMenu();
         
-        // Display the storage container quest menu (This is temporary for the assignment in week 7
+        // Display the storage container quest menu (This is temporary for the assignment in week 7)
         StorageContainerQuestView storageContainerQuest = new StorageContainerQuestView();
         storageContainerQuest.displayBanner();
         
