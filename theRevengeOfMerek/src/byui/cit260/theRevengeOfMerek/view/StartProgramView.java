@@ -45,7 +45,7 @@ public class StartProgramView {
         
         // Display the storage container quest menu (This is temporary for the assignment in week 7)
         StorageContainerQuestView storageContainerQuest = new StorageContainerQuestView();
-        storageContainerQuest.displayBanner();
+        storageContainerQuest.displayMenu();
         
     }
 

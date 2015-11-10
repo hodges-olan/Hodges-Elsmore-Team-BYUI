@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author maryelsmore
  */
-public class GameMenuView extends View{
+public class GameMenuView extends View {
 
     // Declare MENU Constant Variable
     public GameMenuView() {

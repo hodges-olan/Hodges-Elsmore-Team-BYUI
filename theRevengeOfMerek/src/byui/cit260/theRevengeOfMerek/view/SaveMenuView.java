@@ -21,7 +21,7 @@ entered an error message is displayed and the player is prompted to enter a vali
 If no, it will not save their progress and return them back to the Game Play Menu.
  * @author maryelsmore
  */
-public class SaveMenuView extends View{
+public class SaveMenuView extends View {
     
     // Declare MENU Constant Variable
     public SaveMenuView() {

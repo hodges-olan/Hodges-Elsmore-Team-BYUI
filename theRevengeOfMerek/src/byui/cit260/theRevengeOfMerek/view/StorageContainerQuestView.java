@@ -15,23 +15,27 @@ import java.util.Random;
  */
 public class StorageContainerQuestView {
 
-    // Method to display the welcome banner
-    void displayBanner() {
-        
-        System.out.println("\n"
+    // Declare MENU Constant Variable
+    private final String MENU = "\n"
                 + "\n*********************************************************************"
                 + "\n*                    Storage Container Quest                        *"
                 + "\n*********************************************************************"
                 + "\n* We are so glad that you have come!  We have a shipment which      *"
                 + "\n* we need to put into a container for safe keeping during it's      *"
                 + "\n* journey.  Could you please help us?                               *"
-                + "\n*********************************************************************");
+                + "\n*********************************************************************";
+    
+    // Method to display the welcome banner
+    public void displayMenu() {
         
         // Declare variables
         char selection = ' ';
         
         // Loop to show and gather input from user in main menu
-        do {            
+        do {
+            // Print the main menu
+            System.out.println(MENU);
+            
             // Gather input from the player
             String input = this.getInput();
             
