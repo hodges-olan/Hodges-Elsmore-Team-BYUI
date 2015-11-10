@@ -17,10 +17,9 @@ public class QuestProgressView extends View {
             + "\n-----------------------------------"
             + "\n|       Quest Progress Menu       |"
             + "\n-----------------------------------"
-            + "\n| Quest Progress will be shown    |"
-            + "\n| Here as we implement the rest   |"
-            + "\n| the rest of the game            |"
-            + "\n|---------------------------------|"
+            + "\n| (A)ctive Quests                 |"
+            + "\n| (C)ompleted Quests              |"
+            + "\n| (O)utstanding Quests            |"
             + "\n| (E)xit                          |"
             + "\n-----------------------------------");
     }
@@ -31,11 +30,32 @@ public class QuestProgressView extends View {
         char selection = (char) obj;
         
         switch(selection) {
+            case 'A':
+                this.displayActiveQuests();
+                break;
+            case 'C':
+                this.displayCompletedQuests();
+                break;
+            case 'O':
+                this.displayOutstandingQuests();
+                break;
             case 'E':
                 return;
             default:
                 System.out.println("\n Invalid Selection, Try Again");
                 break;
         }
+    }
+
+    private void displayActiveQuests() {
+        System.out.println("displayActiveQuests method called!");
+    }
+
+    private void displayCompletedQuests() {
+        System.out.println("displayCompletedQuests method called!");
+    }
+
+    private void displayOutstandingQuests() {
+        System.out.println("displayOutstandingQuests method called!");
     }
 }
