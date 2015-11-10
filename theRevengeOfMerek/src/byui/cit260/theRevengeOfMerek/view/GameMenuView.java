@@ -77,7 +77,7 @@ public class GameMenuView extends View{
         
         //Create and display the save menu
         SaveMenuView saveMenu = new SaveMenuView();
-        saveMenu.displayMenu();
+        saveMenu.display();
     }
     
     // Method to display the help menu

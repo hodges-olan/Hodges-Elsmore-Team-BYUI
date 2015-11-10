@@ -68,7 +68,11 @@ public class MainMenuView extends View {
 
     // Method to save a game
     private void saveGame() {
-        System.out.println("The saveGame method was called!");
+        
+        //Create and display the save menu
+        SaveMenuView saveMenu = new SaveMenuView();
+        saveMenu.display();
+        
     }
     
     // Method to display the help menu
