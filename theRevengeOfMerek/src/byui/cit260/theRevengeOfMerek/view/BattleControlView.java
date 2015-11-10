@@ -26,7 +26,7 @@ public class BattleControlView {
             + "\n-----------------------------------";
     
     // Method to display the main menu
-    void displayMenu() {
+    public void displayMenu() {
         
         // Declare variables
         char selection = ' ';
