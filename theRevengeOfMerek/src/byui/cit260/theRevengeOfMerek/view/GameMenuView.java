@@ -64,7 +64,11 @@ public class GameMenuView extends View {
     
     //Display Game Quests
     private void displayQuests() {
-        System.out.println("The displayQuests method was called!");
+        
+        //Create and display the save menu
+        QuestProgressView questMenu = new QuestProgressView();
+        questMenu.display();
+        
     }
 
     // Method to move Player
@@ -78,6 +82,7 @@ public class GameMenuView extends View {
         //Create and display the save menu
         SaveMenuView saveMenu = new SaveMenuView();
         saveMenu.display();
+        
     }
     
     // Method to display the help menu
