@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +16,9 @@ public class Game implements Serializable {
     
     // class instance variables
     private double totalTime;
+    private Player player;
+    private Map map;
+    ArrayList<InventoryItem> inventory = new ArrayList<>();
     
     // default constructor
     public Game() {
@@ -25,10 +29,34 @@ public class Game implements Serializable {
         return totalTime;
     }
     
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public Map getMap() {
+        return map;
+    }
+    
+    public ArrayList<InventoryItem> getInventory() {
+        return inventory;
+    }
+    
     // public setter function
     public void setTotalTime(double totalTime) {
         this.totalTime = totalTime;
     }    
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public void setInventory(ArrayList<InventoryItem> inventory) {
+        this.inventory = inventory;
+    }
 
     // public hashCode function
     @Override

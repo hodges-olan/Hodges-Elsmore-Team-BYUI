@@ -12,53 +12,38 @@ import java.util.Objects;
  *
  * @author maryelsmore
  */
-public class Character implements Serializable {
+public enum Character implements Serializable {
+
+    Lehi("He is the prophet and leader of the family."),
+    Sariah("She is Lehi's wife and mother of the family."),
+    Nephi("Faithful son and later the prophet leader of the Nephites."),
+    Jacob("Nephi's faithful brother, prophet and successor to Nephi"),
+    Sam("The youngest boy and faithful brother of Nephi."),
+    Laman("The oldest rebellious brother and leader of the Lamanites."),
+    Lemuel("The 2nd oldest rebellious brother who went with Laman"),
+    Zoram("Laban's servant that became a faithful follower of Nephi");
     
-    // class instance variables
-    private String name;
+    private final String description;
+    private final Location location;
 
     // default constructor class
-    public Character() {
+    Character(String description) {
+        this.description = description;
+        location = new Location();
     }
 
-    // Getter method for name
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    // Setter method for name
-    public void setName(String name) {
-        this.name = name;
+    public Location getLocation() {
+        return location; 
     }
 
     // public toString method for Character
-    @Override
+    /*@Override
     public String toString() {
         return "Character{" + "name=" + name + '}';
-    }
+    }*/
 
-    // public hashCode method for Character
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.name);
-        return hash;
-    }
-
-    // public equals method for Character
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Character other = (Character) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        return true;
-    }
-    
 }
