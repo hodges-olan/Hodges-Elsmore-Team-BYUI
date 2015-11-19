@@ -18,12 +18,19 @@ public class MapControl {
         // Create the map
         Map map = new Map(5, 5);
         
+        // Assign the different quests to locations in the map
+        assignQuestsToLocations(map);
+        
         return map;
         
     }
 
     static void moveActorsToStartingLocation(Map map) {
         System.out.println("*** called moveActorsToStartingLocation() in MapControl ***");
+    }
+
+    private static void assignQuestsToLocations(Map map) {
+        System.out.println("*** called assignQuestsToLocations() in MapControl ***");
     }
 
 }

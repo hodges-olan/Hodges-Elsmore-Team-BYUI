@@ -16,13 +16,34 @@ public class Map implements Serializable {
     // class instance variables
     private double rowCount;
     private double columnCount;
+    private Location[][] locations;
     
     // default constructor
-    public Map() {
-    }
-
-    public Map(int i, int i0) {
-        System.out.println("*** called Map() in Map ***");
+    public Map(int noOfRows, int noOfColumns) {
+        
+        // Error Checking
+        if (noOfRows < 1 || noOfColumns < 1) {
+            System.out.println("The number of rows and columns must be > zero");
+            return;
+        }
+        
+        // Set rows and columns values
+        this.rowCount = noOfRows;
+        this.columnCount = noOfColumns;
+        
+        // Create 2D array for Location objects
+        this.locations = new Location[noOfRows][noOfColumns];
+        
+        // Create, initialize, and assign location objects to position on map
+        for (int row = 0; row < noOfRows; row++) {
+            for (int column = 0; column < noOfColumns; column++) {
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                location.setQuestComplete(false);
+            }
+        }
+        
     }
     
     // public getter function
@@ -32,6 +53,10 @@ public class Map implements Serializable {
     
     public double getColumnCount() {
         return columnCount;
+    }
+
+    public Location[][] getLocations() {
+        return locations;
     }
     
     // public setter function
@@ -43,6 +68,10 @@ public class Map implements Serializable {
     public void setColumnCount(double columnCount) {
         this.columnCount = columnCount;
     }    
+
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
+    }
 
     // public hashCode function
     @Override

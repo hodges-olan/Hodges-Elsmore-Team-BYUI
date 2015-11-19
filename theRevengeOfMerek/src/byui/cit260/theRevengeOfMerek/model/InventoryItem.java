@@ -18,9 +18,19 @@ public class InventoryItem implements Serializable {
     private String inventoryType;
     private double quantity;
     private String name;
+    public enum Item {
+        bandage,
+        potion,
+        weapon,
+        armor,
+        shield;
+    }
     
     // default constructor
-    public InventoryItem() {
+    public InventoryItem(String inventoryType, double quantity, String name) {
+        this.inventoryType = inventoryType;
+        this.quantity = quantity;
+        this.name = name;
     }
     
     // public getter function
@@ -28,27 +38,23 @@ public class InventoryItem implements Serializable {
         return inventoryType;
     }
     
-    // public setter function
-    public void setInventoryType(String inventoryType) {
-        this.inventoryType = inventoryType;
-    }
-    
-    // public getter function
     public double getQuantity() {
         return quantity;
     }
     
-    // public setter function
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-    
-    // public getter function
     public String getName() {
         return name;
     }
     
     // public setter function
+    public void setInventoryType(String inventoryType) {
+        this.inventoryType = inventoryType;
+    }
+    
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }    

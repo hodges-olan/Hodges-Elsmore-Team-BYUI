@@ -65,8 +65,15 @@ public class GameControl {
     }
 
     private static ArrayList<InventoryItem> createInventoryList() {
-        System.out.println("*** called createInventoryList() in GameControl ***");
-        return null;
+        
+        // Create starter list of items in inventory
+        ArrayList<InventoryItem> inventory = new ArrayList<>();
+        inventory.add(InventoryItem.Item.bandage.ordinal(), new InventoryItem("bandage",2.0,"Bandage"));
+        inventory.add(InventoryItem.Item.potion.ordinal(), new InventoryItem("potion",2.0,"Health Potion"));
+
+        // Return Inventory List
+        return inventory;
+        
     }
     
 }

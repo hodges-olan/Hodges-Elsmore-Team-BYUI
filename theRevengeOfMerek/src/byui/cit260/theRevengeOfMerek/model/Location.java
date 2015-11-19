@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -16,7 +17,8 @@ public class Location implements Serializable {
     // class instance variables
     private double row;
     private double column;
-    private double questComplete;
+    private boolean questComplete;
+    private Character character;
 
     // default constructor
     public Location() {
@@ -27,46 +29,52 @@ public class Location implements Serializable {
         return row;
     }
 
+    public double getColumn() {
+        return column;
+    }
+    
+    public boolean getQuestComplete() {
+        return questComplete;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+    
     // public setter function
     public void setRow(double row) {
         this.row = row;
     }
 
-    // public getter function
-    public double getColumn() {
-        return column;
-    }
-
-    // public setter function
     public void setColumn(double column) {
         this.column = column;
     }
 
-    // public getter function
-    public double getQuestComplete() {
-        return questComplete;
+    public void setQuestComplete(boolean questComplete) {
+        this.questComplete = questComplete;
     }
 
-    // public setter function
-    public void setQuestComplete(double questComplete) {
-        this.questComplete = questComplete;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     // public hashCode function
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.row) ^ (Double.doubleToLongBits(this.row) >>> 32));
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.column) ^ (Double.doubleToLongBits(this.column) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.questComplete) ^ (Double.doubleToLongBits(this.questComplete) >>> 32));
+        hash = 97 * hash + (this.questComplete ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.character);
         return hash;
     }
-
+    
     // public toString function
     @Override
     public String toString() {
-        return "Location{" + "row=" + row + ", column=" + column + ", questComplete=" + questComplete + '}';
+        return "Location{" + "row=" + row + ", column=" + column + ", questComplete=" + questComplete + ", character=" + character + '}';
     }
+    
 
     // public equals function
     @Override
@@ -84,7 +92,10 @@ public class Location implements Serializable {
         if (Double.doubleToLongBits(this.column) != Double.doubleToLongBits(other.column)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.questComplete) != Double.doubleToLongBits(other.questComplete)) {
+        if (this.questComplete != other.questComplete) {
+            return false;
+        }
+        if (this.character != other.character) {
             return false;
         }
         return true;
