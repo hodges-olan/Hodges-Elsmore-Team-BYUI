@@ -19,6 +19,12 @@ public class Location implements Serializable {
     private double column;
     private boolean questComplete;
     private Character character;
+    private String questType;
+    private ArtifactStrengthQuest artifactQuest;
+    private ArtifactStrengthQuest strengthQuest;
+    private RiddleQuest riddleQuest;
+    private ShipmentQuest shipmentQuest;
+    private StorageContainerQuest storageContainerQuest;
 
     // default constructor
     public Location() {
@@ -32,13 +38,37 @@ public class Location implements Serializable {
     public double getColumn() {
         return column;
     }
-    
-    public boolean getQuestComplete() {
-        return questComplete;
-    }
 
     public Character getCharacter() {
         return character;
+    }
+
+    public boolean isQuestComplete() {
+        return questComplete;
+    }
+
+    public ArtifactStrengthQuest getArtifactQuest() {
+        return artifactQuest;
+    }
+
+    public ArtifactStrengthQuest getStrengthQuest() {
+        return strengthQuest;
+    }
+
+    public RiddleQuest getRiddleQuest() {
+        return riddleQuest;
+    }
+
+    public ShipmentQuest getShipmentQuest() {
+        return shipmentQuest;
+    }
+
+    public StorageContainerQuest getStorageContainerQuest() {
+        return storageContainerQuest;
+    }
+
+    public String getQuestType() {
+        return questType;
     }
     
     // public setter function
@@ -56,6 +86,30 @@ public class Location implements Serializable {
 
     public void setCharacter(Character character) {
         this.character = character;
+    }
+
+    public void setArtifactQuest(ArtifactStrengthQuest artifactQuest) {
+        this.artifactQuest = artifactQuest;
+    }
+
+    public void setStrengthQuest(ArtifactStrengthQuest strengthQuest) {
+        this.strengthQuest = strengthQuest;
+    }
+
+    public void setRiddleQuest(RiddleQuest riddleQuest) {
+        this.riddleQuest = riddleQuest;
+    }
+
+    public void setShipmentQuest(ShipmentQuest shipmentQuest) {
+        this.shipmentQuest = shipmentQuest;
+    }
+
+    public void setStorageContainerQuest(StorageContainerQuest storageContainerQuest) {
+        this.storageContainerQuest = storageContainerQuest;
+    }
+
+    public void setQuestType(String questType) {
+        this.questType = questType;
     }
 
     // public hashCode function
