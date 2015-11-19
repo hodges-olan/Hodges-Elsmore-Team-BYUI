@@ -88,5 +88,9 @@ public class Game implements Serializable {
         }
         return true;
     }
+
+    public void setInventory(InventoryItem[] inventoryList) {
+        System.out.println("*** called setInventory() in Game ***");
+    }
     
 }

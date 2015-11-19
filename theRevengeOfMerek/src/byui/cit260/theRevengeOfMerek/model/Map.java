@@ -20,6 +20,10 @@ public class Map implements Serializable {
     // default constructor
     public Map() {
     }
+
+    public Map(int i, int i0) {
+        System.out.println("*** called Map() in Map ***");
+    }
     
     // public getter function
     public double getRowCount() {

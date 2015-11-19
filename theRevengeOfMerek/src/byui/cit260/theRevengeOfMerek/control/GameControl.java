@@ -5,6 +5,9 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.model.Game;
+import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import byui.cit260.theRevengeOfMerek.model.Map;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import therevengeofmerek.TheRevengeOfMerek;
 
@@ -37,7 +40,32 @@ public class GameControl {
     }
 
     public static void createNewGame(Player player) {
-        System.out.println("createNewGame in GameControl called");
+        
+        // Create new game
+        Game game = new Game();
+        
+        // Save the game in TheRevengeOfMerek
+        TheRevengeOfMerek.setCurrentGame(game);
+        
+        // Save player in game
+        game.setPlayer(player);
+        
+        // Create the inventory list and save in the game
+        InventoryItem[] inventoryList = GameControl.createInventoryList();
+        game.setInventory(inventoryList);
+        
+        // Create the map and save in the game
+        Map map = MapControl.createMap();
+        game.setMap(map);
+        
+        // Move actors to their starting positions in the map
+        MapControl.moveActorsToStartingLocation(map);
+        
+    }
+
+    private static InventoryItem[] createInventoryList() {
+        System.out.println("*** called createInventoryList() in GameControl ***");
+        return null;
     }
     
 }
