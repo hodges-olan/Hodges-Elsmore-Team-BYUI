@@ -9,6 +9,7 @@ import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Map;
 import byui.cit260.theRevengeOfMerek.model.Player;
+import java.util.ArrayList;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -51,7 +52,7 @@ public class GameControl {
         game.setPlayer(player);
         
         // Create the inventory list and save in the game
-        InventoryItem[] inventoryList = GameControl.createInventoryList();
+        ArrayList<InventoryItem> inventoryList = GameControl.createInventoryList();
         game.setInventory(inventoryList);
         
         // Create the map and save in the game
@@ -63,7 +64,7 @@ public class GameControl {
         
     }
 
-    private static InventoryItem[] createInventoryList() {
+    private static ArrayList<InventoryItem> createInventoryList() {
         System.out.println("*** called createInventoryList() in GameControl ***");
         return null;
     }
