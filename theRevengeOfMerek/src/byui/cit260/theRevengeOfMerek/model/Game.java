@@ -18,7 +18,8 @@ public class Game implements Serializable {
     private double totalTime;
     private Player player;
     private Map map;
-    ArrayList<InventoryItem> inventory = new ArrayList<>();
+    private ArrayList<InventoryItem> inventory = new ArrayList<>();
+    private String[] characters;
     
     // default constructor
     public Game() {
