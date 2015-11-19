@@ -5,7 +5,9 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.control.GameControl;
 import java.util.Scanner;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -54,6 +56,9 @@ public class MainMenuView extends View {
 
     // Method to start a new game
     private void startNewGame() {
+        
+        // Create a new game
+        GameControl.createNewGame(TheRevengeOfMerek.getPlayer());
         
         // Create and display the game menu
         GameMenuView gameMenu = new GameMenuView();

@@ -16,7 +16,6 @@ public class Map implements Serializable {
     // class instance variables
     private double rowCount;
     private double columnCount;
-    private String[] locations;
     
     // default constructor
     public Map() {
@@ -30,10 +29,6 @@ public class Map implements Serializable {
     public double getColumnCount() {
         return columnCount;
     }
-
-    public String[] getLocations() {
-        return locations;
-    }
     
     // public setter function
     public void setRowCount(double rowCount) {
@@ -44,10 +39,6 @@ public class Map implements Serializable {
     public void setColumnCount(double columnCount) {
         this.columnCount = columnCount;
     }    
-
-    public void setLocations(String[] locations) {
-        this.locations = locations;
-    }
 
     // public hashCode function
     @Override
