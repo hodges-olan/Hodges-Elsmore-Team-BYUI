@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  *
@@ -14,8 +15,8 @@ import java.io.Serializable;
 public class Map implements Serializable {
     
     // class instance variables
-    private double rowCount;
-    private double columnCount;
+    private int rowCount;
+    private int columnCount;
     private Location[][] locations;
     
     // default constructor
@@ -48,11 +49,11 @@ public class Map implements Serializable {
     }
     
     // public getter function
-    public double getRowCount() {
+    public int getRowCount() {
         return rowCount;
     }
     
-    public double getColumnCount() {
+    public int getColumnCount() {
         return columnCount;
     }
 
@@ -61,12 +62,12 @@ public class Map implements Serializable {
     }
     
     // public setter function
-    public void setRowCount(double rowCount) {
+    public void setRowCount(int rowCount) {
         this.rowCount = rowCount;
     } 
     
     // public setter function
-    public void setColumnCount(double columnCount) {
+    public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
     }    
 
@@ -77,16 +78,17 @@ public class Map implements Serializable {
     // public hashCode function
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.rowCount) ^ (Double.doubleToLongBits(this.rowCount) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.columnCount) ^ (Double.doubleToLongBits(this.columnCount) >>> 32));
+        int hash = 7;
+        hash = 37 * hash + this.rowCount;
+        hash = 37 * hash + this.columnCount;
+        hash = 37 * hash + Arrays.deepHashCode(this.locations);
         return hash;
-    }
+    } 
 
     // public toString function
     @Override
     public String toString() {
-        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + '}';
+        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", locations=" + locations + '}';
     }
 
     // public equals function
@@ -99,10 +101,13 @@ public class Map implements Serializable {
             return false;
         }
         final Map other = (Map) obj;
-        if (Double.doubleToLongBits(this.rowCount) != Double.doubleToLongBits(other.rowCount)) {
+        if (this.rowCount != other.rowCount) {
             return false;
         }
-        if (Double.doubleToLongBits(this.columnCount) != Double.doubleToLongBits(other.columnCount)) {
+        if (this.columnCount != other.columnCount) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.locations, other.locations)) {
             return false;
         }
         return true;

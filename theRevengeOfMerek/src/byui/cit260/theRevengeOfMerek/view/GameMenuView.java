@@ -6,9 +6,12 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
+import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import byui.cit260.theRevengeOfMerek.model.Location;
+import byui.cit260.theRevengeOfMerek.model.Map;
 import java.util.ArrayList;
-import java.util.Scanner;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -90,7 +93,32 @@ public class GameMenuView extends View {
 
     // Method to move Player
     private void movePlayer() {
-        System.out.println("The movePlayer method was called!");
+        
+        // Get the current game, map (including rows and columns), and locations
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Map map = game.getMap();
+        int rows = map.getRowCount();
+        int columns = map.getColumnCount();
+        Location[][] locations = map.getLocations();
+        
+        // Display title
+        System.out.println("\n\n  The Revenge of Merek");
+        
+        // Display map
+        System.out.println("    1   2   3   4   5");
+        System.out.println("-----------------------");
+        for (int i=0; i < rows; i++) {
+            System.out.print((i+1) + " |");
+            for (int j=0; j < columns; j++) {
+                if (locations[i][j].isQuestComplete()) {
+                    System.out.print(" C |");
+                } else {
+                    System.out.print(" O |");
+                }
+            }
+            System.out.println("\n-----------------------");
+        }
+        
     }
 
     // Method to save a game
