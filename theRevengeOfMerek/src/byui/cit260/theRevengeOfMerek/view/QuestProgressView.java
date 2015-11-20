@@ -5,6 +5,11 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.model.Game;
+import byui.cit260.theRevengeOfMerek.model.Location;
+import byui.cit260.theRevengeOfMerek.model.Map;
+import therevengeofmerek.TheRevengeOfMerek;
+
 /**
  *
  * @author co075oh
@@ -52,7 +57,27 @@ public class QuestProgressView extends View {
     }
 
     private void displayCompletedQuests() {
-        System.out.println("displayCompletedQuests method called!");
+        
+        // Get the current game, map (including rows and columns), and locations
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        
+        // Display completed quests and gather total
+        System.out.println("Completed Quests");
+        System.out.println("----------------");
+        int total = 0;
+        for (Location[] row : locations) {
+            for (Location location : row) {
+                if (location.isQuestComplete()) {
+                    total++;
+                    System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
+                }
+            }
+        }
+        System.out.println("----------------");
+        System.out.println("Total Completed: " + total);
+        
     }
 
     private void displayOutstandingQuests() {
