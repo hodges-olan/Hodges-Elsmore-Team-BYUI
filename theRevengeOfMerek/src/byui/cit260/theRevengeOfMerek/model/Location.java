@@ -25,6 +25,33 @@ public class Location implements Serializable {
     private RiddleQuest riddleQuest;
     private ShipmentQuest shipmentQuest;
     private StorageContainerQuest storageContainerQuest;
+    private enum towns {
+        Ballinamallard,
+        Armagh,
+        Aelinmiley,
+        Marnmouth,
+        Martslock,
+        Islesbury,
+        Glaenarm,
+        Alnwick,
+        Mountmend,
+        Blencalgo,
+        Warlington,
+        Chepstow,
+        Bournemouth,
+        Blencogo,
+        Wigston,
+        Iyesgarth,
+        Murtovaara,
+        Wandermere,
+        Aynor,
+        Hull,
+        Mestauskalio,
+        Grasmere,
+        Duncaster,
+        Garmsby,
+        Dumbarton;
+    }
 
     // default constructor
     public Location() {
