@@ -79,7 +79,7 @@ public class QuestProgressView extends View {
         }
         System.out.println("----------------");
         System.out.println("Total Completed: " + complete);
-        System.out.println("Percent Complete: " + (complete/total));
+        System.out.println("Percent Complete: " + (100*(complete/total)));
         
     }
 
@@ -106,7 +106,7 @@ public class QuestProgressView extends View {
         }
         System.out.println("------------------");
         System.out.println("Total Outstanding: " + outstanding);
-        System.out.println("Percent Complete: " + (outstanding/total));
+        System.out.println("Percent Outstanding: " + (100*(outstanding/total)));
         
     }
 }
