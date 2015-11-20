@@ -78,8 +78,13 @@ public class QuestProgressView extends View {
             }
         }
         System.out.println("----------------");
-        System.out.println("Total Completed: " + complete);
-        System.out.println("Percent Complete: " + (100*(complete/total)));
+        if ((complete < 0) || (total < 0) || (total < complete)) {
+            System.out.println("ERROR IN CALCULATING TOTALS");
+        } else {
+            double percentage = 100 * complete/total;
+            System.out.println("Total Completed: " + complete);
+            System.out.println("Percent Complete: " + percentage);
+        }
         
     }
 
