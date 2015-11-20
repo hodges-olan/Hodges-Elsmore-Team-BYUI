@@ -41,6 +41,7 @@ public class Map implements Serializable {
                 location.setColumn(column);
                 location.setRow(row);
                 location.setQuestComplete(false);
+                locations[row][column] = location;
             }
         }
         

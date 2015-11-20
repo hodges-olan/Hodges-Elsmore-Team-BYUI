@@ -5,6 +5,9 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.control.GameControl;
+import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -59,7 +62,21 @@ public class GameMenuView extends View {
 
     // Display the players inventory    
     private void displayinventory() {
-        System.out.println("The displayInventory method was called!");
+        
+        // Get the sorted list of inventory items for the current game
+        ArrayList<InventoryItem> inventory = GameControl.getSortedInventoryList();
+        
+        // Display the sorted inventory list
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Name" + "\t" +
+                "Type" + "\t" +
+                "Quantity");
+        for (InventoryItem inventoryItem: inventory) {
+            System.out.println(inventoryItem.getName() + "\t" +
+                    inventoryItem.getInventoryType() + "\t" +
+                    inventoryItem.getQuantity());
+        }
+        
     }
     
     //Display Game Quests
