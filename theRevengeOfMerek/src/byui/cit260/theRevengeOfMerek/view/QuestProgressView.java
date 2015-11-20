@@ -67,16 +67,19 @@ public class QuestProgressView extends View {
         System.out.println("Completed Quests");
         System.out.println("----------------");
         int total = 0;
+        int complete = 0;
         for (Location[] row : locations) {
             for (Location location : row) {
+                total++;
                 if (location.isQuestComplete()) {
-                    total++;
+                    complete++;
                     System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
                 }
             }
         }
         System.out.println("----------------");
-        System.out.println("Total Completed: " + total);
+        System.out.println("Total Completed: " + complete);
+        System.out.println("Percent Complete: " + (complete/total));
         
     }
 
