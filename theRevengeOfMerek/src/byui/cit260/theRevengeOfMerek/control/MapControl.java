@@ -26,7 +26,7 @@ public class MapControl {
         
     }
 
-    static void moveActorsToStartingLocation(Map map) {
+    static void moveCharactersToStartingLocations(Map map) {
         System.out.println("*** called moveActorsToStartingLocation() in MapControl ***");
     }
 

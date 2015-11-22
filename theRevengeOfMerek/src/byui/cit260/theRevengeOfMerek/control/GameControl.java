@@ -60,7 +60,7 @@ public class GameControl {
         game.setMap(map);
         
         // Move actors to their starting positions in the map
-        MapControl.moveActorsToStartingLocation(map);
+        MapControl.moveCharactersToStartingLocations(map);
         
     }
 
