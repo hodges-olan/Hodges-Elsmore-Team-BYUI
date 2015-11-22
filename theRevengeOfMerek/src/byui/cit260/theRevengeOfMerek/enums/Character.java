@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.theRevengeOfMerek.model;
+package byui.cit260.theRevengeOfMerek.enums;
 
+import byui.cit260.theRevengeOfMerek.model.Location;
 import java.io.Serializable;
 
 /**

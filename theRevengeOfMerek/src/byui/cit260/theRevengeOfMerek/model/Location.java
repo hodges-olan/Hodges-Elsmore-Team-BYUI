@@ -5,6 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.model;
 
+import byui.cit260.theRevengeOfMerek.enums.Character;
 import java.io.Serializable;
 import java.util.Objects;
 
