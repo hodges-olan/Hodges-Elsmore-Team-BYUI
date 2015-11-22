@@ -8,6 +8,7 @@ package byui.cit260.theRevengeOfMerek.control;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
 import byui.cit260.theRevengeOfMerek.model.Player;
+import byui.cit260.theRevengeOfMerek.enums.Character;
 
 /**
  *
@@ -28,7 +29,20 @@ public class MapControl {
     }
 
     static void moveCharactersToStartingLocations(Map map) {
-        System.out.println("*** called moveActorsToStartingLocation() in MapControl ***");
+        
+        // Acquire all Characters from enum
+        Character[] characters = Character.values();
+        
+        // Get the 2D array for the map
+        Location[][] locations = map.getLocations();
+        
+        // Place the characters at their positions
+        for (Character character : characters) {
+            int locationx = character.getLocationX();
+            int locationy = character.getLocationY();
+            locations[locationx][locationy].setCharacter(character);
+        }
+        
     }
     
     static void movePlayerToLocation(Map map, Player player) {

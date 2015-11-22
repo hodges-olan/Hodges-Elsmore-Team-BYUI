@@ -6,55 +6,60 @@
 package byui.cit260.theRevengeOfMerek.enums;
 
 import byui.cit260.theRevengeOfMerek.model.Location;
-import java.io.Serializable;
 
 /**
  *
  * @author maryelsmore
  */
-public enum Character implements Serializable {
+public enum Character {
 
-    Peter("A blacksmith by trade and a honorable man of the people."),
-    Isaac("The town trickster, but helpful to all those in need."),
-    Oscar("The local doctor for the townsfolk."),
-    Aiden("A carpenter by trade, and a family man."),
-    Christopher("Owner of a local bank."),
-    Urijah("An appretice to the local cobbler."),
-    Landyn("A journeyman mason."),
-    Tristen("The local butcher and deacon in the church."),
-    Giovani("A glazier by trade and a family man at heart."),
-    Darian("An apprencite porter by trade."),
-    Kai("The local master mason who has multiple apprentices locally."),
-    Connor("A carpenter by trade, and a family man."),
-    David("An appretice to the local cobbler."),
-    Anthony("A blacksmith by trade and a honorable man of the people."),
-    Bailey("A journeyman mason."),
-    Tristan("Owner of a local bank."),
-    Jamison("The local master cobbler."),
-    Daxton("An apprentice blacksmith who hopes one day to be a master blacksmith."),
-    Neymar("The local doctor for the townsfolk."),
-    Allen("A fletcher by trade."),
-    Jacob("A local minstrel ready to entertain at local parties."),
-    Robert("A journeyman mason."),
-    Dominic("A steward for one of the local nobles."),
-    Jackson("A glazier by trade and a family man at heart."),
-    Josh("The town trickster, but helpful to all those in need.");
+    Peter("A blacksmith by trade and a honorable man of the people.", 0, 0),
+    Isaac("The town trickster, but helpful to all those in need.", 0, 1),
+    Oscar("The local doctor for the townsfolk.", 0, 2),
+    Aiden("A carpenter by trade, and a family man.", 0, 3),
+    Christopher("Owner of a local bank.", 0, 4),
+    Urijah("An appretice to the local cobbler.", 1, 0),
+    Landyn("A journeyman mason.", 1, 1),
+    Tristen("The local butcher and deacon in the church.", 1, 2),
+    Giovani("A glazier by trade and a family man at heart.", 1, 3),
+    Darian("An apprencite porter by trade.", 1, 4),
+    Kai("The local master mason who has multiple apprentices locally.", 2, 0),
+    Connor("A carpenter by trade, and a family man.", 2, 1),
+    David("An appretice to the local cobbler.", 2, 2),
+    Anthony("A blacksmith by trade and a honorable man of the people.", 2, 3),
+    Bailey("A journeyman mason.", 2, 4),
+    Tristan("Owner of a local bank.", 3, 0),
+    Jamison("The local master cobbler.", 3, 1),
+    Daxton("An apprentice blacksmith who hopes one day to be a master blacksmith.", 3, 2),
+    Neymar("The local doctor for the townsfolk.", 3, 3),
+    Allen("A fletcher by trade.", 3, 4),
+    Jacob("A local minstrel ready to entertain at local parties.", 4, 0),
+    Robert("A journeyman mason.", 4, 1),
+    Dominic("A steward for one of the local nobles.", 4, 2),
+    Jackson("A glazier by trade and a family man at heart.", 4, 3),
+    Josh("The town trickster, but helpful to all those in need.", 4, 4);
     
     private final String description;
-    private final Location location;
+    private final int locationx;
+    private final int locationy;
 
     // default constructor class
-    Character(String description) {
+    Character(String description, int locationx, int locationy) {
         this.description = description;
-        location = new Location();
+        this.locationx = locationx;
+        this.locationy = locationy;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Location getLocation() {
-        return location; 
+    public int getLocationX() {
+        return locationx; 
+    }
+    
+    public int getLocationY() {
+        return locationy; 
     }
 
 }
