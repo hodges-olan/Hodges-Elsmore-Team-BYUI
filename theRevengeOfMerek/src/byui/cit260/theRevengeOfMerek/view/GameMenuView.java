@@ -6,11 +6,13 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
+import byui.cit260.theRevengeOfMerek.control.MapControl;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
 import java.util.ArrayList;
+import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -25,6 +27,7 @@ public class GameMenuView extends View {
             + "\n-----------------------------------"
             + "\n|           Game Menu             |"
             + "\n-----------------------------------"
+            + "\n| (D)isplay Map                   |"
             + "\n| (I)nventory                     |"
             + "\n| (Q)uests                        |"
             + "\n| (M)ove                          |"
@@ -40,8 +43,11 @@ public class GameMenuView extends View {
         char selection = (char) obj;
         
         switch(selection) {
+            case 'D':
+                this.displayMap();
+                break;
             case 'I':
-                this.displayinventory();
+                this.displayInventory();
                 break;
             case 'Q':
                 this.displayQuests();
@@ -64,7 +70,7 @@ public class GameMenuView extends View {
     }
 
     // Display the players inventory    
-    private void displayinventory() {
+    private void displayInventory() {
         
         // Get the sorted list of inventory items for the current game
         ArrayList<InventoryItem> inventory = GameControl.getSortedInventoryList();
@@ -94,34 +100,30 @@ public class GameMenuView extends View {
     // Method to move Player
     private void movePlayer() {
         
-        // Get the current game, map (including rows and columns), and locations
+        // Get the current game, map, and locations
         Game game = TheRevengeOfMerek.getCurrentGame();
         Map map = game.getMap();
-        int rows = map.getRowCount();
-        int columns = map.getColumnCount();
         Location[][] locations = map.getLocations();
         
-        // Display title
-        System.out.println("\n\n  The Revenge of Merek");
-        
-        // Display map
-        System.out.println("    1   2   3   4   5");
-        System.out.println("-----------------------");
-        for (int i=0; i < rows; i++) {
-            System.out.print((i+1) + " |");
-            for (int j=0; j < columns; j++) {
-                if (locations[i][j].isQuestComplete()) {
-                    System.out.print(" C |");
-                } else {
-                    System.out.print(" O |");
-                }
-            }
-            System.out.println("\n-----------------------");
-        }
+        // Display Map
+        this.displayMap();
         
         // Request new location to move to
+        boolean valid = false;
+        int locationx;
+        int locationy;
+        Scanner keyboard = new Scanner(System.in);
+        
+        // Gather new X coordinate
+        System.out.println("Enter new X coordinate");
+        locationx = keyboard.nextInt();
+        
+        // Gather new X coordinate
+        System.out.println("Enter new Y coordinate");
+        locationy = keyboard.nextInt();
         
         // Call movePlayerToLocation function
+        MapControl.movePlayerToLocation(locations, locationx, locationy);
         
     }
 
@@ -141,6 +143,36 @@ public class GameMenuView extends View {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
         
+    }
+
+    private void displayMap() {
+        
+        // Get the current game map (including dimensions) and locations
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Map map = game.getMap();
+        int rows = map.getRowCount();
+        int columns = map.getColumnCount();
+        Location[][] locations = map.getLocations();
+        
+        // Display title
+        System.out.println("\n\n  The Revenge of Merek");
+        
+        // Display map
+        System.out.println("    1   2   3   4   5");
+        System.out.println("-----------------------");
+        for (int i=0; i < rows; i++) {
+            System.out.print((i+1) + " |");
+            for (int j=0; j < columns; j++) {
+                if (locations[i][j].isQuestComplete()) {
+                    System.out.print(" C |");
+                } else if (locations[i][j].isPlayerPresent()) {
+                    System.out.print(" X |");
+                } else {
+                    System.out.print(" O |");
+                }
+            }
+            System.out.println("\n-----------------------");
+        }
     }
  
        

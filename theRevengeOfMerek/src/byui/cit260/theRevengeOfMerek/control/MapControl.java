@@ -28,7 +28,7 @@ public class MapControl {
         
     }
 
-    static void moveCharactersToStartingLocations(Map map) {
+    public static void moveCharactersToStartingLocations(Map map) {
         
         // Acquire all Characters from enum
         Character[] characters = Character.values();
@@ -45,8 +45,18 @@ public class MapControl {
         
     }
     
-    static void movePlayerToLocation(Map map, Player player) {
-        System.out.println("*** called movePlayerToLocation() in Map Control ***");
+    public static void movePlayerToLocation(Location[][] locations, int locationx, int locationy) {
+        
+        // Reset all of the locations playerPresent attribute to false
+        for (Location[] rows : locations) {
+            for (Location location : rows) {
+                location.setPlayerPresent(false);
+            }
+        }
+        
+        // Set players new location
+        locations[locationx-1][locationy-1].setPlayerPresent(true);
+        
     }
 
     private static void assignQuestsToLocations(Map map) {
