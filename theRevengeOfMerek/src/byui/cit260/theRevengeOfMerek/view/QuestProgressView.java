@@ -88,7 +88,28 @@ public class QuestProgressView extends View {
         
     }
 
-    private void displayOutstandingQuests() {
-        System.out.println("displayOutstandingQuests method called!");
+       private void displayOutstandingQuests() {
+        // Get the current game, map (including rows and columns), and locations
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Map map = game.getMap();
+        int rows = map.getRowCount();
+        Location[][] locations = map.getLocations();
+        
+        // Display outstanding quests and gather total
+        System.out.println("Outstanding Quests");
+        System.out.println("----------------");
+        int total = 0;
+        for (Location[] row : locations) {
+            for (Location location : row) {
+                if (location.isQuestOutstanding()) {
+                    total++;
+                    System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
+                }
+            }
+        }
+        System.out.println("----------------");
+        System.out.println("Total Outstanding: " + total);
     }
 }
+    
+

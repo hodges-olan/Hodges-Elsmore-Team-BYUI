@@ -19,6 +19,7 @@ public class Location implements Serializable {
     private double row;
     private double column;
     private boolean questComplete;
+    private boolean QuestOutstanding;
     private Character character;
     private String questType;
     private ArtifactStrengthQuest artifactQuest;
@@ -26,6 +27,7 @@ public class Location implements Serializable {
     private RiddleQuest riddleQuest;
     private ShipmentQuest shipmentQuest;
     private StorageContainerQuest storageContainerQuest;
+
     private enum towns {
         Ballinamallard,
         Armagh,
@@ -75,6 +77,10 @@ public class Location implements Serializable {
         return questComplete;
     }
 
+    public boolean isQuestOutstanding() {
+        return QuestOutstanding;
+    }
+    
     public ArtifactStrengthQuest getArtifactQuest() {
         return artifactQuest;
     }
