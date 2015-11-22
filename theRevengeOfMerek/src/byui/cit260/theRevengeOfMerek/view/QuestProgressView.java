@@ -108,7 +108,9 @@ public class QuestProgressView extends View {
             System.out.println("Total Outstanding: " + outstanding);
             System.out.println("Percent Outstanding: " + percentage);
         }
+        
     }
+       
 }
     
 
