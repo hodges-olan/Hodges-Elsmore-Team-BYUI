@@ -119,6 +119,10 @@ public class GameMenuView extends View {
             System.out.println("\n-----------------------");
         }
         
+        // Request new location to move to
+        
+        // Call movePlayerToLocation function
+        
     }
 
     // Method to save a game

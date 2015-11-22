@@ -7,6 +7,7 @@ package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
+import byui.cit260.theRevengeOfMerek.model.Player;
 
 /**
  *
@@ -28,6 +29,10 @@ public class MapControl {
 
     static void moveCharactersToStartingLocations(Map map) {
         System.out.println("*** called moveActorsToStartingLocation() in MapControl ***");
+    }
+    
+    static void movePlayerToLocation(Map map, Player player) {
+        System.out.println("*** called movePlayerToLocation() in Map Control ***");
     }
 
     private static void assignQuestsToLocations(Map map) {
