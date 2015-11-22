@@ -19,7 +19,6 @@ public class Location implements Serializable {
     private double row;
     private double column;
     private boolean questComplete;
-    private boolean QuestOutstanding;
     private Character character;
     private String questType;
     private ArtifactStrengthQuest artifactQuest;
@@ -75,10 +74,6 @@ public class Location implements Serializable {
 
     public boolean isQuestComplete() {
         return questComplete;
-    }
-
-    public boolean isQuestOutstanding() {
-        return QuestOutstanding;
     }
     
     public ArtifactStrengthQuest getArtifactQuest() {

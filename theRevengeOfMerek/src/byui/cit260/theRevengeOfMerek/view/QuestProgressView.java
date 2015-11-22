@@ -22,7 +22,6 @@ public class QuestProgressView extends View {
             + "\n-----------------------------------"
             + "\n|       Quest Progress Menu       |"
             + "\n-----------------------------------"
-            + "\n| (A)ctive Quests                 |"
             + "\n| (C)ompleted Quests              |"
             + "\n| (O)utstanding Quests            |"
             + "\n| (E)xit                          |"
@@ -35,9 +34,6 @@ public class QuestProgressView extends View {
         char selection = (char) obj;
         
         switch(selection) {
-            case 'A':
-                this.displayActiveQuests();
-                break;
             case 'C':
                 this.displayCompletedQuests();
                 break;
@@ -50,10 +46,6 @@ public class QuestProgressView extends View {
                 System.out.println("\n Invalid Selection, Try Again");
                 break;
         }
-    }
-
-    private void displayActiveQuests() {
-        System.out.println("displayActiveQuests method called!");
     }
 
     private void displayCompletedQuests() {
@@ -92,23 +84,30 @@ public class QuestProgressView extends View {
         // Get the current game, map (including rows and columns), and locations
         Game game = TheRevengeOfMerek.getCurrentGame();
         Map map = game.getMap();
-        int rows = map.getRowCount();
         Location[][] locations = map.getLocations();
         
         // Display outstanding quests and gather total
         System.out.println("Outstanding Quests");
         System.out.println("----------------");
         int total = 0;
+        int outstanding = 0;
         for (Location[] row : locations) {
             for (Location location : row) {
-                if (location.isQuestOutstanding()) {
-                    total++;
+                total++;
+                if (!location.isQuestComplete()) {
+                    outstanding++;
                     System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
                 }
             }
         }
         System.out.println("----------------");
-        System.out.println("Total Outstanding: " + total);
+        if ((outstanding < 0) || (total < 0) || (total < outstanding)) {
+            System.out.println("ERROR IN CALCULATING TOTALS");
+        } else {
+            double percentage = 100 * outstanding/total;
+            System.out.println("Total Outstanding: " + outstanding);
+            System.out.println("Percent Outstanding: " + percentage);
+        }
     }
 }
     
