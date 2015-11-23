@@ -77,13 +77,16 @@ public class GameMenuView extends View {
         
         // Display the sorted inventory list
         System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t" +
+        System.out.println("Name" + "\t\t" +
                 "Type" + "\t" +
                 "Quantity");
         for (InventoryItem inventoryItem: inventory) {
-            System.out.println(inventoryItem.getName() + "\t" +
-                    inventoryItem.getInventoryType() + "\t" +
-                    inventoryItem.getQuantity());
+            System.out.print(inventoryItem.getName());
+            int space = 16 - inventoryItem.getName().length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.println(inventoryItem.getInventoryType() + "\t" + inventoryItem.getQuantity());
         }
         
     }
