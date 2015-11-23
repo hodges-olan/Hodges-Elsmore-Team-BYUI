@@ -123,7 +123,35 @@ public class GameMenuView extends View {
         locationy = keyboard.nextInt();
         
         // Call movePlayerToLocation function
-        MapControl.movePlayerToLocation(locations, locationx, locationy);
+        locationy = --locationy;
+        locationx = --locationx;
+        MapControl.movePlayerToLocation(locations, locationy, locationx);
+        
+        // If Quest not complete, Start it
+        if (!locations[locationy][locationx].isQuestComplete()) {
+            String questType = locations[locationy][locationx].getQuestType();
+            switch(questType) {
+                case "artifact":
+                    System.out.println("*** call artifact quest ***");
+                    break;
+                case "container":
+                    System.out.println("*** call container quest ***");
+                    break;
+                case "riddle":
+                    System.out.println("*** call riddle quest ***");
+                    break;
+                case "shipment":
+                    System.out.println("*** call shipment quest ***");
+                    break;
+                case "strength":
+                    System.out.println("*** call strength quest ***");
+                    return;
+                default:
+                    System.out.println("\n Invalid Selection, Try Again");
+                    break;
+            }
+            
+        }
         
     }
 

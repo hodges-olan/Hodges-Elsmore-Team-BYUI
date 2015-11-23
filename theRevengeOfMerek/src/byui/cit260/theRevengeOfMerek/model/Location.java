@@ -55,6 +55,14 @@ public class Location implements Serializable {
         Garmsby,
         Dumbarton;
     }
+    
+    private enum questType {
+        artifact,
+        container,
+        riddle,
+        shipment,
+        strength;
+    }
 
     // default constructor
     public Location() {

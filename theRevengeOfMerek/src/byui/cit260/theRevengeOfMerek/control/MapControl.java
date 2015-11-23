@@ -40,12 +40,12 @@ public class MapControl {
         for (Character character : characters) {
             int locationx = character.getLocationX();
             int locationy = character.getLocationY();
-            locations[locationx][locationy].setCharacter(character);
+            locations[locationy][locationx].setCharacter(character);
         }
         
     }
     
-    public static void movePlayerToLocation(Location[][] locations, int locationx, int locationy) {
+    public static void movePlayerToLocation(Location[][] locations, int locationy, int locationx) {
         
         // Reset all of the locations playerPresent attribute to false
         for (Location[] rows : locations) {
@@ -55,7 +55,7 @@ public class MapControl {
         }
         
         // Set players new location
-        locations[locationx-1][locationy-1].setPlayerPresent(true);
+        locations[locationy][locationx].setPlayerPresent(true);
         
     }
 
