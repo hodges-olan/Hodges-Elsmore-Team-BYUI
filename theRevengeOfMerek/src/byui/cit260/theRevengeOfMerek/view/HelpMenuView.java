@@ -70,9 +70,6 @@ public class HelpMenuView extends View {
         Scanner keyboard = new Scanner(System.in);
         input = keyboard.nextLine();
         
-        // Return to the help menu
-        return;
-        
     }
     
     private void displayUserConsoleHelp() {
@@ -108,8 +105,6 @@ public class HelpMenuView extends View {
         Scanner keyboard = new Scanner(System.in);
         input = keyboard.nextLine();
         
-        // Return to the help menu
-        return;
     }
 
 }

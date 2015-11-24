@@ -9,6 +9,7 @@ import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import byui.cit260.theRevengeOfMerek.enums.Character;
+import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 
 /**
  *
@@ -45,17 +46,26 @@ public class MapControl {
         
     }
     
-    public static void movePlayerToLocation(Location[][] locations, int locationy, int locationx) {
+    public static void movePlayerToLocation(Map map, Location[][] locations, int locationy, int locationx) throws MapControlException {
         
-        // Reset all of the locations playerPresent attribute to false
-        for (Location[] rows : locations) {
-            for (Location location : rows) {
-                location.setPlayerPresent(false);
+        // Get the row and column count
+        int rows = map.getRowCount();
+        int columns = map.getColumnCount();
+        
+        // Verify new location is within scope of map
+        if (locationy >= rows || locationy < 0 || locationx >= columns || locationx < 0) {
+            throw new MapControlException("Can not move player to location " + ++locationx + ", " + ++locationy + " because that location is outside the bounds of the map.");
+        } else {
+            // Reset all of the locations playerPresent attribute to false
+            for (Location[] maprows : locations) {
+                for (Location location : maprows) {
+                    location.setPlayerPresent(false);
+                }
             }
+            
+            // Set players new location
+            locations[locationy][locationx].setPlayerPresent(true);
         }
-        
-        // Set players new location
-        locations[locationy][locationx].setPlayerPresent(true);
         
     }
 

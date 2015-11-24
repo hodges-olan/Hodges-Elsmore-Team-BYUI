@@ -124,7 +124,6 @@ public class StorageContainerQuestView {
     private double getInputDouble(String dimension) {
         Scanner input = new Scanner(System.in);
         System.out.println("What is the " + dimension + " we should use?");
-        boolean valid = false;
         
         while (!input.hasNextDouble()) {
             System.out.println("You must enter a valid number.  Try again.");

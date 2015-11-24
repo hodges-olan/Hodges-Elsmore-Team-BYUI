@@ -23,7 +23,14 @@ public class TheRevengeOfMerek {
     // Main Method for TheRevengeOfMerek Game
     public static void main(String[] args) {
        StartProgramView startProgramView = new StartProgramView();
-       startProgramView.startProgram();
+       try {
+           // Create StartProgramView and start the program
+           startProgramView.startProgram();
+       } catch (Throwable te) {
+           System.out.println(te.getMessage());
+           te.printStackTrace();
+           startProgramView.startProgram();
+       }
     }
     
     // Getter method for currentGame

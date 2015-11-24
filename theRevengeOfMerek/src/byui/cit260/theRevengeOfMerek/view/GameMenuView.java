@@ -7,6 +7,7 @@ package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
 import byui.cit260.theRevengeOfMerek.control.MapControl;
+import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Location;
@@ -125,35 +126,40 @@ public class GameMenuView extends View {
         System.out.println("Enter new Y coordinate");
         locationy = keyboard.nextInt();
         
-        // Call movePlayerToLocation function
+        // Decrement values for 2D array
         locationy = --locationy;
         locationx = --locationx;
-        MapControl.movePlayerToLocation(locations, locationy, locationx);
-        
-        // If Quest not complete, Start it
-        if (!locations[locationy][locationx].isQuestComplete()) {
-            String questType = locations[locationy][locationx].getQuestType();
-            switch(questType) {
-                case "artifact":
-                    System.out.println("*** call artifact quest ***");
-                    break;
-                case "container":
-                    System.out.println("*** call container quest ***");
-                    break;
-                case "riddle":
-                    System.out.println("*** call riddle quest ***");
-                    break;
-                case "shipment":
-                    System.out.println("*** call shipment quest ***");
-                    break;
-                case "strength":
-                    System.out.println("*** call strength quest ***");
-                    return;
-                default:
-                    System.out.println("\n Invalid Selection, Try Again");
-                    break;
-            }
+        try {
+            // Call movePlayerToLocation function
+            MapControl.movePlayerToLocation(map, locations, locationy, locationx);
             
+            // If Quest not complete, Start it
+            if (!locations[locationy][locationx].isQuestComplete()) {
+                String questType = locations[locationy][locationx].getQuestType();
+                switch(questType) {
+                    case "artifact":
+                        System.out.println("*** call artifact quest ***");
+                        break;
+                    case "container":
+                        System.out.println("*** call container quest ***");
+                        break;
+                    case "riddle":
+                        System.out.println("*** call riddle quest ***");
+                        break;
+                    case "shipment":
+                        System.out.println("*** call shipment quest ***");
+                        break;
+                    case "strength":
+                        System.out.println("*** call strength quest ***");
+                        return;
+                    default:
+                        System.out.println("\n Invalid Selection, Try Again");
+                        break;
+                }
+
+            }
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
         }
         
     }
