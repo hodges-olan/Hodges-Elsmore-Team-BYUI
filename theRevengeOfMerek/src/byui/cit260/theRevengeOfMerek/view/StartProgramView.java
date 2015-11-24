@@ -39,6 +39,10 @@ public class StartProgramView {
         MainMenuView mainMenu = new MainMenuView();
         mainMenu.display();
         
+        // Test StorageContainerQuest
+        StorageContainerQuestView storageContainerQuest = new StorageContainerQuestView();
+        storageContainerQuest.displayMenu();
+        
     }
 
     // Method to display the welcome banner

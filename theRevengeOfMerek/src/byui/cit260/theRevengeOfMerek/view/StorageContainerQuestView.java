@@ -121,15 +121,22 @@ public class StorageContainerQuestView {
         
     }
 
-    private double getInputDouble(String dimension) {
-        Scanner input = new Scanner(System.in);
+    private Double getInputDouble(String dimension) {
+        Double value = null;
+        Scanner keyboard = new Scanner(System.in);
         System.out.println("What is the " + dimension + " we should use?");
+        String input;
         
-        while (!input.hasNextDouble()) {
-            System.out.println("You must enter a valid number.  Try again.");
-            input.next();
+        while (value == null) {
+            try {
+                // parse and convert number from text to double
+                input = keyboard.nextLine();
+                value = Double.parseDouble(input);
+            } catch (NumberFormatException nf) {
+                System.out.println("\nYou must enter a valid number. Please try again.");
+            }
         }
-        double value = input.nextDouble();
+            
         return value;
     }
 
