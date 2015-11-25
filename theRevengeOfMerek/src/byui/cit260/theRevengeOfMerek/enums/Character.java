@@ -5,8 +5,6 @@
  */
 package byui.cit260.theRevengeOfMerek.enums;
 
-import byui.cit260.theRevengeOfMerek.model.Location;
-
 /**
  *
  * @author maryelsmore
@@ -39,17 +37,19 @@ public enum Character {
     Jackson("A glazier by trade and a family man at heart.", 4, 3),
     Josh("The town trickster, but helpful to all those in need.", 4, 4);
     
+    // Class Instance Variables
     private final String description;
     private final int locationx;
     private final int locationy;
 
-    // default constructor class
+    // default constructor method
     Character(String description, int locationx, int locationy) {
         this.description = description;
         this.locationx = locationx;
         this.locationy = locationy;
     }
 
+    // Public getter functions
     public String getDescription() {
         return description;
     }
