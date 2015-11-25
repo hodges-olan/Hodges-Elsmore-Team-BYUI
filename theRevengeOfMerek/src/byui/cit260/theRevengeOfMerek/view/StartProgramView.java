@@ -17,7 +17,6 @@ public class StartProgramView {
     
     // Constructor Method for StartProgramView Class
     public StartProgramView() {
-        
     }
     
     // Method to start the program
