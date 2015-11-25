@@ -74,22 +74,9 @@ public class GameMenuView extends View {
     // Display the players inventory    
     private void displayInventory() {
         
-        // Get the sorted list of inventory items for the current game
-        ArrayList<InventoryItem> inventory = GameControl.getSortedInventoryList();
-        
-        // Display the sorted inventory list
-        System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t\t" +
-                "Type" + "\t" +
-                "Quantity");
-        for (InventoryItem inventoryItem: inventory) {
-            System.out.print(inventoryItem.getName());
-            int space = 16 - inventoryItem.getName().length();
-            for (int i = 0; i < space; i++) {
-                System.out.print(" ");
-            }
-            System.out.println(inventoryItem.getInventoryType() + "\t" + inventoryItem.getQuantity());
-        }
+        // Create and display the inventory menu
+        InventoryMenuView inventoryMenu = new InventoryMenuView();
+        inventoryMenu.display();
         
     }
     
