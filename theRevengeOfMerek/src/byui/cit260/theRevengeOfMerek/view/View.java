@@ -32,7 +32,7 @@ public abstract class View implements ViewInterface {
     public void display() {
         
         // Declare variables
-        char selection;
+        char selection = ' ';
         
         // Loop to show and gather input from user in main menu
         do {
@@ -43,7 +43,11 @@ public abstract class View implements ViewInterface {
             String value = this.getInput();
             
             // Gather the first char from the input and capitalize it
-            selection = Character.toUpperCase(value.charAt(0));
+            try {
+                selection = Character.toUpperCase(value.charAt(0));
+            } catch (IndexOutOfBoundsException ioo) {
+                System.out.println("Invalid option - please select from the menu above");
+            }
             
             // Invoke the switches to execute the appropriate action
             this.doAction(selection);
@@ -74,7 +78,7 @@ public abstract class View implements ViewInterface {
                 valid = true;
             }
         
-        } while(!valid);
+        }
         
         return value;
     }
