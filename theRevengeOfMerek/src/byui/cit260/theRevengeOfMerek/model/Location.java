@@ -66,6 +66,7 @@ public class Location implements Serializable {
 
     // default constructor
     public Location() {
+        storageContainerQuest = new StorageContainerQuest();
     }
 
     // public getter function

@@ -12,6 +12,7 @@ import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
+import byui.cit260.theRevengeOfMerek.model.StorageContainerQuest;
 import java.util.ArrayList;
 import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
@@ -141,7 +142,8 @@ public class GameMenuView extends View {
                         System.out.println("*** call artifact quest ***");
                         break;
                     case "container":
-                        System.out.println("*** call container quest ***");
+                        StorageContainerQuestView storageContainerQuestView = new StorageContainerQuestView();
+                        storageContainerQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "riddle":
                         System.out.println("*** call riddle quest ***");
@@ -200,10 +202,10 @@ public class GameMenuView extends View {
         for (int i=0; i < rows; i++) {
             System.out.print((i+1) + " |");
             for (int j=0; j < columns; j++) {
-                if (locations[i][j].isQuestComplete()) {
-                    System.out.print(" C |");
-                } else if (locations[i][j].isPlayerPresent()) {
+                if (locations[i][j].isPlayerPresent()) {
                     System.out.print(" X |");
+                } else if (locations[i][j].isQuestComplete()) {
+                    System.out.print(" C |");
                 } else {
                     System.out.print(" O |");
                 }

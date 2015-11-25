@@ -6,6 +6,8 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.StorageContainerQuestControl;
+import byui.cit260.theRevengeOfMerek.model.Location;
+import byui.cit260.theRevengeOfMerek.model.StorageContainerQuest;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -26,7 +28,7 @@ public class StorageContainerQuestView {
                 + "\n*********************************************************************";
     
     // Method to display the welcome banner
-    public void displayMenu() {
+    public void displayMenu(Location location) {
         
         // Declare variables
         char selection = ' ';
@@ -43,7 +45,7 @@ public class StorageContainerQuestView {
             selection = Character.toUpperCase(input.charAt(0));
             
             // Invoke the switches to execute the appropriate action
-            selection = this.doAction(selection);
+            selection = this.doAction(selection, location);
        
         } while ((selection != 'N') & (selection != 'C'));
         
@@ -80,9 +82,9 @@ public class StorageContainerQuestView {
     }
 
     // Execute the appropriate action based on input from user
-    private char doAction(char selection) {
+    private char doAction(char selection, Location location) {
         if (selection == 'Y') {
-            this.startNewStorageContainerQuest();
+            this.startNewStorageContainerQuest(location);
             return 'C';
         } else if (selection == 'N') {
             String verify = this.getInputVerify();
@@ -98,14 +100,21 @@ public class StorageContainerQuestView {
         return ' ';
     }
 
-    private void startNewStorageContainerQuest() {
+    private void startNewStorageContainerQuest(Location location) {
+        
+        // Initialize Variables
+        StorageContainerQuest storageContainerQuest = location.getStorageContainerQuest();
+        double reqVolume = storageContainerQuest.getRequiredVolume();
         
         // Initialize random volume requirement between 400 and 10
-        Random rand = new Random();
-        double reqVolume = rand.nextInt((400-10)+1)+10;
-        boolean questAccomplished = false;
+        if (reqVolume == 0.0) {
+            Random rand = new Random();
+            reqVolume = rand.nextInt((400-10)+1)+10;
+        } else {
+            reqVolume = storageContainerQuest.getRequiredVolume();
+        }
         
-        while (!questAccomplished) {
+        while (!location.isQuestComplete()) {
             System.out.println("We need a container that will fit " + reqVolume + " square feet of water.");
             double radius = this.getInputDouble("radius");
             double height = this.getInputDouble("height");
@@ -115,7 +124,9 @@ public class StorageContainerQuestView {
                 System.out.println("I'm sorry but that container is the wrong size.  Please try again.");
             } else {
                 System.out.println("That will fit the requirements exactly!  Thank you!");
-                questAccomplished = true;
+                storageContainerQuest.setHeight(height);
+                storageContainerQuest.setRadius(radius);
+                location.setQuestComplete(true);
             }
         }
         

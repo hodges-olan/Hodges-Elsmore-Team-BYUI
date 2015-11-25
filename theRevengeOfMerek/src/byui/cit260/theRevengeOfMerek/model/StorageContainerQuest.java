@@ -22,6 +22,9 @@ public class StorageContainerQuest implements Serializable {
 
     // default constructor
     public StorageContainerQuest() {
+        requiredVolume = 0.0;
+        radius = 0.0;
+        height = 0.0;
     }
 
     // public getter function

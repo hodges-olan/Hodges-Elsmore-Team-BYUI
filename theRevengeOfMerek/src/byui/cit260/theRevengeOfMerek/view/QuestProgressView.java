@@ -60,12 +60,18 @@ public class QuestProgressView extends View {
         System.out.println("----------------");
         int total = 0;
         int complete = 0;
+        int currentRow = 0;
+        int currentColumn = 0;
         for (Location[] row : locations) {
             for (Location location : row) {
                 total++;
                 if (location.isQuestComplete()) {
                     complete++;
-                    System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
+                    currentRow = (int) location.getRow();
+                    currentColumn = (int) location.getColumn();
+                    currentRow = ++currentRow;
+                    currentColumn = ++currentColumn;
+                    System.out.println("Quest at " + currentRow + "," + currentColumn);
                 }
             }
         }
@@ -91,12 +97,18 @@ public class QuestProgressView extends View {
         System.out.println("----------------");
         int total = 0;
         int outstanding = 0;
+        int currentRow = 0;
+        int currentColumn = 0;
         for (Location[] row : locations) {
             for (Location location : row) {
                 total++;
                 if (!location.isQuestComplete()) {
                     outstanding++;
-                    System.out.println("Quest at " + location.getRow() + "," + location.getColumn());
+                    currentRow = (int) location.getRow();
+                    currentColumn = (int) location.getColumn();
+                    currentRow = ++currentRow;
+                    currentColumn = ++currentColumn;
+                    System.out.println("Quest at " + currentRow + "," + currentColumn);
                 }
             }
         }
