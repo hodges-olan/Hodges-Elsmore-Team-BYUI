@@ -40,13 +40,27 @@ public class StorageContainerQuestView {
             System.out.println(MENU);
             
             // Gather input from the player
-            String input = this.getInput();
+            String input = this.getInput("Do you accept the quest?  (Y/N)");
             
             // Gather the first char from the input and capitalize it
-            selection = Character.toUpperCase(input.charAt(0));
-            
-            // Invoke the switches to execute the appropriate action
-            selection = this.doAction(selection, location);
+            try {
+                // Trim input to just the first character
+                selection = Character.toUpperCase(input.charAt(0));
+                
+                // Invoke the switches to execute the appropriate action
+                try {
+                    // Invoke the doAction method
+                    selection = this.doAction(selection, location);
+                } catch (StorageContainerQuestControlException sce) {
+                    // Display error message for invalid input, reset selection, and try again.
+                    System.out.println(sce.getMessage());
+                    selection = ' ';
+                }
+            } catch (IndexOutOfBoundsException ioo) {
+                // Display error message for invalid input, reset selection, and try again.
+                System.out.println("Invalid option - please select Y or N");
+                selection = ' ';
+            }
        
         } while ((selection != 'N') & (selection != 'C'));
         
@@ -57,48 +71,53 @@ public class StorageContainerQuestView {
     }
 
     // Method to gather the input from the user 
-    private String getInput() {
+    private String getInput(String message) {
         
         // Declare variables for getInput method
-        boolean valid = false;
-        String input = null;
+        String input;
         Scanner keyboard = new Scanner(System.in);
         
         // Loop to gather input from user until they give valid input
-        do { 
-            System.out.println("Do you accept the quest?  (Y/N)");
+        System.out.println(message);
+        input = keyboard.nextLine();
+        input = input.trim();
             
-            input = keyboard.nextLine();
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select Y or N");
-            } else {
-                valid = true;
-            }
-        
-        } while(!valid);
-        
         return input;
     }
 
     // Execute the appropriate action based on input from user
-    private char doAction(char selection, Location location) {
+    private char doAction(char selection, Location location) throws StorageContainerQuestControlException {
+        
+        // Declare variables
+        char verify;
+        
+        // Logical tree for starting the quest or verifying if the user wants to exit
         if (selection == 'Y') {
+            // Start Quest
             this.startNewStorageContainerQuest(location);
-            return 'C';
+            selection = 'C';
         } else if (selection == 'N') {
-            String verify = this.getInputVerify();
-            selection = Character.toUpperCase(verify.charAt(0));
-            if (selection == 'Y') {
-                return 'N';
-            } else {
-                return ' ';
-            }
+            // Verify users selection
+            do {
+                String input = this.getInput("Are you sure?  (Y/N)");
+                try {
+                    verify = Character.toUpperCase(input.charAt(0));
+                    if (verify == 'Y') {
+                        selection = 'N';
+                    } else if (verify == 'N') {
+                        selection = ' ';
+                    } else {
+                        throw new StorageContainerQuestControlException ("Invalid option - please select Y or N");
+                    }
+                } catch (IndexOutOfBoundsException ioo) {
+                    throw new StorageContainerQuestControlException("Invalid option - please select Y or N");
+                } 
+            } while (selection != 'N' & selection != ' ');
         } else {
-            System.out.println("Invalid option - please select Y or N");
+            // Display invalid input error and go back to ask them if they want to accept the quest
+            throw new StorageContainerQuestControlException ("Invalid option - please select Y or N");
         }
-        return ' ';
+        return selection;
     }
 
     private void startNewStorageContainerQuest(Location location) {
@@ -152,31 +171,6 @@ public class StorageContainerQuestView {
         }
             
         return value;
-    }
-
-    private String getInputVerify() {
-        
-        // Declare variables for getInput method
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        // Loop to gather input from user until they give valid input
-        do { 
-            System.out.println("Are you sure?  (Y/N)");
-            
-            input = keyboard.nextLine();
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select Y or N");
-            } else {
-                valid = true;
-            }
-        
-        } while(!valid);
-        
-        return input;
     }
     
 }
