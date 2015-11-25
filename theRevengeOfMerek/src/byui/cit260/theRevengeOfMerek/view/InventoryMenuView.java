@@ -9,6 +9,7 @@ import byui.cit260.theRevengeOfMerek.control.GameControl;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import java.util.ArrayList;
 import java.util.Scanner;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -41,16 +42,13 @@ public class InventoryMenuView extends View {
                 this.displayWeapons();
                 break;
             case 'A':
-                this.displayArmors();
+                this.displayArmor();
                 break;
             case 'S':
                 this.displayShields();
                 break;
             case 'I':
                 this.displayItems();
-                break;
-            case 'H':
-                this.displayHelpMenu();
                 break;
             case 'E':
                 return;
@@ -61,21 +59,100 @@ public class InventoryMenuView extends View {
     }
     
     private void displayWeapons() {
-        System.out.println("The displayWeapons method was called!");
+        
+        // Get the sorted list of inventory items for the current game
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList();
+        
+        // Display the sorted inventory list
+        String name;
+        String inventoryType;
+        double quantity;
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Name" + "\t\t" +
+                "Type" + "\t" +
+                "Quantity");
+        for (InventoryItem inventoryItem: inventory) {
+            name = inventoryItem.getName();
+            inventoryType = inventoryItem.getInventoryType();
+            quantity = inventoryItem.getQuantity();
+            if (inventoryType.equals("weapon")) {
+                System.out.print(name);
+                int space = 16 - name.length();
+                for (int i = 0; i < space; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println(inventoryType + "\t" + quantity);
+            }
+        }
+        
     }
 
-    private void displayArmors() {
-        System.out.println("The displayArmor method was called!");
+    private void displayArmor() {
+        
+        // Get the sorted list of inventory items for the current game
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList();
+        
+        // Display the sorted inventory list
+        String name;
+        String inventoryType;
+        double quantity;
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Name" + "\t\t" +
+                "Type" + "\t" +
+                "Quantity");
+        for (InventoryItem inventoryItem: inventory) {
+            name = inventoryItem.getName();
+            inventoryType = inventoryItem.getInventoryType();
+            quantity = inventoryItem.getQuantity();
+            if (inventoryType.equals("armor")) {
+                System.out.print(name);
+                int space = 16 - name.length();
+                for (int i = 0; i < space; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println(inventoryType + "\t" + quantity);
+            }
+        }
+        
     }
 
     private void displayShields() {
-        System.out.println("The displayShields method was called!");
+        
+        // Get the sorted list of inventory items for the current game
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList();
+        
+        // Display the sorted inventory list
+        String name;
+        String inventoryType;
+        double quantity;
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Name" + "\t\t" +
+                "Type" + "\t" +
+                "Quantity");
+        for (InventoryItem inventoryItem: inventory) {
+            name = inventoryItem.getName();
+            inventoryType = inventoryItem.getInventoryType();
+            quantity = inventoryItem.getQuantity();
+            if (inventoryType.equals("shield")) {
+                System.out.print(name);
+                int space = 16 - name.length();
+                for (int i = 0; i < space; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println(inventoryType + "\t" + quantity);
+            }
+        }
+        
     }
     
     private void displayItems() {
         
         // Get the sorted list of inventory items for the current game
-        ArrayList<InventoryItem> inventory = GameControl.getSortedInventoryList();
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList();
         
         // Display the sorted inventory list
         String name;
@@ -90,22 +167,39 @@ public class InventoryMenuView extends View {
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
             if (inventoryType.equals("bandage") || inventoryType.equals("potion")) {
-                System.out.print(inventoryItem.getName());
-                int space = 16 - inventoryItem.getName().length();
+                System.out.print(name);
+                int space = 16 - name.length();
                 for (int i = 0; i < space; i++) {
                     System.out.print(" ");
                 }
-                System.out.println(inventoryItem.getInventoryType() + "\t" + inventoryItem.getQuantity());
+                System.out.println(inventoryType + "\t" + quantity);
             }
         }
+        
+    }   
+
+    public ArrayList<InventoryItem> getSortedInventoryList() {
+        
+        // Get inventory list for the current game
+        ArrayList<InventoryItem> originalInventoryList = TheRevengeOfMerek.getCurrentGame().getInventory();
+        
+        // Clone original inventory list
+        ArrayList<InventoryItem> inventoryList = new ArrayList(originalInventoryList);
+        
+        // Sorting inventory list by name with bubble sort
+        InventoryItem tempInventoryItem;
+        for (int i = 0; i < inventoryList.size()-1; i++) {
+            for (int j = 0; j < inventoryList.size()-1-i; j++) {
+                if ((inventoryList.get(j)).getName().compareToIgnoreCase((inventoryList.get(j+1).getName())) > 0) {
+                    tempInventoryItem = inventoryList.get(j);
+                    inventoryList.set(j, inventoryList.get(j+1));
+                    inventoryList.set(j+1, tempInventoryItem);
+                }
+            }
+        }
+        
+        return inventoryList;
+        
     }
     
-    // Method to display the help menu
-    private void displayHelpMenu() {
-        
-    // Create and display the game menu
-    HelpMenuView helpMenu = new HelpMenuView();
-    helpMenu.display();
-    }    
-       
 }

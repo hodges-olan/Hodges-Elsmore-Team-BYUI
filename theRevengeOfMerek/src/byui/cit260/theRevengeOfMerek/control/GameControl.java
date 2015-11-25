@@ -75,29 +75,5 @@ public class GameControl {
         return inventory;
         
     }
-
-    public static ArrayList<InventoryItem> getSortedInventoryList() {
-        
-        // Get inventory list for the current game
-        ArrayList<InventoryItem> originalInventoryList = TheRevengeOfMerek.getCurrentGame().getInventory();
-        
-        // Clone original inventory list
-        ArrayList<InventoryItem> inventoryList = new ArrayList(originalInventoryList);
-        
-        // Sorting inventory list by name with bubble sort
-        InventoryItem tempInventoryItem;
-        for (int i = 0; i < inventoryList.size()-1; i++) {
-            for (int j = 0; j < inventoryList.size()-1-i; j++) {
-                if ((inventoryList.get(j)).getName().compareToIgnoreCase((inventoryList.get(j+1).getName())) > 0) {
-                    tempInventoryItem = inventoryList.get(j);
-                    inventoryList.set(j, inventoryList.get(j+1));
-                    inventoryList.set(j+1, tempInventoryItem);
-                }
-            }
-        }
-        
-        return inventoryList;
-        
-    }
     
 }
