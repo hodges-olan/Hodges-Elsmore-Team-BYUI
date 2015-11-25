@@ -121,11 +121,11 @@ public class GameMenuView extends View {
         
         // Gather new X coordinate
         System.out.println("Enter new X coordinate");
-        locationx = keyboard.nextInt();
+        locationx = this.getInputInteger();       
         
         // Gather new X coordinate
         System.out.println("Enter new Y coordinate");
-        locationy = keyboard.nextInt();
+        locationy = this.getInputInteger();
         
         // Decrement values for 2D array
         locationy = --locationy;
@@ -214,6 +214,23 @@ public class GameMenuView extends View {
             System.out.println("\n-----------------------");
         }
     }
- 
+    
+    private Integer getInputInteger() {
+        Integer value = null;
+        Scanner keyboard = new Scanner(System.in);
+        String input;
+        
+        while (value == null) {
+            try {
+                // parse and convert number from text to integer
+                input = keyboard.nextLine();
+                value = Integer.parseInt(input);
+            } catch (NumberFormatException nf) {
+                System.out.println("\nYou must enter a valid number. Please try again.");
+            }
+        }
+            
+        return value;
+    }
        
 }
