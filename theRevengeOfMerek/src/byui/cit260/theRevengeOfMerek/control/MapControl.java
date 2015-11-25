@@ -7,7 +7,6 @@ package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
-import byui.cit260.theRevengeOfMerek.model.Player;
 import byui.cit260.theRevengeOfMerek.enums.Character;
 import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 
