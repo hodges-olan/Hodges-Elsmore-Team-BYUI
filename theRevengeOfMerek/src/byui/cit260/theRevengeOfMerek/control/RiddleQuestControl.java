@@ -13,6 +13,7 @@ import byui.cit260.theRevengeOfMerek.exceptions.RiddleQuestControlException;
  */
 public class RiddleQuestControl {
     
+    // Method for verifying the answer the player gave is correct
     public static void isRiddleAnswerCorrect (String answer, String playerAnswer) throws RiddleQuestControlException {
         
         // Capitalize answers in preparation for compare function

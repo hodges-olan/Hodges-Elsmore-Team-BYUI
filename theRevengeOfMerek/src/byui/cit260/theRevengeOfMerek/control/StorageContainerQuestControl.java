@@ -5,6 +5,8 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.exceptions.StorageContainerQuestControlException;
+
 /**
  *
  * @author co075oh
@@ -12,25 +14,23 @@ package byui.cit260.theRevengeOfMerek.control;
 public class StorageContainerQuestControl {
     
     // public calculateVolume method for the Storage Container Quest
-    public boolean calculateVolume(double radius, double height, double reqVolume) {
+    public void calculateVolume(double radius, double height, double reqVolume) throws StorageContainerQuestControlException {
         
         // Define variables
         double volume;
         
         // Error checking
         if (height <= 0 || radius <= 0) {
-            return false;
+            throw new StorageContainerQuestControlException ("Please enter a value greater than 0");
         }
         
         // Perform calculation of volume of a cylinder
         volume = Math.PI * Math.pow(radius, 2) * height;
         
         // Validate volume matches the requirement
-        if (Math.floor(volume) == reqVolume) {
-            return true;
+        if (Math.floor(volume) != reqVolume) {
+            throw new StorageContainerQuestControlException ("I'm sorry but that container is the wrong size.  Please try again.");
         }
         
-        // Else return false
-        return false;
     }
 }

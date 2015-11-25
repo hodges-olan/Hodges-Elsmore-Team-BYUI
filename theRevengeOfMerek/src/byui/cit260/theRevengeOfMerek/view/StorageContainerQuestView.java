@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.StorageContainerQuestControl;
+import byui.cit260.theRevengeOfMerek.exceptions.StorageContainerQuestControlException;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.StorageContainerQuest;
 import java.util.Scanner;
@@ -115,19 +116,21 @@ public class StorageContainerQuestView {
         }
         
         while (!location.isQuestComplete()) {
-            System.out.println("We need a container that will fit " + reqVolume + " square feet of water.");
+            System.out.println("We need a barrel that will fit " + reqVolume + " square feet of water.\n"
+                             + "Use the equation for the volume of a cylinder to get the appropriate measurements.");
             double radius = this.getInputDouble("radius");
             double height = this.getInputDouble("height");
             StorageContainerQuestControl instance = new StorageContainerQuestControl();
-            boolean result = instance.calculateVolume(radius, height, reqVolume);
-            if (!result) {
-                System.out.println("I'm sorry but that container is the wrong size.  Please try again.");
-            } else {
+            try {
+                instance.calculateVolume(radius, height, reqVolume);
                 System.out.println("That will fit the requirements exactly!  Thank you!");
                 storageContainerQuest.setHeight(height);
                 storageContainerQuest.setRadius(radius);
                 location.setQuestComplete(true);
+            } catch (StorageContainerQuestControlException sce) {
+                System.out.println(sce.getMessage());
             }
+            
         }
         
     }
