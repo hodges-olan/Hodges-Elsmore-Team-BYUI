@@ -30,7 +30,7 @@ public class SaveMenuView extends View {
         + "\n|Do you wish to save your progress?|"
         + "\n|----------------------------------|"
         + "\n| (Y)es                            |"
-        + "\n| (E)xit                           |"
+        + "\n| (N)o                             |"
         + "\n|----------------------------------|");
     }
 
@@ -43,7 +43,7 @@ public class SaveMenuView extends View {
             case 'Y':
                 this.displaySaveProgram();
                 break;
-            case 'E':
+            case 'N':
                 return;
             default:
                 System.out.println("\n Invalid Selection, Try Again");
@@ -60,7 +60,7 @@ public class SaveMenuView extends View {
                 + "\n| Please enter the location you    |"
                 + "\n| would like to save your game:    |"
                 + "\n|                                  |"
-                + "\n-----------------------------------|"
+                + "\n------------------------------------"
                 + "\n\nPress any key to return to the Save Menu");
         
         // Wait for the user to press any key
@@ -68,10 +68,6 @@ public class SaveMenuView extends View {
         Scanner keyboard = new Scanner(System.in);
         input = keyboard.nextLine();
         
-        // Return to the help menu
-        return;
-        
     }
-
 
 }

@@ -60,8 +60,8 @@ public class QuestProgressView extends View {
         System.out.println("----------------");
         int total = 0;
         int complete = 0;
-        int currentRow = 0;
-        int currentColumn = 0;
+        int currentRow;
+        int currentColumn;
         for (Location[] row : locations) {
             for (Location location : row) {
                 total++;
@@ -97,8 +97,8 @@ public class QuestProgressView extends View {
         System.out.println("----------------");
         int total = 0;
         int outstanding = 0;
-        int currentRow = 0;
-        int currentColumn = 0;
+        int currentRow;
+        int currentColumn;
         for (Location[] row : locations) {
             for (Location location : row) {
                 total++;
