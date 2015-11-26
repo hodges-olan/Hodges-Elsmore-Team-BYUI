@@ -55,14 +55,14 @@ public class InventoryMenuView {
                 System.out.print(" ");
             }
             System.out.print("|");
-            System.out.print("\n| Armor: " + equippedWeapon);
-            space = 25 - equippedWeapon.length();
+            System.out.print("\n| Armor: " + equippedArmor);
+            space = 25 - equippedArmor.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
-            System.out.print("\n| Shield: " + equippedWeapon);
-            space = 24 - equippedWeapon.length();
+            System.out.print("\n| Shield: " + equippedShield);
+            space = 24 - equippedShield.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
@@ -154,7 +154,8 @@ public class InventoryMenuView {
         // Display items of specific type and ask if they want to wear an item
         System.out.println("\nList of " + wasItemType +" Items\n"
                          + "=============================================\n"
-                         + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n");
+                         + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n"
+                         + "=============================================");
         for (InventoryItem inventoryItem: inventory) {
             name = inventoryItem.getName();
             inventoryType = inventoryItem.getInventoryType();
@@ -182,11 +183,10 @@ public class InventoryMenuView {
         String name;
         String inventoryType;
         double quantity;
-        System.out.println("\nList of Inventory Items");
-        System.out.println("=============================================");
-        System.out.println("Name" + "\t\t\t" +
-                "Type" + "\t" +
-                "Quantity");
+        System.out.println("\nList of Inventory Items\n"
+                         + "=============================================\n"
+                         + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n"
+                         + "=============================================");
         for (InventoryItem inventoryItem: inventory) {
             name = inventoryItem.getName();
             inventoryType = inventoryItem.getInventoryType();

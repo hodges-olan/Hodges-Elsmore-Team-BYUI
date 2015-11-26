@@ -182,7 +182,7 @@ public class GameMenuView extends View {
         
         // Display map
         System.out.println("    1   2   3   4   5");
-        System.out.println("-----------------------");
+        System.out.println("  ---------------------");
         for (int i=0; i < rows; i++) {
             System.out.print((i+1) + " |");
             for (int j=0; j < columns; j++) {
@@ -194,7 +194,7 @@ public class GameMenuView extends View {
                     System.out.print(" O |");
                 }
             }
-            System.out.println("\n-----------------------");
+            System.out.println("\n  ---------------------");
         }
     }
     

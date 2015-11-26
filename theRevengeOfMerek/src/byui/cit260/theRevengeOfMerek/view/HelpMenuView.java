@@ -20,7 +20,7 @@ public class HelpMenuView extends View {
             + "\n|           Help Menu             |"
             + "\n-----------------------------------"
             + "\n| (G)oal of the game              |"
-            + "\n| (U)ser Consoel - Game Console   |"
+            + "\n| (U)ser Console - Game Console   |"
             + "\n| (E)xit                          |"
             + "\n-----------------------------------");
     }
@@ -63,7 +63,7 @@ public class HelpMenuView extends View {
                 + "\n| overthrow Worthag and beat the   |"
                 + "\n| game.                            |"
                 + "\n-----------------------------------|"
-                + "\n\nPress any key to return to the Help menu");
+                + "\n\nPress enter to return to the Help menu");
         
         // Wait for the user to press any key
         String input = null;
@@ -98,7 +98,7 @@ public class HelpMenuView extends View {
                 + "\n|                                  |"
                 + "\n| (E)xit will exit the game.       |"
                 + "\n-----------------------------------|"
-                + "\n\nPress any key to return to the Help menu");
+                + "\n\nPress enter to return to the Help menu");
         
         // Wait for the user to press any key
         String input = null;
