@@ -5,6 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.exceptions.StorageContainerQuestControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -33,7 +34,12 @@ public class StorageContainerQuestControlTest {
         double reqVolume = 402.0;
         StorageContainerQuestControl instance = new StorageContainerQuestControl();
         boolean expResult = true;
-        boolean result = instance.calculateVolume(radius, height, reqVolume);
+        boolean result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -44,7 +50,12 @@ public class StorageContainerQuestControlTest {
         height = -1.0;
         reqVolume = 200.0;
         expResult = false;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -55,7 +66,12 @@ public class StorageContainerQuestControlTest {
         height = 10.0;
         reqVolume = 200.0;
         expResult = false;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -66,7 +82,12 @@ public class StorageContainerQuestControlTest {
         height = 0.0;
         reqVolume = 200.0;
         expResult = false;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -77,7 +98,12 @@ public class StorageContainerQuestControlTest {
         height = 9.0;
         reqVolume = 200.0;
         expResult = false;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -88,7 +114,12 @@ public class StorageContainerQuestControlTest {
         height = 1.0;
         reqVolume = 201.0;
         expResult = true;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
         /********************************
@@ -99,7 +130,12 @@ public class StorageContainerQuestControlTest {
         height = 11.0;
         reqVolume = 34.0;
         expResult = true;
-        result = instance.calculateVolume(radius, height, reqVolume);
+        result = true;
+        try {
+            instance.calculateVolume(radius, height, reqVolume);
+        } catch (StorageContainerQuestControlException sce) {
+            result = false;
+        }
         assertEquals(expResult, result);
         
     }
