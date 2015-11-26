@@ -5,15 +5,11 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import byui.cit260.theRevengeOfMerek.control.GameControl;
 import byui.cit260.theRevengeOfMerek.control.MapControl;
 import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
-import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
-import byui.cit260.theRevengeOfMerek.model.StorageContainerQuest;
-import java.util.ArrayList;
 import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
 

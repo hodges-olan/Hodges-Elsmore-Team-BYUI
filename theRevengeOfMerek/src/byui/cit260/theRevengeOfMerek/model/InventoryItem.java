@@ -18,12 +18,142 @@ public class InventoryItem implements Serializable {
     private String inventoryType;
     private double quantity;
     private String name;
-    public enum Item {
+    public enum ItemType {
         bandage,
         potion,
         weapon,
         armor,
         shield;
+    }
+    
+    public enum bandage {
+        linen ("Linen Bandage", 10),
+        wool ("Wool Bandage", 20),
+        silk ("Silk Bandage", 30);
+        
+        // Enum Variables
+        private final String name;
+        private final int heal;
+        
+        // Default Constructor
+        bandage(String name, int heal) {
+            this.name = name;
+            this.heal = heal;
+        }
+
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getHeal() {
+            return heal;
+        }
+        
+    }
+    
+    public enum potion {
+        lesser ("Lesser Healing Potion", 7),
+        greater ("Greater Healing Potion", 14),
+        major ("Major Healing Potion", 21);
+        
+        // Enum Variables
+        private final String name;
+        private final int heal;
+        
+        // Default Constructor
+        potion(String name, int heal) {
+            this.name = name;
+            this.heal = heal;
+        }
+        
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getHeal() {
+            return heal;
+        }
+        
+    }
+    
+    public enum weapon {
+        venomSilverAxe ("Venom Silver Axe", 5),
+        corruptedSkewer ("Corrupted Skewer", 10),
+        nethersbane ("Nethersbane", 15);
+        
+        // Enum Variables
+        private final String name;
+        private final int damage;
+        
+        // Default Constructor
+        weapon(String name, int damage) {
+            this.name = name;
+            this.damage = damage;
+        }
+
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getDamage() {
+            return damage;
+        }
+
+    }
+    
+    public enum armor {
+        holyMithrilBreastplate ("Holy Mithril Breastplate", 30),
+        holyPaddedJerkin ("Holy Padded Jerkin", 20),
+        birthOfTheCrown ("Birth Of The Crown", 10);
+        
+        // Enum Variables
+        private final String name;
+        private final int armor;
+        
+        // Default Constructor
+        armor (String name, int armor) {
+            this.name = name;
+            this.armor = armor;
+        }
+        
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getArmor() {
+            return armor;
+        }
+        
+    }
+    
+    public enum shield {
+        deathsDeflection ("Death's Deflection", 30),
+        oathkeepersDefender ("Oathkeeper's Defender", 20),
+        championShield ("Champion Shield", 10);
+        
+        // Enum Variables
+        private final String name;
+        private final int armor;
+        
+        // Default Constructor
+        shield (String name, int armor) {
+            this.name = name;
+            this.armor = armor;
+        }
+        
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getArmor() {
+            return armor;
+        }
+        
     }
     
     // default constructor
@@ -32,6 +162,7 @@ public class InventoryItem implements Serializable {
         this.quantity = quantity;
         this.name = name;
     }
+    
     
     // public getter function
     public String getInventoryType() {

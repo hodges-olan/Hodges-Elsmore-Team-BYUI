@@ -60,11 +60,11 @@ public class InventoryMenuView extends View {
     
     private void displayWeapons() {
         
-        // Get the sorted list of inventory items for the current game
+        // Get the sorted list of weapons for the current game
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList();
         
-        // Display the sorted inventory list
+        // Display the sorted weapon list
         String name;
         String inventoryType;
         double quantity;
@@ -90,11 +90,11 @@ public class InventoryMenuView extends View {
 
     private void displayArmor() {
         
-        // Get the sorted list of inventory items for the current game
+        // Get the sorted list of shields for the current game
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList();
         
-        // Display the sorted inventory list
+        // Display the sorted armor list
         String name;
         String inventoryType;
         double quantity;
@@ -120,11 +120,11 @@ public class InventoryMenuView extends View {
 
     private void displayShields() {
         
-        // Get the sorted list of inventory items for the current game
+        // Get the sorted list of shields for the current game
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList();
         
-        // Display the sorted inventory list
+        // Display the sorted shield list
         String name;
         String inventoryType;
         double quantity;
@@ -198,6 +198,7 @@ public class InventoryMenuView extends View {
             }
         }
         
+        // Return the sorted inventory list
         return inventoryList;
         
     }
