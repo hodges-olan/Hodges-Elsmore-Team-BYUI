@@ -11,4 +11,24 @@ package byui.cit260.theRevengeOfMerek.control;
  */
 public class InventoryControl {
     
+    public static void addItemToInventory () {
+        
+    }
+    
+    public static void removeItemFromInventory () {
+        
+    }
+    
+    public static void useHealthPotion () {
+        
+    }
+    
+    public static void useBandage () {
+        
+    }
+    
+    public static void equipItem () {
+        
+    }
+    
 }
