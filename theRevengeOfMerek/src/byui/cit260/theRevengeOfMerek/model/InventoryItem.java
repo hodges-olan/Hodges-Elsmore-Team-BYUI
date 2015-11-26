@@ -18,14 +18,7 @@ public class InventoryItem implements Serializable {
     private String inventoryType;
     private double quantity;
     private String name;
-    public enum ItemType {
-        bandage,
-        potion,
-        weapon,
-        armor,
-        shield;
-    }
-    
+        
     public enum bandage {
         linen ("Linen Bandage", 10),
         wool ("Wool Bandage", 20),
