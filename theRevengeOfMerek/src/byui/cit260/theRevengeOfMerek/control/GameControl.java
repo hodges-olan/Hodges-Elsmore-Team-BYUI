@@ -68,8 +68,12 @@ public class GameControl {
         
         // Create starter list of items in inventory
         ArrayList<InventoryItem> inventory = new ArrayList<>();
-        inventory.add(InventoryItem.ItemType.bandage.ordinal(), new InventoryItem("bandage",2.0,"Bandage"));
-        inventory.add(InventoryItem.ItemType.potion.ordinal(), new InventoryItem("potion",2.0,"Health Potion"));
+        
+        inventory.add(new InventoryItem("bandage",2.0,InventoryItem.bandage.linen.getName()));
+        inventory.add(new InventoryItem("potion",2.0,InventoryItem.potion.lesser.getName()));
+        inventory.add(new InventoryItem("weapon",1.0,InventoryItem.weapon.venomSilverAxe.getName()));
+        inventory.add(new InventoryItem("armor",1.0,InventoryItem.armor.birthOfTheCrown.getName()));
+        inventory.add(new InventoryItem("shield",1.0,InventoryItem.shield.championShield.getName()));
 
         // Return Inventory List
         return inventory;

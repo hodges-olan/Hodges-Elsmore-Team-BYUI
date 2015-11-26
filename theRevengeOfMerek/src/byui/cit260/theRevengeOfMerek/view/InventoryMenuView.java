@@ -27,7 +27,6 @@ public class InventoryMenuView extends View {
             + "\n| (A)rmor                         |"
             + "\n| (S)hields                       |"
             + "\n| (I)tems                         |"
-            + "\n| (H)elp                          |"
             + "\n| (E)xit                          |"
             + "\n-----------------------------------");
     } 
