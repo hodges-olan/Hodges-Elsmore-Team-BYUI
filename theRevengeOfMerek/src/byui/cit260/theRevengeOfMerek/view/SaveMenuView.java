@@ -26,12 +26,12 @@ public class SaveMenuView extends View {
     // Declare MENU Constant Variable
     public SaveMenuView() {
         super("\n"
-        + "\n-----------------------------------"
+        + "\n------------------------------------"
         + "\n|Do you wish to save your progress?|"
         + "\n|----------------------------------|"
         + "\n| (Y)es                            |"
         + "\n| (N)o                             |"
-        + "\n|----------------------------------|");
+        + "\n------------------------------------");
     }
 
     // Execute the appropriate action based on input from user
