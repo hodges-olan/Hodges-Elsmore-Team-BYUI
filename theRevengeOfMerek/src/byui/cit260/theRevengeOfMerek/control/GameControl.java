@@ -74,6 +74,12 @@ public class GameControl {
         inventory.add(new InventoryItem("weapon",1.0,InventoryItem.weapon.venomSilverAxe.getName()));
         inventory.add(new InventoryItem("armor",1.0,InventoryItem.armor.birthOfTheCrown.getName()));
         inventory.add(new InventoryItem("shield",1.0,InventoryItem.shield.championShield.getName()));
+        
+        // Equip Character with original equipment
+        Player player = TheRevengeOfMerek.getPlayer();
+        player.setArmor("None");
+        player.setShield("None");
+        player.setWeapon("Venom Silver Axe");
 
         // Return Inventory List
         return inventory;

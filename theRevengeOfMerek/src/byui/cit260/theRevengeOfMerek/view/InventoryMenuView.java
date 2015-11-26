@@ -5,8 +5,8 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import byui.cit260.theRevengeOfMerek.control.GameControl;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import byui.cit260.theRevengeOfMerek.model.Player;
 import java.util.ArrayList;
 import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
@@ -15,36 +15,118 @@ import therevengeofmerek.TheRevengeOfMerek;
  *
  * @author maryelsmore
  */
-public class InventoryMenuView extends View {
+public class InventoryMenuView {
 
     // Declare MENU Constant Variable
-    public InventoryMenuView() {
-        super("\n"
-            + "\n-----------------------------------"
-            + "\n|      Inventory Menu             |"
+    private final String MENU = "\n-----------------------------------"
+            + "\n|         Inventory Menu          |"
             + "\n-----------------------------------"
             + "\n| (W)eapons                       |"
             + "\n| (A)rmor                         |"
             + "\n| (S)hields                       |"
             + "\n| (I)tems                         |"
             + "\n| (E)xit                          |"
-            + "\n-----------------------------------");
-    } 
+            + "\n-----------------------------------";
+    
+    // Display Menu and currently equipped items for the player
+    public void display() {
+        
+        // Declare variables
+        char selection = ' ';
+        Player player = TheRevengeOfMerek.getPlayer();
+        String playerName = player.getName();
+        String equippedWeapon = player.getWeapon();
+        String equippedArmor = player.getArmor();
+        String equippedShield = player.getShield();
+        
+        // Loop to show and gather input from user in main menu
+        do {
+            // Display Character's equipped items
+            System.out.print("\n-----------------------------------"
+                             + "\n| Character: " + playerName);
+            int space = 21 - playerName.length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|");
+            System.out.print("\n| Weapon: " + equippedWeapon);
+            space = 24 - equippedWeapon.length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|");
+            System.out.print("\n| Armor: " + equippedWeapon);
+            space = 25 - equippedWeapon.length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|");
+            System.out.print("\n| Shield: " + equippedWeapon);
+            space = 24 - equippedWeapon.length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|");
+            
+            // Print the main menu
+            System.out.println(MENU);
+            
+            // Gather input from the player
+            String value = this.getInput();
+            
+            // Gather the first char from the input and capitalize it
+            try {
+                selection = Character.toUpperCase(value.charAt(0));
+            } catch (IndexOutOfBoundsException ioo) {
+                System.out.println("Invalid option - please select from the menu above");
+            }
+            
+            // Invoke the switches to execute the appropriate action
+            this.doAction(selection);
+       
+        } while (selection != 'E');
+        
+    }
+    
+    // Method to gather the input from the user 
+    public String getInput() {
+        
+        // Declare variables for getInput method
+        boolean valid = false;
+        String value = null;
+        Scanner keyboard = new Scanner(System.in);
+        
+        // Loop to gather input from user until they give valid input
+        while (!valid) { 
+            System.out.println("Select an option on the menu above");
+            
+            value = keyboard.nextLine();
+            value = value.trim();
+            
+            if (value.length() == 0 || value.length() > 1) {
+                System.out.println("Invalid option - please select from the menu above");
+            } else {
+                valid = true;
+            }
+        
+        }
+        
+        return value;
+    }
     
     // Execute the appropriate action based on input from user
-    @Override
     public void doAction(Object obj) {
         char selection = (char) obj;
         
         switch(selection) {
             case 'W':
-                this.displayWeapons();
+                this.displayWAS("Weapon");
                 break;
             case 'A':
-                this.displayArmor();
+                this.displayWAS("Armor");
                 break;
             case 'S':
-                this.displayShields();
+                this.displayWAS("Shield");
                 break;
             case 'I':
                 this.displayItems();
@@ -57,93 +139,36 @@ public class InventoryMenuView extends View {
         }
     }
     
-    private void displayWeapons() {
+    private void displayWAS(String wasItemType) {
         
         // Get the sorted list of weapons for the current game
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList();
         
-        // Display the sorted weapon list
+        // Declare variables
         String name;
         String inventoryType;
+        char selection = ' ';
         double quantity;
-        System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t\t" +
-                "Type" + "\t" +
-                "Quantity");
+        
+        // Display items of specific type and ask if they want to wear an item
+        System.out.println("\nList of " + wasItemType +" Items\n"
+                         + "=============================================\n"
+                         + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n");
         for (InventoryItem inventoryItem: inventory) {
             name = inventoryItem.getName();
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
-            if (inventoryType.equals("weapon")) {
+            if (inventoryType.equals(wasItemType.toLowerCase())) {
                 System.out.print(name);
-                int space = 16 - name.length();
+                int space = 24 - name.length();
                 for (int i = 0; i < space; i++) {
                     System.out.print(" ");
                 }
                 System.out.println(inventoryType + "\t" + quantity);
             }
         }
-        
-    }
-
-    private void displayArmor() {
-        
-        // Get the sorted list of shields for the current game
-        ArrayList<InventoryItem> inventory;
-        inventory = this.getSortedInventoryList();
-        
-        // Display the sorted armor list
-        String name;
-        String inventoryType;
-        double quantity;
-        System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t\t" +
-                "Type" + "\t" +
-                "Quantity");
-        for (InventoryItem inventoryItem: inventory) {
-            name = inventoryItem.getName();
-            inventoryType = inventoryItem.getInventoryType();
-            quantity = inventoryItem.getQuantity();
-            if (inventoryType.equals("armor")) {
-                System.out.print(name);
-                int space = 16 - name.length();
-                for (int i = 0; i < space; i++) {
-                    System.out.print(" ");
-                }
-                System.out.println(inventoryType + "\t" + quantity);
-            }
-        }
-        
-    }
-
-    private void displayShields() {
-        
-        // Get the sorted list of shields for the current game
-        ArrayList<InventoryItem> inventory;
-        inventory = this.getSortedInventoryList();
-        
-        // Display the sorted shield list
-        String name;
-        String inventoryType;
-        double quantity;
-        System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t\t" +
-                "Type" + "\t" +
-                "Quantity");
-        for (InventoryItem inventoryItem: inventory) {
-            name = inventoryItem.getName();
-            inventoryType = inventoryItem.getInventoryType();
-            quantity = inventoryItem.getQuantity();
-            if (inventoryType.equals("shield")) {
-                System.out.print(name);
-                int space = 16 - name.length();
-                for (int i = 0; i < space; i++) {
-                    System.out.print(" ");
-                }
-                System.out.println(inventoryType + "\t" + quantity);
-            }
-        }
+        System.out.println("=============================================");
         
     }
     
@@ -158,7 +183,8 @@ public class InventoryMenuView extends View {
         String inventoryType;
         double quantity;
         System.out.println("\nList of Inventory Items");
-        System.out.println("Name" + "\t\t" +
+        System.out.println("=============================================");
+        System.out.println("Name" + "\t\t\t" +
                 "Type" + "\t" +
                 "Quantity");
         for (InventoryItem inventoryItem: inventory) {
@@ -167,13 +193,14 @@ public class InventoryMenuView extends View {
             quantity = inventoryItem.getQuantity();
             if (inventoryType.equals("bandage") || inventoryType.equals("potion")) {
                 System.out.print(name);
-                int space = 16 - name.length();
+                int space = 24 - name.length();
                 for (int i = 0; i < space; i++) {
                     System.out.print(" ");
                 }
                 System.out.println(inventoryType + "\t" + quantity);
             }
         }
+        System.out.println("=============================================");
         
     }   
 
