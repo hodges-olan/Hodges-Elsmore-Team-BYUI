@@ -6,7 +6,6 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.MapControl;
-import byui.cit260.theRevengeOfMerek.control.ShipmentQuestControl;
 import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.Location;
