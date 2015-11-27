@@ -98,10 +98,8 @@ public class GameMenuView extends View {
         this.displayMap();
         
         // Request new location to move to
-        boolean valid = false;
         int locationx;
         int locationy;
-        Scanner keyboard = new Scanner(System.in);
         
         // Gather new X coordinate
         System.out.println("Enter new X coordinate");

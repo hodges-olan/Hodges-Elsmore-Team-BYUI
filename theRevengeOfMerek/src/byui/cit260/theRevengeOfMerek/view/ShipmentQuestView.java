@@ -34,7 +34,7 @@ public class ShipmentQuestView {
         char selection = ' ';
         
         // Check to see if the player has already started this particular quest for a given location
-        if (!ShipmentQuestControl.shipmentQuestStarted(location)) {
+        if (!ShipmentQuestControl.shipmentQuestStarted(ShipmentQuestControl.getStartingLocationPackagesName(location))) {
             // Loop to show and gather input from user in main menu
             do {
                 // Print the main menu
