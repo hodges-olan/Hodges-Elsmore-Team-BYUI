@@ -27,4 +27,15 @@ public class ShipmentQuestControl {
         
     }
     
+    // Validate the player has arrived with shipment
+    public static void receiveShipmentFromInventory(Location location) {
+        /* 
+        Fill this out, and it will need to be checked each time the players moves to a new location,
+        regardless of whether they have already accepted a shipment quest or not.
+        Each item will have a designated start and end location, noted by the name of the package.
+        When the player arrives at the location with the package in their inventory, this method
+        will mark the quest at the previous location complete and remove the item from inventory.
+        */
+    }
+    
 }
