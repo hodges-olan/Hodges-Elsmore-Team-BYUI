@@ -23,6 +23,7 @@ public class ShipmentQuestControl {
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
         
         // Add the appropriate item to their inventory
+        // Still need to modify this so that it selects the appropriate package based on the received location
         inventory.add(new InventoryItem("package",1.0,"Package"));
         
     }
