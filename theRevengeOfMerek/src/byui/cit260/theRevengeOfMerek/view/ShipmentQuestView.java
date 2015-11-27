@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.ShipmentQuestControl;
+import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.exceptions.ShipmentQuestControlException;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import java.util.Scanner;
@@ -125,6 +126,18 @@ public class ShipmentQuestView {
             throw new ShipmentQuestControlException ("Invalid option - please select Y or N");
         }
         return selection;
+    }
+    
+    public static void QuestComplete(Location location) {
+        
+        try {
+            ShipmentQuestControl.receiveShipmentFromInventory(location);
+            System.out.println("Thank you so much for getting this package to us!\n"
+                             + "Quest Complete!");
+        } catch (InventoryControlException ice) {
+            System.out.println(ice.getMessage());
+        }
+        
     }
     
 }

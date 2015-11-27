@@ -5,7 +5,10 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import java.util.ArrayList;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -13,11 +16,43 @@ import byui.cit260.theRevengeOfMerek.model.InventoryItem;
  */
 public class InventoryControl {
     
-    public static void addItemToInventory (InventoryItem newItem) {
+    public static void addItemToInventory (String inventoryType, double quantity, String name) {
+        
+        // Acquire player's inventory list
+        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
+        
+        // Add the item to the player's inventory
+        inventory.add(new InventoryItem(inventoryType, quantity, name));
         
     }
     
-    public static void removeItemFromInventory (InventoryItem newItem) {
+    public static void removeItemFromInventory (String inventoryType, double quantity, String name) throws InventoryControlException {
+        
+        // Acquire player's inventory list and declare variables
+        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
+        int index = -1;
+        InventoryItem modifyInventoryItem;
+        
+        // Get the item from the player's inventory
+        for (InventoryItem inventoryItem : inventory) {
+            if (name.equals(inventoryItem.getName()) & inventoryType.equals(inventoryItem.getInventoryType())) {
+                index = inventory.indexOf(inventoryItem);
+            }
+        }
+        
+        if (index != -1) {
+            modifyInventoryItem = inventory.get(index);
+        
+            if (modifyInventoryItem.getQuantity() > quantity) {
+                modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity()-quantity);
+            } else if (modifyInventoryItem.getQuantity() == quantity) {
+                inventory.remove(index);
+            } else {
+                throw new InventoryControlException("Sorry, you do not have enough of the items in your inventory.");
+            }
+        } else {
+            throw new InventoryControlException("You do not have this item in your inventory");
+        }
         
     }
     

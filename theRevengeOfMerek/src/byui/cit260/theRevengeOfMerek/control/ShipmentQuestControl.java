@@ -5,6 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Location;
@@ -21,23 +22,15 @@ public class ShipmentQuestControl {
     // Class to add the appropriate shipment item to the player's inventory
     public static void addShipmentToInventory(Location location) {
         
-        // Acquire player's inventory list
-        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
-        
         // If the package does not exist, add it to the players inventory
         if (!ShipmentQuestControl.shipmentQuestStarted(ShipmentQuestControl.getStartingLocationPackagesName(location))) {
-            inventory.add(new InventoryItem("package",1.0,ShipmentQuestControl.getStartingLocationPackagesName(location)));
+            InventoryControl.addItemToInventory("package", 1.0, ShipmentQuestControl.getStartingLocationPackagesName(location));
         }
         
     }
     
     // Validate the player has arrived with shipment
-    public static void receiveShipmentFromInventory(Location location) {
-        /* 
-        Each item will have a designated start and end location, noted by the name of the package.
-        When the player arrives at the location with the package in their inventory, this method
-        will mark the quest at the previous location complete and remove the item from inventory.
-        */
+    public static void receiveShipmentFromInventory(Location location) throws InventoryControlException {
         
         // Declare variables
         String packagesName = ShipmentQuestControl.getEndingLocationPackagesName(location);
@@ -50,11 +43,10 @@ public class ShipmentQuestControl {
                     Game game = TheRevengeOfMerek.getCurrentGame();
                     Map map = game.getMap();
                     Location[][] locations = map.getLocations();
-                    
+
                     // Set quest status to complete for the starting location
                     locations[packages.getStarty()][packages.getStartx()].setQuestComplete(true);
-                    System.out.println("Thank you so much for getting this package to us!\n"
-                                     + "Quest Complete!");
+                    InventoryControl.removeItemFromInventory("package", 1.0, packagesName);                    
                 }
             }
         }

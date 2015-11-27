@@ -117,7 +117,7 @@ public class GameMenuView extends View {
             MapControl.movePlayerToLocation(map, locations, locationy, locationx);
             
             // Shipment Quest Check
-            ShipmentQuestControl.receiveShipmentFromInventory(locations[locationy][locationx]);
+            ShipmentQuestView.QuestComplete(locations[locationy][locationx]);
             
             // If Quest not complete, Start it
             if (!locations[locationy][locationx].isQuestComplete()) {
