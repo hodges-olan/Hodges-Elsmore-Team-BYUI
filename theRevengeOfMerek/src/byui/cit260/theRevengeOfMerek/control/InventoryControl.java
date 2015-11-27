@@ -5,17 +5,19 @@
  */
 package byui.cit260.theRevengeOfMerek.control;
 
+import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+
 /**
  *
  * @author maryreiko
  */
 public class InventoryControl {
     
-    public static void addItemToInventory () {
+    public static void addItemToInventory (InventoryItem newItem) {
         
     }
     
-    public static void removeItemFromInventory () {
+    public static void removeItemFromInventory (InventoryItem newItem) {
         
     }
     

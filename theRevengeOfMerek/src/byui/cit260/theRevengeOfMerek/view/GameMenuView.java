@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.MapControl;
+import byui.cit260.theRevengeOfMerek.control.ShipmentQuestControl;
 import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.Location;
@@ -116,6 +117,9 @@ public class GameMenuView extends View {
         try {
             // Call movePlayerToLocation function
             MapControl.movePlayerToLocation(map, locations, locationy, locationx);
+            
+            // Shipment Quest Check
+            ShipmentQuestControl.receiveShipmentFromInventory(locations[locationy][locationx]);
             
             // If Quest not complete, Start it
             if (!locations[locationy][locationx].isQuestComplete()) {

@@ -33,39 +33,47 @@ public class ShipmentQuestView {
         // Declare variables
         char selection = ' ';
         
-        // Loop to show and gather input from user in main menu
-        do {
-            // Print the main menu
-            System.out.println(MENU);
-            
-            // Gather input from the player
-            String input = this.getInput("Do you accept the quest?  (Y/N)");
-            
-            // Gather the first char from the input and capitalize it
-            try {
-                // Trim input to just the first character
-                selection = Character.toUpperCase(input.charAt(0));
-                
-                // Invoke the switches to execute the appropriate action
+        // Check to see if the player has already started this particular quest for a given location
+        if (!ShipmentQuestControl.shipmentQuestStarted(location)) {
+            // Loop to show and gather input from user in main menu
+            do {
+                // Print the main menu
+                System.out.println(MENU);
+
+                // Gather input from the player
+                String input = this.getInput("Do you accept the quest?  (Y/N)");
+
+                // Gather the first char from the input and capitalize it
                 try {
-                    // Invoke the doAction method
-                    selection = this.doAction(selection, location);
-                } catch (ShipmentQuestControlException sce) {
+                    // Trim input to just the first character
+                    selection = Character.toUpperCase(input.charAt(0));
+
+                    // Invoke the switches to execute the appropriate action
+                    try {
+                        // Invoke the doAction method
+                        selection = this.doAction(selection, location);
+                    } catch (ShipmentQuestControlException sce) {
+                        // Display error message for invalid input, reset selection, and try again.
+                        System.out.println(sce.getMessage());
+                        selection = ' ';
+                    }
+                } catch (IndexOutOfBoundsException ioo) {
                     // Display error message for invalid input, reset selection, and try again.
-                    System.out.println(sce.getMessage());
+                    System.out.println("Invalid option - please select Y or N");
                     selection = ' ';
                 }
-            } catch (IndexOutOfBoundsException ioo) {
-                // Display error message for invalid input, reset selection, and try again.
-                System.out.println("Invalid option - please select Y or N");
-                selection = ' ';
+
+            } while ((selection != 'N') & (selection != 'C'));
+
+            if (selection == 'C') {
+                System.out.println("Thank you!  Don't forget to drop the shipment off to get your reward.\n"
+                                 + "Don't forget to check the package destination in your inventory.");
             }
-       
-        } while ((selection != 'N') & (selection != 'C'));
-        
-        if (selection == 'C') {
-            System.out.println("Thank you!  Don't forget to drop the shipment off to get your reward.");
+        } else {
+            System.out.println("Don't forget to drop the package off!\n"
+                             + "If you forget where it needs to go, check your inventory.");
         }
+        
         
     }
 
