@@ -149,6 +149,52 @@ public class InventoryItem implements Serializable {
         
     }
     
+    public enum packages {
+        package00 ("Package to 1-3", 0, 2, 0, 0),
+        package14 ("Package to 1-5", 0, 4, 1, 4),
+        package22 ("Package to 4-2", 3, 1, 2, 2),
+        package34 ("Package to 3-4", 2, 3, 3, 4),
+        package44 ("Package to 5-4", 4, 3, 4, 4);
+        
+        // Enum Variables
+        private final String name;
+        private final int destinationx;
+        private final int destinationy;
+        private final int startx;
+        private final int starty;
+        
+        // Default Constructor
+        packages (String name, int destinationx, int destinationy, int startx, int starty) {
+            this.name = name;
+            this.destinationx = destinationx;
+            this.destinationy = destinationy;
+            this.startx = startx;
+            this.starty = starty;
+        }
+        
+        // Public getter methods
+        public String getName() {
+            return name;
+        }
+
+        public int getDestinationx() {
+            return destinationx;
+        }
+
+        public int getDestinationy() {
+            return destinationy;
+        }
+
+        public int getStartx() {
+            return startx;
+        }
+
+        public int getStarty() {
+            return starty;
+        }
+        
+    }
+    
     // default constructor
     public InventoryItem(String inventoryType, double quantity, String name) {
         this.inventoryType = inventoryType;

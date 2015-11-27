@@ -23,8 +23,21 @@ public class ShipmentQuestControl {
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
         
         // Add the appropriate item to their inventory
-        // Still need to modify this so that it selects the appropriate package based on the received location
-        inventory.add(new InventoryItem("package",1.0,"Package"));
+        if (location.getColumn()==0 & location.getRow()==0) {
+            inventory.add(new InventoryItem("package",1.0,InventoryItem.packages.package00.getName()));
+        }
+        if (location.getColumn()==1 & location.getRow()==4) {
+            inventory.add(new InventoryItem("package",1.0,InventoryItem.packages.package14.getName()));
+        }
+        if (location.getColumn()==2 & location.getRow()==2) {
+            inventory.add(new InventoryItem("package",1.0,InventoryItem.packages.package22.getName()));
+        }
+        if (location.getColumn()==3 & location.getRow()==4) {
+            inventory.add(new InventoryItem("package",1.0,InventoryItem.packages.package34.getName()));
+        }
+        if (location.getColumn()==4 & location.getRow()==4) {
+            inventory.add(new InventoryItem("package",1.0,InventoryItem.packages.package44.getName()));
+        }
         
     }
     
