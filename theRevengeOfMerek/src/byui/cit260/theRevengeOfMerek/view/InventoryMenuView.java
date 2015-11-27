@@ -191,7 +191,7 @@ public class InventoryMenuView {
             name = inventoryItem.getName();
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
-            if (inventoryType.equals("bandage") || inventoryType.equals("potion")) {
+            if (inventoryType.equals("bandage") || inventoryType.equals("potion") || inventoryType.equals("package")) {
                 System.out.print(name);
                 int space = 24 - name.length();
                 for (int i = 0; i < space; i++) {

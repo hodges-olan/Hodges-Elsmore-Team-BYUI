@@ -133,7 +133,8 @@ public class GameMenuView extends View {
                         riddleQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "shipment":
-                        System.out.println("*** call shipment quest ***");
+                        ShipmentQuestView shipmentQuestView = new ShipmentQuestView();
+                        shipmentQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "strength":
                         System.out.println("*** call strength quest ***");
