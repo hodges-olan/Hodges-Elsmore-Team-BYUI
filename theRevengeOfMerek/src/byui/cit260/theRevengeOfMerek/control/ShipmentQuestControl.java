@@ -30,10 +30,11 @@ public class ShipmentQuestControl {
     }
     
     // Validate the player has arrived with shipment
-    public static void receiveShipmentFromInventory(Location location) throws InventoryControlException {
+    public static boolean receiveShipmentFromInventory(Location location) throws InventoryControlException {
         
         // Declare variables
         String packagesName = ShipmentQuestControl.getEndingLocationPackagesName(location);
+        boolean complete = false;
         
         // Check to see if the player started the quest and reward them if they have
         if (ShipmentQuestControl.shipmentQuestStarted(packagesName)) {
@@ -46,11 +47,13 @@ public class ShipmentQuestControl {
 
                     // Set quest status to complete for the starting location
                     locations[packages.getStarty()][packages.getStartx()].setQuestComplete(true);
-                    InventoryControl.removeItemFromInventory("package", 1.0, packagesName);                    
+                    InventoryControl.removeItemFromInventory("package", 1.0, packagesName);  
+                    complete = true;
                 }
             }
         }
         
+        return complete;
     }
     
     // Verify if the player is already on this quest

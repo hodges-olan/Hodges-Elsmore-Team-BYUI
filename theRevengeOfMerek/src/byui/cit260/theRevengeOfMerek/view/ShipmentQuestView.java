@@ -131,9 +131,14 @@ public class ShipmentQuestView {
     public static void QuestComplete(Location location) {
         
         try {
-            ShipmentQuestControl.receiveShipmentFromInventory(location);
-            System.out.println("Thank you so much for getting this package to us!\n"
+            if (ShipmentQuestControl.receiveShipmentFromInventory(location)) {
+                System.out.println("\n\nThank you so much for getting this package to us!\n"
                              + "Quest Complete!");
+                // Wait for the user to press any key
+                String input = null;
+                Scanner keyboard = new Scanner(System.in);
+                input = keyboard.nextLine();
+            }
         } catch (InventoryControlException ice) {
             System.out.println(ice.getMessage());
         }
