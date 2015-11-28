@@ -5,6 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.control.InventoryControl;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import java.util.ArrayList;
@@ -18,15 +19,15 @@ import therevengeofmerek.TheRevengeOfMerek;
 public class InventoryMenuView {
 
     // Declare MENU Constant Variable
-    private final String MENU = "\n-----------------------------------"
-            + "\n|         Inventory Menu          |"
-            + "\n-----------------------------------"
-            + "\n| (W)eapons                       |"
-            + "\n| (A)rmor                         |"
-            + "\n| (S)hields                       |"
-            + "\n| (I)tems                         |"
-            + "\n| (E)xit                          |"
-            + "\n-----------------------------------";
+    private final String MENU = "|              Inventory Menu               |"
+                            + "\n---------------------------------------------"
+                            + "\n| (W) Change Weapons                        |"
+                            + "\n| (A) Change Armor                          |"
+                            + "\n| (S) Change Shields                        |"
+                            + "\n| (B) Use Bandage                           |"
+                            + "\n| (P) Use Potion                            |"
+                            + "\n| (E) Exit                                  |"
+                            + "\n---------------------------------------------\n";
     
     // Display Menu and currently equipped items for the player
     public void display() {
@@ -38,38 +39,48 @@ public class InventoryMenuView {
         String equippedWeapon = player.getWeapon();
         String equippedArmor = player.getArmor();
         String equippedShield = player.getShield();
+        double health = player.getHealth();
         
         // Loop to show and gather input from user in main menu
         do {
             // Display Character's equipped items
-            System.out.print("\n-----------------------------------"
+            System.out.print("\n---------------------------------------------"
                              + "\n| Character: " + playerName);
-            int space = 21 - playerName.length();
+            int space = 31 - playerName.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
             System.out.print("\n| Weapon: " + equippedWeapon);
-            space = 24 - equippedWeapon.length();
+            space = 34 - equippedWeapon.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
             System.out.print("\n| Armor: " + equippedArmor);
-            space = 25 - equippedArmor.length();
+            space = 35 - equippedArmor.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
             System.out.print("\n| Shield: " + equippedShield);
-            space = 24 - equippedShield.length();
+            space = 34 - equippedShield.length();
             for (int i = 0; i < space; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
+            System.out.print("\n| Health: " + health);
+            space = 34 - String.valueOf(health).length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|\n");
+            
+            // Print list of all inventory items
+            this.displayAll();
             
             // Print the main menu
-            System.out.println(MENU);
+            System.out.print(MENU);
             
             // Gather input from the player
             String value = this.getInput();
@@ -128,8 +139,11 @@ public class InventoryMenuView {
             case 'S':
                 this.displayWAS("Shield");
                 break;
-            case 'I':
-                this.displayItems();
+            case 'B':
+                InventoryControl.useBandage();
+                break;
+            case 'P':
+                InventoryControl.useHealthPotion();
                 break;
             case 'E':
                 return;
@@ -148,7 +162,6 @@ public class InventoryMenuView {
         // Declare variables
         String name;
         String inventoryType;
-        char selection = ' ';
         double quantity;
         
         // Display items of specific type and ask if they want to wear an item
@@ -202,7 +215,45 @@ public class InventoryMenuView {
         }
         System.out.println("=============================================");
         
-    }   
+    }
+    
+    private void displayAll() {
+        
+        // Get the sorted list of weapons for the current game
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList("all");
+        
+        // Declare variables
+        String name;
+        String inventoryType;
+        double quantity;
+        
+        // Display items of specific type and ask if they want to wear an item
+        System.out.println("---------------------------------------------\n"
+                         + "| List of All Items                         |\n"
+                         + "---------------------------------------------\n"
+                         + "| Name" + "\t\t\t" + "Type" + "\t" + "Quantity    |\n"
+                         + "---------------------------------------------");
+        for (InventoryItem inventoryItem: inventory) {
+            name = inventoryItem.getName();
+            inventoryType = inventoryItem.getInventoryType();
+            quantity = inventoryItem.getQuantity();
+            System.out.print("| " + name);
+            int space = 22 - name.length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(inventoryType + "\t" + quantity);
+            space = 12 - String.valueOf(quantity).length();
+            for (int i = 0; i < space; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|\n");
+            
+        }
+        System.out.println("---------------------------------------------");
+        
+    }
 
     public ArrayList<InventoryItem> getSortedInventoryList(String inventoryType) {
         
@@ -236,6 +287,11 @@ public class InventoryMenuView {
                     inventoryList.add(new InventoryItem(newInventoryType, newQuantity, newName));
                 }
             }
+        }
+        
+        // All
+        if (inventoryType.equals("all")) {
+            inventoryList = new ArrayList<>(originalInventoryList);
         }
         
         // Sorting inventory list by name with bubble sort

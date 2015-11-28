@@ -58,11 +58,11 @@ public class InventoryControl {
     }
     
     public static void useHealthPotion () {
-        
+        System.out.println("*** useHealthPotion() called ***");
     }
     
     public static void useBandage () {
-        
+        System.out.println("*** useBandage() called ***");
     }
     
     public static void equipItem (String was, String name) {
