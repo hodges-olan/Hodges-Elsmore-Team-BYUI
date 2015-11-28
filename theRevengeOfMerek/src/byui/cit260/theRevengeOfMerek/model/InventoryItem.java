@@ -20,9 +20,7 @@ public class InventoryItem implements Serializable {
     private String name;
         
     public enum bandage {
-        linen ("Linen Bandage", 10),
-        wool ("Wool Bandage", 20),
-        silk ("Silk Bandage", 30);
+        bandage ("Linen Bandage", 20);
         
         // Enum Variables
         private final String name;
@@ -46,9 +44,7 @@ public class InventoryItem implements Serializable {
     }
     
     public enum potion {
-        lesser ("Lesser Healing Potion", 7),
-        greater ("Greater Healing Potion", 14),
-        major ("Major Healing Potion", 21);
+        potion ("Healing Potion", 15);
         
         // Enum Variables
         private final String name;
