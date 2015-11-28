@@ -63,6 +63,8 @@ public class InventoryControl {
         Player player = TheRevengeOfMerek.getPlayer();
         double health = player.getHealth();
         double maxHeal = 100 - health;
+        int index = -1;
+        InventoryItem modifyInventoryItem;
         
         // Acquire player's inventory list
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
@@ -76,21 +78,32 @@ public class InventoryControl {
                 } else {
                     player.setHealth(health + InventoryItem.potion.potion.getHeal());
                 }
-                // Remove the potion from inventory
-                if (inventoryItem.getQuantity() == 0) {
-                    inventory.remove(inventory.indexOf(inventoryItem));
-                } else {
-                    inventoryItem.setQuantity(inventoryItem.getQuantity() - 1);
-                }
+                
+                // Get the index of the item found
+                index = inventory.indexOf(inventoryItem);
             }
+        }
+        
+        // Remove the potion from inventory or throw error
+        if (index != -1) {
+            modifyInventoryItem = inventory.get(index);
+            if (modifyInventoryItem.getQuantity() == 1) {
+                inventory.remove(index);
+            } else {
+                modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity() - 1);
+            }
+        } else {
+            throw new InventoryControlException("You do not have any potions to use!");
         }
     }
     
-    public static void useBandage() {
+    public static void useBandage() throws InventoryControlException {
         // Get current player, their current health, and figure out how much you can heal them by
         Player player = TheRevengeOfMerek.getPlayer();
         double health = player.getHealth();
         double maxHeal = 100 - health;
+        int index = -1;
+        InventoryItem modifyInventoryItem;
         
         // Acquire player's inventory list
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
@@ -104,13 +117,22 @@ public class InventoryControl {
                 } else {
                     player.setHealth(health + InventoryItem.bandage.bandage.getHeal());
                 }
-                // Remove the potion from inventory
-                if (inventoryItem.getQuantity() == 0) {
-                    inventory.remove(inventory.indexOf(inventoryItem));
-                } else {
-                    inventoryItem.setQuantity(inventoryItem.getQuantity() - 1);
-                }
+                
+                // Get the index of the item found
+                index = inventory.indexOf(inventoryItem);
             }
+        }
+        
+        // Remove the potion from inventory or throw error
+        if (index != -1) {
+            modifyInventoryItem = inventory.get(index);
+            if (modifyInventoryItem.getQuantity() == 1) {
+                inventory.remove(index);
+            } else {
+                modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity() - 1);
+            }
+        } else {
+            throw new InventoryControlException("You do not have any potions to use!");
         }
     }
     

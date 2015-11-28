@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.InventoryControl;
+import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import java.util.ArrayList;
@@ -36,13 +37,19 @@ public class InventoryMenuView {
         char selection = ' ';
         Player player = TheRevengeOfMerek.getPlayer();
         String playerName = player.getName();
-        String equippedWeapon = player.getWeapon();
-        String equippedArmor = player.getArmor();
-        String equippedShield = player.getShield();
-        double health = player.getHealth();
+        String equippedWeapon;
+        String equippedArmor;
+        String equippedShield;
+        double health;
         
         // Loop to show and gather input from user in main menu
         do {
+            // Refresh data from player information
+            equippedWeapon = player.getWeapon();
+            equippedArmor = player.getArmor();
+            equippedShield = player.getShield();
+            health = player.getHealth();
+            
             // Display Character's equipped items
             System.out.print("\n---------------------------------------------"
                              + "\n| Character: " + playerName);
@@ -140,10 +147,18 @@ public class InventoryMenuView {
                 this.displayWAS("Shield");
                 break;
             case 'B':
-                InventoryControl.useBandage();
+                try {
+                    InventoryControl.useBandage();
+                } catch (InventoryControlException ice) {
+                    System.out.println(ice.getMessage());
+                }
                 break;
             case 'P':
-                InventoryControl.useHealthPotion();
+                try {
+                    InventoryControl.useHealthPotion();
+                } catch (InventoryControlException ice) {
+                    System.out.println(ice.getMessage());
+                }
                 break;
             case 'E':
                 return;
