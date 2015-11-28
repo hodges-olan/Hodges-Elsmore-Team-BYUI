@@ -17,7 +17,7 @@ import therevengeofmerek.TheRevengeOfMerek;
  */
 public class InventoryControl {
     
-    public static void addItemToInventory (String inventoryType, double quantity, String name) {
+    public static void addItemToInventory(String inventoryType, double quantity, String name) {
         
         // Acquire player's inventory list
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
@@ -27,7 +27,7 @@ public class InventoryControl {
         
     }
     
-    public static void removeItemFromInventory (String inventoryType, double quantity, String name) throws InventoryControlException {
+    public static void removeItemFromInventory(String inventoryType, double quantity, String name) throws InventoryControlException {
         
         // Acquire player's inventory list and declare variables
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
@@ -41,6 +41,7 @@ public class InventoryControl {
             }
         }
         
+        // If the item was found, decrement the quantity or remove it entirely if it's all used.  Else throw an exception
         if (index != -1) {
             modifyInventoryItem = inventory.get(index);
         
@@ -57,15 +58,63 @@ public class InventoryControl {
         
     }
     
-    public static void useHealthPotion () {
-        System.out.println("*** useHealthPotion() called ***");
+    public static void useHealthPotion() throws InventoryControlException {
+        // Get current player, their current health, and figure out how much you can heal them by
+        Player player = TheRevengeOfMerek.getPlayer();
+        double health = player.getHealth();
+        double maxHeal = 100 - health;
+        
+        // Acquire player's inventory list
+        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
+        
+        // If they have a health potion, use it, otherwise, throw an InventoryControlException
+        for (InventoryItem inventoryItem : inventory) {
+            if (inventoryItem.getInventoryType().equals("potion")) {
+                // Heal the player as much as possible
+                if (InventoryItem.potion.potion.getHeal() >= maxHeal) {
+                    player.setHealth(100);
+                } else {
+                    player.setHealth(health + InventoryItem.potion.potion.getHeal());
+                }
+                // Remove the potion from inventory
+                if (inventoryItem.getQuantity() == 0) {
+                    inventory.remove(inventory.indexOf(inventoryItem));
+                } else {
+                    inventoryItem.setQuantity(inventoryItem.getQuantity() - 1);
+                }
+            }
+        }
     }
     
-    public static void useBandage () {
-        System.out.println("*** useBandage() called ***");
+    public static void useBandage() {
+        // Get current player, their current health, and figure out how much you can heal them by
+        Player player = TheRevengeOfMerek.getPlayer();
+        double health = player.getHealth();
+        double maxHeal = 100 - health;
+        
+        // Acquire player's inventory list
+        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
+        
+        // If they have a health potion, use it, otherwise, throw an InventoryControlException
+        for (InventoryItem inventoryItem : inventory) {
+            if (inventoryItem.getInventoryType().equals("bandage")) {
+                // Heal the player as much as possible
+                if (InventoryItem.bandage.bandage.getHeal() >= maxHeal) {
+                    player.setHealth(100);
+                } else {
+                    player.setHealth(health + InventoryItem.bandage.bandage.getHeal());
+                }
+                // Remove the potion from inventory
+                if (inventoryItem.getQuantity() == 0) {
+                    inventory.remove(inventory.indexOf(inventoryItem));
+                } else {
+                    inventoryItem.setQuantity(inventoryItem.getQuantity() - 1);
+                }
+            }
+        }
     }
     
-    public static void equipItem (String was, String name) {
+    public static void equipItem(String was, String name) {
         
         // Get current player
         Player player = TheRevengeOfMerek.getPlayer();
