@@ -7,6 +7,7 @@ package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
+import byui.cit260.theRevengeOfMerek.model.Player;
 import java.util.ArrayList;
 import therevengeofmerek.TheRevengeOfMerek;
 
@@ -64,7 +65,25 @@ public class InventoryControl {
         
     }
     
-    public static void equipItem () {
+    public static void equipItem (String was, String name) {
+        
+        // Get current player
+        Player player = TheRevengeOfMerek.getPlayer();
+        
+        // Equip weapon
+        if (was.equals("weapon")) {
+            player.setWeapon(name);
+        }
+        
+        // Equip armor
+        if (was.equals("armor")) {
+            player.setArmor(name);
+        }
+        
+        // Equip shield
+        if (was.equals("shield")) {
+            player.setShield(name);
+        }
         
     }
     

@@ -143,7 +143,7 @@ public class InventoryMenuView {
         
         // Get the sorted list of weapons for the current game
         ArrayList<InventoryItem> inventory;
-        inventory = this.getSortedInventoryList();
+        inventory = this.getSortedInventoryList(wasItemType);
         
         // Declare variables
         String name;
@@ -177,7 +177,7 @@ public class InventoryMenuView {
         
         // Get the sorted list of inventory items for the current game
         ArrayList<InventoryItem> inventory;
-        inventory = this.getSortedInventoryList();
+        inventory = this.getSortedInventoryList("items");
         
         // Display the sorted inventory list
         String name;
@@ -204,13 +204,39 @@ public class InventoryMenuView {
         
     }   
 
-    public ArrayList<InventoryItem> getSortedInventoryList() {
+    public ArrayList<InventoryItem> getSortedInventoryList(String inventoryType) {
         
         // Get inventory list for the current game
         ArrayList<InventoryItem> originalInventoryList = TheRevengeOfMerek.getCurrentGame().getInventory();
+        ArrayList<InventoryItem> inventoryList = new ArrayList<>();
+        String newInventoryType;
+        double newQuantity;
+        String newName;
         
         // Clone original inventory list
-        ArrayList<InventoryItem> inventoryList = new ArrayList(originalInventoryList);
+        // WAS
+        if (inventoryType.equals("Weapon") || inventoryType.equals("Armor") || inventoryType.equals("Shield")) {
+            for (InventoryItem inventoryItem : originalInventoryList) {
+                if (inventoryItem.getInventoryType().equals(inventoryType.toLowerCase())) {
+                    newInventoryType = inventoryItem.getInventoryType();
+                    newQuantity = inventoryItem.getQuantity();
+                    newName = inventoryItem.getName();
+                    inventoryList.add(new InventoryItem(newInventoryType, newQuantity, newName));
+                }
+            }
+        }
+        
+        // Items
+        if (inventoryType.equals("items")) {
+            for (InventoryItem inventoryItem : originalInventoryList) {
+                if (inventoryItem.getInventoryType().equals("bandage") || inventoryItem.getInventoryType().equals("potion") || inventoryItem.getInventoryType().equals("package")) {
+                    newInventoryType = inventoryItem.getInventoryType();
+                    newQuantity = inventoryItem.getQuantity();
+                    newName = inventoryItem.getName();
+                    inventoryList.add(new InventoryItem(newInventoryType, newQuantity, newName));
+                }
+            }
+        }
         
         // Sorting inventory list by name with bubble sort
         InventoryItem tempInventoryItem;
