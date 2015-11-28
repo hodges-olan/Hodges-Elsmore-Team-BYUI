@@ -69,7 +69,7 @@ public class InventoryControl {
         // Acquire player's inventory list
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
         
-        // If they have a health potion, use it, otherwise, throw an InventoryControlException
+        // If they have a health potion or bandage, use it.
         if (item.equals("potion")) {
             for (InventoryItem inventoryItem : inventory) {
                 if (inventoryItem.getInventoryType().equals("potion")) {
