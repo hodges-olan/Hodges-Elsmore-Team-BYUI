@@ -132,19 +132,38 @@ public class InventoryMenuView {
         return value;
     }
     
+    private Integer getInputInteger() {
+        Integer value = null;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please enter the number of the item you wish to equip:");
+        String input;
+        
+        while (value == null) {
+            try {
+                // parse and convert number from text to double
+                input = keyboard.nextLine();
+                value = Integer.parseInt(input);
+            } catch (NumberFormatException nf) {
+                System.out.println("\nYou must enter a valid number. Please try again.");
+            }
+        }
+            
+        return value;
+    }
+    
     // Execute the appropriate action based on input from user
     public void doAction(Object obj) {
         char selection = (char) obj;
         
         switch(selection) {
             case 'W':
-                this.displayWAS("Weapon");
+                this.changeWAS("Weapon");
                 break;
             case 'A':
-                this.displayWAS("Armor");
+                this.changeWAS("Armor");
                 break;
             case 'S':
-                this.displayWAS("Shield");
+                this.changeWAS("Shield");
                 break;
             case 'B':
                 try {
@@ -168,9 +187,10 @@ public class InventoryMenuView {
         }
     }
     
-    private void displayWAS(String wasItemType) {
+    private void changeWAS(String wasItemType) {
         
-        // Get the sorted list of weapons for the current game
+        // Get the player and sorted list of weapons for the current game
+        Player player = TheRevengeOfMerek.getPlayer();
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList(wasItemType);
         
@@ -178,6 +198,7 @@ public class InventoryMenuView {
         String name;
         String inventoryType;
         double quantity;
+        boolean valid = false;
         
         // Display items of specific type and ask if they want to wear an item
         System.out.println("\nList of " + wasItemType +" Items\n"
@@ -189,46 +210,38 @@ public class InventoryMenuView {
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
             if (inventoryType.equals(wasItemType.toLowerCase())) {
+                System.out.print((inventory.indexOf(inventoryItem)+1) + ") ");
                 System.out.print(name);
-                int space = 24 - name.length();
+                int space = 21 - name.length();
                 for (int i = 0; i < space; i++) {
                     System.out.print(" ");
                 }
                 System.out.println(inventoryType + "\t" + quantity);
             }
         }
-        System.out.println("=============================================");
-        
-    }
-    
-    private void displayItems() {
-        
-        // Get the sorted list of inventory items for the current game
-        ArrayList<InventoryItem> inventory;
-        inventory = this.getSortedInventoryList("items");
-        
-        // Display the sorted inventory list
-        String name;
-        String inventoryType;
-        double quantity;
-        System.out.println("\nList of Inventory Items\n"
-                         + "=============================================\n"
-                         + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n"
-                         + "=============================================");
-        for (InventoryItem inventoryItem: inventory) {
-            name = inventoryItem.getName();
-            inventoryType = inventoryItem.getInventoryType();
-            quantity = inventoryItem.getQuantity();
-            if (inventoryType.equals("bandage") || inventoryType.equals("potion") || inventoryType.equals("package")) {
-                System.out.print(name);
-                int space = 24 - name.length();
-                for (int i = 0; i < space; i++) {
-                    System.out.print(" ");
+        System.out.println("9) Exit");
+        System.out.println("=============================================\n");
+        do {
+            int input = getInputInteger();
+            input = --input;
+            if (input != 8) {
+                try {
+                    InventoryItem newWAS = inventory.get(input);
+                    valid = true;
+                    if (wasItemType.toLowerCase().equals("weapon")) {
+                        player.setWeapon(newWAS.getName());
+                    } else if (wasItemType.toLowerCase().equals("armor")) {
+                        player.setArmor(newWAS.getName());
+                    } else if (wasItemType.toLowerCase().equals("shield")) {
+                        player.setShield(newWAS.getName());
+                    }
+                } catch (IndexOutOfBoundsException ioo) {
+                    System.out.println("\nYou must enter a valid number. Please try again.");
                 }
-                System.out.println(inventoryType + "\t" + quantity);
+            } else {
+                valid = true;
             }
-        }
-        System.out.println("=============================================");
+        } while (!valid);
         
     }
     
