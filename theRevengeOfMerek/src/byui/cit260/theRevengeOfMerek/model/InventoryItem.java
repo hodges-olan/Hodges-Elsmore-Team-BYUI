@@ -20,7 +20,7 @@ public class InventoryItem implements Serializable {
     private String name;
         
     public enum bandage {
-        bandage ("Linen Bandage", 20);
+        bandage ("Bandage", 20);
         
         // Enum Variables
         private final String name;
