@@ -31,7 +31,7 @@ public class GameControl {
         
         // Set the name to the value given and set health
         player.setName(playersName);
-        player.setHealth(40);
+        player.setHealth(100);
         
         // Save the player instance to the main class
         TheRevengeOfMerek.setPlayer(player);
