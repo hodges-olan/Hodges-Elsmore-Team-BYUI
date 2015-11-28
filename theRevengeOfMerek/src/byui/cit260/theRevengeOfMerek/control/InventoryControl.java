@@ -109,7 +109,7 @@ public class InventoryControl {
                 modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity() - 1);
             }
         } else {
-            throw new InventoryControlException("You do not have any " + item + "s to use!");
+            throw new InventoryControlException("\n\nYou do not have any " + item + "s to use!");
         }
     }
     
