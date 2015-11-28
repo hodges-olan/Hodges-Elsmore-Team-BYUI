@@ -58,7 +58,7 @@ public class InventoryControl {
         
     }
     
-    public static void useHealthPotion() throws InventoryControlException {
+    public static void useBandagePotion(String item) throws InventoryControlException {
         // Get current player, their current health, and figure out how much you can heal them by
         Player player = TheRevengeOfMerek.getPlayer();
         double health = player.getHealth();
@@ -70,17 +70,33 @@ public class InventoryControl {
         ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
         
         // If they have a health potion, use it, otherwise, throw an InventoryControlException
-        for (InventoryItem inventoryItem : inventory) {
-            if (inventoryItem.getInventoryType().equals("potion")) {
-                // Heal the player as much as possible
-                if (InventoryItem.potion.potion.getHeal() >= maxHeal) {
-                    player.setHealth(100);
-                } else {
-                    player.setHealth(health + InventoryItem.potion.potion.getHeal());
+        if (item.equals("potion")) {
+            for (InventoryItem inventoryItem : inventory) {
+                if (inventoryItem.getInventoryType().equals("potion")) {
+                    // Heal the player as much as possible
+                    if (InventoryItem.potion.potion.getHeal() >= maxHeal) {
+                        player.setHealth(100);
+                    } else {
+                        player.setHealth(health + InventoryItem.potion.potion.getHeal());
+                    }
+
+                    // Get the index of the item found
+                    index = inventory.indexOf(inventoryItem);
                 }
-                
-                // Get the index of the item found
-                index = inventory.indexOf(inventoryItem);
+            }
+        } else if (item.equals("bandage")) {
+            for (InventoryItem inventoryItem : inventory) {
+                if (inventoryItem.getInventoryType().equals("bandage")) {
+                    // Heal the player as much as possible
+                    if (InventoryItem.bandage.bandage.getHeal() >= maxHeal) {
+                        player.setHealth(100);
+                    } else {
+                        player.setHealth(health + InventoryItem.bandage.bandage.getHeal());
+                    }
+
+                    // Get the index of the item found
+                    index = inventory.indexOf(inventoryItem);
+                }
             }
         }
         
@@ -93,46 +109,7 @@ public class InventoryControl {
                 modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity() - 1);
             }
         } else {
-            throw new InventoryControlException("You do not have any potions to use!");
-        }
-    }
-    
-    public static void useBandage() throws InventoryControlException {
-        // Get current player, their current health, and figure out how much you can heal them by
-        Player player = TheRevengeOfMerek.getPlayer();
-        double health = player.getHealth();
-        double maxHeal = 100 - health;
-        int index = -1;
-        InventoryItem modifyInventoryItem;
-        
-        // Acquire player's inventory list
-        ArrayList<InventoryItem> inventory = TheRevengeOfMerek.getCurrentGame().getInventory();
-        
-        // If they have a health potion, use it, otherwise, throw an InventoryControlException
-        for (InventoryItem inventoryItem : inventory) {
-            if (inventoryItem.getInventoryType().equals("bandage")) {
-                // Heal the player as much as possible
-                if (InventoryItem.bandage.bandage.getHeal() >= maxHeal) {
-                    player.setHealth(100);
-                } else {
-                    player.setHealth(health + InventoryItem.bandage.bandage.getHeal());
-                }
-                
-                // Get the index of the item found
-                index = inventory.indexOf(inventoryItem);
-            }
-        }
-        
-        // Remove the potion from inventory or throw error
-        if (index != -1) {
-            modifyInventoryItem = inventory.get(index);
-            if (modifyInventoryItem.getQuantity() == 1) {
-                inventory.remove(index);
-            } else {
-                modifyInventoryItem.setQuantity(modifyInventoryItem.getQuantity() - 1);
-            }
-        } else {
-            throw new InventoryControlException("You do not have any potions to use!");
+            throw new InventoryControlException("You do not have any " + item + "s to use!");
         }
     }
     

@@ -148,14 +148,14 @@ public class InventoryMenuView {
                 break;
             case 'B':
                 try {
-                    InventoryControl.useBandage();
+                    InventoryControl.useBandagePotion("bandage");
                 } catch (InventoryControlException ice) {
                     System.out.println(ice.getMessage());
                 }
                 break;
             case 'P':
                 try {
-                    InventoryControl.useHealthPotion();
+                    InventoryControl.useBandagePotion("potion");
                 } catch (InventoryControlException ice) {
                     System.out.println(ice.getMessage());
                 }
