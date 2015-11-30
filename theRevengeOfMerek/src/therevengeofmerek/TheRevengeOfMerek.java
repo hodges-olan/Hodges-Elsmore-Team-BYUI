@@ -27,6 +27,7 @@ public class TheRevengeOfMerek {
     
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
+    private static PrintWriter logFile = null;
     
     // Main Method for TheRevengeOfMerek Game
     public static void main(String[] args) {
@@ -36,6 +37,10 @@ public class TheRevengeOfMerek {
            // Open character stream files for end user input and output
            TheRevengeOfMerek.inFile = new BufferedReader(new InputStreamReader(System.in));
            TheRevengeOfMerek.outFile = new PrintWriter(System.out, true);
+           
+           // Open log file
+           String filePath = "log.txt";
+           TheRevengeOfMerek.logFile = new PrintWriter(filePath);
            
            // Create StartProgramView and start the program
            startProgramView.startProgram();
@@ -52,6 +57,9 @@ public class TheRevengeOfMerek {
                }
                if (TheRevengeOfMerek.outFile != null) {
                    TheRevengeOfMerek.outFile.close();
+               }
+               if (TheRevengeOfMerek.logFile != null) {
+                   TheRevengeOfMerek.logFile.close();
                }
            } catch (IOException ex) {
                System.out.println("Error closing files");
@@ -77,6 +85,10 @@ public class TheRevengeOfMerek {
         return inFile;
     }
 
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
     // Setter methods
     public static void setCurrentGame(Game currentGame) {
         TheRevengeOfMerek.currentGame = currentGame;
@@ -92,6 +104,10 @@ public class TheRevengeOfMerek {
 
     public static void setInFile(BufferedReader inFile) {
         TheRevengeOfMerek.inFile = inFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        TheRevengeOfMerek.logFile = logFile;
     }
     
 }
