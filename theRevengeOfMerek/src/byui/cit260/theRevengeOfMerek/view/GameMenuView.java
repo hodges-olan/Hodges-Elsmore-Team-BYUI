@@ -123,7 +123,8 @@ public class GameMenuView extends View {
                 String questType = locations[locationy][locationx].getQuestType();
                 switch(questType) {
                     case "artifact":
-                        System.out.println("*** call artifact quest ***");
+                        ArtifactQuestView artifactQuestView = new ArtifactQuestView();
+                        artifactQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "container":
                         StorageContainerQuestView storageContainerQuestView = new StorageContainerQuestView();
@@ -138,7 +139,8 @@ public class GameMenuView extends View {
                         shipmentQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "strength":
-                        System.out.println("*** call strength quest ***");
+                        StrengthQuestView strengthQuestView = new StrengthQuestView();
+                        strengthQuestView.displaymenu(locations[locationy][locationx]);
                         return;
                     default:
                         System.out.println("\n Invalid Selection, Try Again");
