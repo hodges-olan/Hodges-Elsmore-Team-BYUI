@@ -5,7 +5,10 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -24,6 +27,8 @@ public class BattleControlView {
             + "\n| (B)andage                       |"
             + "\n| (F)lee                          |"
             + "\n-----------------------------------";
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Method to display the main menu
     public void displayMenu() {
@@ -34,7 +39,7 @@ public class BattleControlView {
         // Loop to show and gather input from user in main menu
         do {
             // Print the main menu
-            System.out.println(MENU);
+            this.console.println(MENU);
             
             // Gather input from the player
             String input = this.getInput();
@@ -48,11 +53,11 @@ public class BattleControlView {
         } while (selection != 'F' & selection != 'C' & selection != 'D');
         
         if (selection == 'F') {
-            System.out.println("You have fled!");
+            this.console.println("You have fled!");
         } else if (selection == 'C') {
-            System.out.println("You have won!");
+            this.console.println("You have won!");
         } else {
-            System.out.println("You have been defeated!");
+            this.console.println("You have been defeated!");
         }
         
     }
@@ -63,17 +68,20 @@ public class BattleControlView {
         // Declare variables for getInput method
         boolean valid = false;
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
         
         // Loop to gather input from user until they give valid input
         do { 
-            System.out.println("Select an Option on the Battle Menu");
+            this.console.println("Select an Option on the Battle Menu");
             
-            input = keyboard.nextLine();
+            try {
+                input = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the Menu Above");
+            }
             input = input.trim();
             
             if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select from the Menu Above");
+                this.console.println("Invalid option - please select from the Menu Above");
             } else {
                 valid = true;
             }
@@ -107,43 +115,46 @@ public class BattleControlView {
                     return ' ';
                 }
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
         return ' ';
     }   
 
     private void pummel() {
-        System.out.println("Pummel!");
+        this.console.println("Pummel!");
     }
 
     private void heroicStrike() {
-        System.out.println("Heroic Strike!");
+        this.console.println("Heroic Strike!");
     }
 
     private void charge() {
-        System.out.println("Charge!");
+        this.console.println("Charge!");
     }
 
     private void bandage() {
-        System.out.println("Bandage!");
+        this.console.println("Bandage!");
     }
 
     private String flee() {
         // Declare variables for getInput method
         boolean valid = false;
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
 
         // Loop to gather input from user until they give valid input
         do {
-            System.out.println("Are you sure?  (Y/N)");
+            this.console.println("Are you sure?  (Y/N)");
 
-            input = keyboard.nextLine();
+            try {
+                input = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+            }
             input = input.trim();
 
             if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select Y or N");
+                this.console.println("Invalid option - please select Y or N");
             } else {
                 valid = true;
             }

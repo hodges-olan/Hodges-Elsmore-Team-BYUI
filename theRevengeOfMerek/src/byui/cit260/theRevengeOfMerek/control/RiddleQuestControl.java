@@ -6,6 +6,9 @@
 package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.exceptions.RiddleQuestControlException;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -13,19 +16,26 @@ import byui.cit260.theRevengeOfMerek.exceptions.RiddleQuestControlException;
  */
 public class RiddleQuestControl {
     
+    // Declare variables
+    private static final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private static final PrintWriter console = TheRevengeOfMerek.getOutFile();
+    
     // Method for verifying the answer the player gave is correct
-    public static void isRiddleAnswerCorrect (String answer, String playerAnswer) throws RiddleQuestControlException {
+    public static boolean isRiddleAnswerCorrect (String answer, String playerAnswer) throws RiddleQuestControlException {
         
         // Capitalize answers in preparation for compare function
         answer = answer.toUpperCase();
         playerAnswer = playerAnswer.toUpperCase();
+        boolean correct = false;
         
         // Compare values and execute accordingly
         if (answer.equals(playerAnswer)) {
-            System.out.println("That's correct!");
+            correct = true;
         } else {
             throw new RiddleQuestControlException ("Wrong answer, guess again!");
         }
+        
+        return correct;
         
     }
     

@@ -12,8 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +29,7 @@ public class TheRevengeOfMerek {
     
     // Main Method for TheRevengeOfMerek Game
     public static void main(String[] args) {
-       StartProgramView startProgramView = new StartProgramView();
+        
        try {
            
            // Open character stream files for end user input and output
@@ -43,15 +41,20 @@ public class TheRevengeOfMerek {
            TheRevengeOfMerek.logFile = new PrintWriter(filePath);
            
            // Create StartProgramView and start the program
+           StartProgramView startProgramView = new StartProgramView();
            startProgramView.startProgram();
+           
        } catch (Throwable te) {
+           
            System.out.println("\nException: " + te.toString()
                             + "\nCause: " + te.getCause()
                             + "\nMessage: " + te.getMessage());
            te.printStackTrace();
-           startProgramView.startProgram();
+           
        } finally {
+           
            try {
+               
                if (TheRevengeOfMerek.inFile != null) {
                    TheRevengeOfMerek.inFile.close();
                }
@@ -61,9 +64,12 @@ public class TheRevengeOfMerek {
                if (TheRevengeOfMerek.logFile != null) {
                    TheRevengeOfMerek.logFile.close();
                }
+               
            } catch (IOException ex) {
+               
                System.out.println("Error closing files");
                return;
+               
            }
        }
     }

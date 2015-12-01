@@ -73,8 +73,6 @@ public class GameControl {
         inventory.add(new InventoryItem("bandage",2.0,InventoryItem.bandage.bandage.getName()));
         inventory.add(new InventoryItem("potion",2.0,InventoryItem.potion.potion.getName()));
         inventory.add(new InventoryItem("weapon",1.0,InventoryItem.weapon.venomSilverAxe.getName()));
-        inventory.add(new InventoryItem("armor",1.0,InventoryItem.armor.birthOfTheCrown.getName()));
-        inventory.add(new InventoryItem("shield",1.0,InventoryItem.shield.championShield.getName()));
         
         // Equip Character with original equipment
         Player player = TheRevengeOfMerek.getPlayer();

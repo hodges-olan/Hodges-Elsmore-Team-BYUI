@@ -9,8 +9,10 @@ import byui.cit260.theRevengeOfMerek.control.InventoryControl;
 import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Player;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -29,6 +31,8 @@ public class InventoryMenuView {
                             + "\n| (P) Use Potion                            |"
                             + "\n| (E) Exit                                  |"
                             + "\n---------------------------------------------\n";
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Display Menu and currently equipped items for the player
     public void display() {
@@ -51,43 +55,43 @@ public class InventoryMenuView {
             health = player.getHealth();
             
             // Display Character's equipped items
-            System.out.print("\n---------------------------------------------"
+            this.console.print("\n---------------------------------------------"
                              + "\n| Character: " + playerName);
             int space = 31 - playerName.length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|");
-            System.out.print("\n| Weapon: " + equippedWeapon);
+            this.console.print("|");
+            this.console.print("\n| Weapon: " + equippedWeapon);
             space = 34 - equippedWeapon.length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|");
-            System.out.print("\n| Armor: " + equippedArmor);
+            this.console.print("|");
+            this.console.print("\n| Armor: " + equippedArmor);
             space = 35 - equippedArmor.length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|");
-            System.out.print("\n| Shield: " + equippedShield);
+            this.console.print("|");
+            this.console.print("\n| Shield: " + equippedShield);
             space = 34 - equippedShield.length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|");
-            System.out.print("\n| Health: " + health);
+            this.console.print("|");
+            this.console.print("\n| Health: " + health);
             space = 34 - String.valueOf(health).length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|\n");
+            this.console.print("|\n");
             
             // Print list of all inventory items
             this.displayAll();
             
             // Print the main menu
-            System.out.print(MENU);
+            this.console.print(MENU);
             
             // Gather input from the player
             String value = this.getInput();
@@ -96,7 +100,7 @@ public class InventoryMenuView {
             try {
                 selection = Character.toUpperCase(value.charAt(0));
             } catch (IndexOutOfBoundsException ioo) {
-                System.out.println("Invalid option - please select from the menu above");
+                this.console.println("Invalid option - please select from the menu above");
             }
             
             // Invoke the switches to execute the appropriate action
@@ -112,17 +116,20 @@ public class InventoryMenuView {
         // Declare variables for getInput method
         boolean valid = false;
         String value = null;
-        Scanner keyboard = new Scanner(System.in);
         
         // Loop to gather input from user until they give valid input
         while (!valid) { 
-            System.out.println("Select an option on the menu above");
+            this.console.println("Select an option on the menu above");
             
-            value = keyboard.nextLine();
+            try {
+                value = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "\nInvalid option - please select from the menu above");
+            }
             value = value.trim();
             
             if (value.length() == 0 || value.length() > 1) {
-                System.out.println("Invalid option - please select from the menu above");
+                this.console.println("Invalid option - please select from the menu above");
             } else {
                 valid = true;
             }
@@ -134,17 +141,20 @@ public class InventoryMenuView {
     
     private Integer getInputInteger() {
         Integer value = null;
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Please enter the number of the item you wish to equip:");
-        String input;
+        this.console.println("Please enter the number of the item you wish to equip:");
+        String input = null;
         
         while (value == null) {
             try {
-                // parse and convert number from text to double
-                input = keyboard.nextLine();
+                try {
+                    // parse and convert number from text to double
+                    input = this.keyboard.readLine();
+                } catch (IOException ex) {
+                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                }
                 value = Integer.parseInt(input);
             } catch (NumberFormatException nf) {
-                System.out.println("\nYou must enter a valid number. Please try again.");
+                this.console.println("\nYou must enter a valid number. Please try again.");
             }
         }
             
@@ -169,20 +179,20 @@ public class InventoryMenuView {
                 try {
                     InventoryControl.useBandagePotion("bandage");
                 } catch (InventoryControlException ice) {
-                    System.out.println(ice.getMessage());
+                    ErrorView.display(this.getClass().getName(), ice.getMessage());
                 }
                 break;
             case 'P':
                 try {
                     InventoryControl.useBandagePotion("potion");
                 } catch (InventoryControlException ice) {
-                    System.out.println(ice.getMessage());
+                    ErrorView.display(this.getClass().getName(), ice.getMessage());
                 }
                 break;
             case 'E':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
@@ -201,7 +211,7 @@ public class InventoryMenuView {
         boolean valid = false;
         
         // Display items of specific type and ask if they want to wear an item
-        System.out.println("\nList of " + wasItemType +" Items\n"
+        this.console.println("\nList of " + wasItemType +" Items\n"
                          + "=============================================\n"
                          + "Name" + "\t\t\t" + "Type" + "\t" + "Quantity\n"
                          + "=============================================");
@@ -210,17 +220,17 @@ public class InventoryMenuView {
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
             if (inventoryType.equals(wasItemType.toLowerCase())) {
-                System.out.print((inventory.indexOf(inventoryItem)+1) + ") ");
-                System.out.print(name);
+                this.console.print((inventory.indexOf(inventoryItem)+1) + ") ");
+                this.console.print(name);
                 int space = 21 - name.length();
                 for (int i = 0; i < space; i++) {
-                    System.out.print(" ");
+                    this.console.print(" ");
                 }
-                System.out.println(inventoryType + "\t" + quantity);
+                this.console.println(inventoryType + "\t" + quantity);
             }
         }
-        System.out.println("9) Exit");
-        System.out.println("=============================================\n");
+        this.console.println("9) Exit");
+        this.console.println("=============================================\n");
         do {
             int input = getInputInteger();
             input = --input;
@@ -236,7 +246,7 @@ public class InventoryMenuView {
                         player.setShield(newWAS.getName());
                     }
                 } catch (IndexOutOfBoundsException ioo) {
-                    System.out.println("\nYou must enter a valid number. Please try again.");
+                    this.console.println("\nYou must enter a valid number. Please try again.");
                 }
             } else {
                 valid = true;
@@ -257,29 +267,29 @@ public class InventoryMenuView {
         double quantity;
         
         // Display items of specific type and ask if they want to wear an item
-        System.out.println("---------------------------------------------\n"
-                         + "| List of All Items                         |\n"
-                         + "---------------------------------------------\n"
-                         + "| Name" + "\t\t\t" + "Type" + "\t" + "Quantity    |\n"
-                         + "---------------------------------------------");
+        this.console.println("---------------------------------------------\n"
+                           + "| List of All Items                         |\n"
+                           + "---------------------------------------------\n"
+                           + "| Name" + "\t\t\t" + "Type" + "\t" + "Quantity    |\n"
+                           + "---------------------------------------------");
         for (InventoryItem inventoryItem: inventory) {
             name = inventoryItem.getName();
             inventoryType = inventoryItem.getInventoryType();
             quantity = inventoryItem.getQuantity();
-            System.out.print("| " + name);
+            this.console.print("| " + name);
             int space = 22 - name.length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print(inventoryType + "\t" + quantity);
+            this.console.print(inventoryType + "\t" + quantity);
             space = 12 - String.valueOf(quantity).length();
             for (int i = 0; i < space; i++) {
-                System.out.print(" ");
+                this.console.print(" ");
             }
-            System.out.print("|\n");
+            this.console.print("|\n");
             
         }
-        System.out.println("---------------------------------------------");
+        this.console.println("---------------------------------------------");
         
     }
 

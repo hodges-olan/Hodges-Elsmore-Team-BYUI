@@ -43,7 +43,7 @@ public class QuestProgressView extends View {
             case 'E':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
@@ -56,8 +56,8 @@ public class QuestProgressView extends View {
         Location[][] locations = map.getLocations();
         
         // Display completed quests and gather total
-        System.out.println("Completed Quests");
-        System.out.println("----------------");
+        this.console.println("Completed Quests");
+        this.console.println("----------------");
         int total = 0;
         int complete = 0;
         int currentRow;
@@ -71,17 +71,17 @@ public class QuestProgressView extends View {
                     currentColumn = (int) location.getColumn();
                     currentRow = ++currentRow;
                     currentColumn = ++currentColumn;
-                    System.out.println("Quest at " + currentRow + "," + currentColumn);
+                    this.console.println("Quest at " + currentRow + "," + currentColumn);
                 }
             }
         }
-        System.out.println("----------------");
+        this.console.println("----------------");
         if ((complete < 0) || (total < 0) || (total < complete)) {
-            System.out.println("ERROR IN CALCULATING TOTALS");
+            this.console.println("ERROR IN CALCULATING TOTALS");
         } else {
             double percentage = 100 * complete/total;
-            System.out.println("Total Completed: " + complete);
-            System.out.println("Percent Complete: " + percentage);
+            this.console.println("Total Completed: " + complete);
+            this.console.println("Percent Complete: " + percentage);
         }
         
     }
@@ -93,8 +93,8 @@ public class QuestProgressView extends View {
         Location[][] locations = map.getLocations();
         
         // Display outstanding quests and gather total
-        System.out.println("Outstanding Quests");
-        System.out.println("----------------");
+        this.console.println("Outstanding Quests");
+        this.console.println("----------------");
         int total = 0;
         int outstanding = 0;
         int currentRow;
@@ -108,17 +108,17 @@ public class QuestProgressView extends View {
                     currentColumn = (int) location.getColumn();
                     currentRow = ++currentRow;
                     currentColumn = ++currentColumn;
-                    System.out.println("Quest at " + currentRow + "," + currentColumn);
+                    this.console.println("Quest at " + currentRow + "," + currentColumn);
                 }
             }
         }
-        System.out.println("----------------");
+        this.console.println("----------------");
         if ((outstanding < 0) || (total < 0) || (total < outstanding)) {
-            System.out.println("ERROR IN CALCULATING TOTALS");
+            this.console.println("ERROR IN CALCULATING TOTALS");
         } else {
             double percentage = 100 * outstanding/total;
-            System.out.println("Total Outstanding: " + outstanding);
-            System.out.println("Percent Outstanding: " + percentage);
+            this.console.println("Total Outstanding: " + outstanding);
+            this.console.println("Percent Outstanding: " + percentage);
         }
         
     }

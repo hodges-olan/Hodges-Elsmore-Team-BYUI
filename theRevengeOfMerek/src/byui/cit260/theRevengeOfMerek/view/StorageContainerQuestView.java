@@ -9,8 +9,11 @@ import byui.cit260.theRevengeOfMerek.control.StorageContainerQuestControl;
 import byui.cit260.theRevengeOfMerek.exceptions.StorageContainerQuestControlException;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.StorageContainerQuest;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -27,6 +30,8 @@ public class StorageContainerQuestView {
                 + "\n* we need to put into a container for safe keeping during it's      *"
                 + "\n* journey.  Could you please help us?                               *"
                 + "\n*********************************************************************";
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Method to display the welcome banner
     public void displayMenu(Location location) {
@@ -37,7 +42,7 @@ public class StorageContainerQuestView {
         // Loop to show and gather input from user in main menu
         do {
             // Print the main menu
-            System.out.println(MENU);
+            this.console.println(MENU);
             
             // Gather input from the player
             String input = this.getInput("Do you accept the quest?  (Y/N)");
@@ -53,19 +58,19 @@ public class StorageContainerQuestView {
                     selection = this.doAction(selection, location);
                 } catch (StorageContainerQuestControlException sce) {
                     // Display error message for invalid input, reset selection, and try again.
-                    System.out.println(sce.getMessage());
+                    ErrorView.display(this.getClass().getName(), sce.getMessage());
                     selection = ' ';
                 }
             } catch (IndexOutOfBoundsException ioo) {
                 // Display error message for invalid input, reset selection, and try again.
-                System.out.println("Invalid option - please select Y or N");
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
                 selection = ' ';
             }
        
         } while ((selection != 'N') & (selection != 'C'));
         
         if (selection == 'C') {
-            System.out.println("Quest Complete!");
+            this.console.println("Quest Complete!");
         }
         
     }
@@ -74,12 +79,15 @@ public class StorageContainerQuestView {
     private String getInput(String message) {
         
         // Declare variables for getInput method
-        String input;
-        Scanner keyboard = new Scanner(System.in);
+        String input = null;
         
         // Loop to gather input from user until they give valid input
-        System.out.println(message);
-        input = keyboard.nextLine();
+        this.console.println(message);
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+        }
         input = input.trim();
             
         return input;
@@ -135,19 +143,19 @@ public class StorageContainerQuestView {
         }
         
         while (!location.isQuestComplete()) {
-            System.out.println("We need a barrel that will fit " + reqVolume + " square feet of water.\n"
-                             + "Use the equation for the volume of a cylinder to get the appropriate measurements.");
+            this.console.println("We need a barrel that will fit " + reqVolume + " square feet of water.\n"
+                               + "Use the equation for the volume of a cylinder to get the appropriate measurements.");
             double radius = this.getInputDouble("radius");
             double height = this.getInputDouble("height");
             StorageContainerQuestControl instance = new StorageContainerQuestControl();
             try {
                 instance.calculateVolume(radius, height, reqVolume);
-                System.out.println("That will fit the requirements exactly!  Thank you!");
+                this.console.println("That will fit the requirements exactly!  Thank you!");
                 storageContainerQuest.setHeight(height);
                 storageContainerQuest.setRadius(radius);
                 location.setQuestComplete(true);
             } catch (StorageContainerQuestControlException sce) {
-                System.out.println(sce.getMessage());
+                ErrorView.display(this.getClass().getName(), sce.getMessage());
             }
             
         }
@@ -156,17 +164,20 @@ public class StorageContainerQuestView {
 
     private Double getInputDouble(String dimension) {
         Double value = null;
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("What is the " + dimension + " we should use?");
-        String input;
+        this.console.println("What is the " + dimension + " we should use?");
+        String input = null;
         
         while (value == null) {
             try {
-                // parse and convert number from text to double
-                input = keyboard.nextLine();
+                try {
+                    // parse and convert number from text to double
+                    input = this.keyboard.readLine();
+                } catch (IOException ex) {
+                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                }
                 value = Double.parseDouble(input);
             } catch (NumberFormatException nf) {
-                System.out.println("\nYou must enter a valid number. Please try again.");
+                this.console.println("\nYou must enter a valid number. Please try again.");
             }
         }
             

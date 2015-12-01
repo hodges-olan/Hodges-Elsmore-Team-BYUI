@@ -16,13 +16,18 @@ public class ErrorView {
     
     // Define variables
     private static final PrintWriter errorFile = TheRevengeOfMerek.getOutFile();
+    private static final PrintWriter logFile = TheRevengeOfMerek.getLogFile();
     
-    //Display error message
+    // Print and Log error messages
     public static void display(String className, String errorMessage) {
+        // Display error message
         errorFile.println("\n"
                         + "---------------------------------------------\n"
                         + "- ERROR - " + errorMessage + "\n"
                         + "---------------------------------------------\n");
+        
+        // Log error message to file
+        logFile.println(className + " - " + errorMessage);
     }
     
 }

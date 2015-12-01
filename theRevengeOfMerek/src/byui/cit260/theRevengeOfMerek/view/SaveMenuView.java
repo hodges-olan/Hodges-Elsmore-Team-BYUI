@@ -5,7 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import java.util.Scanner;
+import java.io.IOException;
 
 /**
  *From the Game Play Menu, the user will select the Save option.  This will bring up this menu, which will 
@@ -46,14 +46,14 @@ public class SaveMenuView extends View {
             case 'N':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
 
     private void displaySaveProgram() {
         // Display where to Save Game
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n------------------------------------"
                 + "\n|            Save Game             |"
                 + "\n|----------------------------------|"
@@ -65,8 +65,11 @@ public class SaveMenuView extends View {
         
         // Wait for the user to press any key
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        input = keyboard.nextLine();
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+        }
         
     }
 

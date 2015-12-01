@@ -6,7 +6,6 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
-import java.util.Scanner;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -49,7 +48,7 @@ public class MainMenuView extends View {
             case 'E':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
@@ -68,7 +67,7 @@ public class MainMenuView extends View {
 
     // Method to retrieve a saved game
     private void retrieveGame() {
-        System.out.println("The retrieveGame method was called!");
+        this.console.println("The retrieveGame method was called!");
     }
 
     // Method to save a game

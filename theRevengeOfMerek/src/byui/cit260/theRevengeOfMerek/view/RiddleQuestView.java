@@ -9,8 +9,11 @@ import byui.cit260.theRevengeOfMerek.control.RiddleQuestControl;
 import byui.cit260.theRevengeOfMerek.enums.RiddleQuest;
 import byui.cit260.theRevengeOfMerek.exceptions.RiddleQuestControlException;
 import byui.cit260.theRevengeOfMerek.model.Location;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
-import java.util.Scanner;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -26,6 +29,8 @@ public class RiddleQuestView {
                 + "\n* I have a riddle for you to test just how wise you are.            *"
                 + "\n* Are you ready?                                                    *"
                 + "\n*********************************************************************";
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Method to display the welcome banner
     public void displayMenu(Location location) {
@@ -36,7 +41,7 @@ public class RiddleQuestView {
         // Loop to show and gather input from user in main menu
         do {
             // Print the main menu
-            System.out.println(MENU);
+            this.console.println(MENU);
             
             // Gather input from the player
             String input = this.getInput();
@@ -50,7 +55,7 @@ public class RiddleQuestView {
         } while ((selection != 'N') & (selection != 'C'));
         
         if (selection == 'C') {
-            System.out.println("Quest Complete!");
+            this.console.println("Quest Complete!");
         }
         
     }
@@ -61,17 +66,20 @@ public class RiddleQuestView {
         // Declare variables for getInput method
         boolean valid = false;
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
         
         // Loop to gather input from user until they give valid input
         do { 
-            System.out.println("Do you accept the quest?  (Y/N)");
+            this.console.println("Do you accept the quest?  (Y/N)");
             
-            input = keyboard.nextLine();
+            try {
+                input = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+            }
             input = input.trim();
             
             if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select Y or N");
+                this.console.println("Invalid option - please select Y or N");
             } else {
                 valid = true;
             }
@@ -95,18 +103,21 @@ public class RiddleQuestView {
                 return ' ';
             }
         } else {
-            System.out.println("Invalid option - please select Y or N");
+            this.console.println("Invalid option - please select Y or N");
         }
         return ' ';
     }
 
     private String getInputString() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter a one word answer:");
+        this.console.println("Enter a one word answer:");
         String input = null;
         
         while (input == null) {
-            input = keyboard.nextLine();
+            try {
+                input = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+            }
         }
         
         return input;
@@ -117,17 +128,20 @@ public class RiddleQuestView {
         // Declare variables for getInput method
         boolean valid = false;
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
         
         // Loop to gather input from user until they give valid input
         do { 
-            System.out.println("Are you sure?  (Y/N)");
+            this.console.println("Are you sure?  (Y/N)");
             
-            input = keyboard.nextLine();
+            try {
+                input = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Please enter an answer.");
+            }
             input = input.trim();
             
             if (input.length() == 0 || input.length() > 1) {
-                System.out.println("Invalid option - please select Y or N");
+                this.console.println("Invalid option - please select Y or N");
             } else {
                 valid = true;
             }
@@ -190,13 +204,17 @@ public class RiddleQuestView {
         }
                 
         while (!location.isQuestComplete()) {
-            System.out.println(riddle);
+            this.console.println(riddle);
             String playerAnswer = this.getInputString();
+            boolean correct = false;
             try {
-                RiddleQuestControl.isRiddleAnswerCorrect(answer, playerAnswer);
-                location.setQuestComplete(true);
+                correct = RiddleQuestControl.isRiddleAnswerCorrect(answer, playerAnswer);
+                if (correct) {
+                    location.setQuestComplete(true);
+                    this.console.println("That's correct!");
+                }
             } catch (RiddleQuestControlException re) {
-                System.out.println(re.getMessage());
+                ErrorView.display(this.getClass().getName(), re.getMessage());
             }
             
         }

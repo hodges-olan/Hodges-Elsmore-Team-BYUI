@@ -7,13 +7,20 @@ package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
 import byui.cit260.theRevengeOfMerek.model.Player;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
  * @author maryelsmore
  */
 public class StartProgramView {
+    
+    // Declare variables
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Constructor Method for StartProgramView Class
     public StartProgramView() {
@@ -42,7 +49,7 @@ public class StartProgramView {
 
     // Method to display the welcome banner
     private void displayBanner() {
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n*********************************************************************"
                 + "\n*             Welcome to The Revenge of Merek                       *"
                 + "\n*********************************************************************"
@@ -71,16 +78,19 @@ public class StartProgramView {
     private String getPlayersName() {
         boolean valid = false;
         String playersName = null;
-        Scanner keyboard = new Scanner(System.in);
         
         do { 
-            System.out.println("Enter the player's name below");
+            this.console.println("Enter the player's name below");
             
-            playersName = keyboard.nextLine();
+            try {
+                playersName = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
+            }
             playersName = playersName.trim();
             
             if (playersName.length() < 2) {
-                System.out.println("Invalid name - the name must be over one character long");
+                this.console.println("Invalid name - the name must be over one character long");
             } else {
                 valid = true;
             }
@@ -94,13 +104,13 @@ public class StartProgramView {
     private void displayWelcomeMessage(Player player) {
         int length = player.getName().length();
         int space = (40 - length)/2;
-        System.out.println("\n\n========================================"
+        this.console.println("\n\n========================================"
                 + "\n          Welcome to the game");
         for (int i = 0; i < space; i++) {
-            System.out.print(" ");
+            this.console.print(" ");
         }
-        System.out.print(player.getName());
-        System.out.println("\n               Have fun!"
+        this.console.print(player.getName());
+        this.console.println("\n               Have fun!"
                 + "\n========================================");
     }
     

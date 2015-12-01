@@ -9,7 +9,10 @@ import byui.cit260.theRevengeOfMerek.control.ShipmentQuestControl;
 import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
 import byui.cit260.theRevengeOfMerek.exceptions.ShipmentQuestControlException;
 import byui.cit260.theRevengeOfMerek.model.Location;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
@@ -27,6 +30,8 @@ public class ShipmentQuestView {
                 + "\n* be a great help if you could take it for us.  Could you please    *"
                 + "\n* help us?                                                          *"
                 + "\n*********************************************************************";
+    private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
+    private final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Method to display the welcome banner
     public void displayMenu(Location location) {
@@ -39,7 +44,7 @@ public class ShipmentQuestView {
             // Loop to show and gather input from user in main menu
             do {
                 // Print the main menu
-                System.out.println(MENU);
+                this.console.println(MENU);
 
                 // Gather input from the player
                 String input = this.getInput("Do you accept the quest?  (Y/N)");
@@ -55,23 +60,23 @@ public class ShipmentQuestView {
                         selection = this.doAction(selection, location);
                     } catch (ShipmentQuestControlException sce) {
                         // Display error message for invalid input, reset selection, and try again.
-                        System.out.println(sce.getMessage());
+                        ErrorView.display(this.getClass().getName(), sce.getMessage());
                         selection = ' ';
                     }
                 } catch (IndexOutOfBoundsException ioo) {
                     // Display error message for invalid input, reset selection, and try again.
-                    System.out.println("Invalid option - please select Y or N");
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
                     selection = ' ';
                 }
 
             } while ((selection != 'N') & (selection != 'C'));
 
             if (selection == 'C') {
-                System.out.println("Thank you!  Don't forget to drop the shipment off to get your reward.\n"
+                this.console.println("Thank you!  Don't forget to drop the shipment off to get your reward.\n"
                                  + "Don't forget to check the package destination in your inventory.");
             }
         } else {
-            System.out.println("Don't forget to drop the package off!\n"
+            this.console.println("Don't forget to drop the package off!\n"
                              + "If you forget where it needs to go, check your inventory.");
         }
         
@@ -82,15 +87,19 @@ public class ShipmentQuestView {
     private String getInput(String message) {
         
         // Declare variables for getInput method
-        String input;
-        Scanner keyboard = new Scanner(System.in);
+        String input = null;
         
         // Loop to gather input from user until they give valid input
-        System.out.println(message);
-        input = keyboard.nextLine();
+        this.console.println(message);
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nInvalid option - please select Y or N");
+        }
         input = input.trim();
             
         return input;
+        
     }
 
     // Execute the appropriate action based on input from user
@@ -128,19 +137,22 @@ public class ShipmentQuestView {
         return selection;
     }
     
-    public static void QuestComplete(Location location) {
+    public void QuestComplete(Location location) {
         
         try {
             if (ShipmentQuestControl.receiveShipmentFromInventory(location)) {
-                System.out.println("\n\nThank you so much for getting this package to us!\n"
+                this.console.println("\n\nThank you so much for getting this package to us!\n"
                              + "Quest Complete!");
                 // Wait for the user to press any key
                 String input = null;
-                Scanner keyboard = new Scanner(System.in);
-                input = keyboard.nextLine();
+                try {
+                    input = this.keyboard.readLine();
+                } catch (IOException ex) {
+                    ErrorView.display(this.getClass().getName(), "\nInvalid option, please try again.");
+                }
             }
         } catch (InventoryControlException ice) {
-            System.out.println(ice.getMessage());
+            ErrorView.display(this.getClass().getName(), ice.getMessage());
         }
         
     }

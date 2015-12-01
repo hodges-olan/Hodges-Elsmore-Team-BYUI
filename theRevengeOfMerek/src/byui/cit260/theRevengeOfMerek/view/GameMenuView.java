@@ -10,7 +10,7 @@ import byui.cit260.theRevengeOfMerek.exceptions.MapControlException;
 import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.Location;
 import byui.cit260.theRevengeOfMerek.model.Map;
-import java.util.Scanner;
+import java.io.IOException;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -62,7 +62,7 @@ public class GameMenuView extends View {
             case 'E':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
@@ -101,11 +101,11 @@ public class GameMenuView extends View {
         int locationy;
         
         // Gather new X coordinate
-        System.out.println("Enter new X coordinate");
+        this.console.println("Enter new X coordinate");
         locationx = this.getInputInteger();       
         
         // Gather new X coordinate
-        System.out.println("Enter new Y coordinate");
+        this.console.println("Enter new Y coordinate");
         locationy = this.getInputInteger();
         
         // Decrement values for 2D array
@@ -116,14 +116,15 @@ public class GameMenuView extends View {
             MapControl.movePlayerToLocation(map, locations, locationy, locationx);
             
             // Shipment Quest Check
-            ShipmentQuestView.QuestComplete(locations[locationy][locationx]);
+            ShipmentQuestView shipmentQuestView = new ShipmentQuestView();
+            shipmentQuestView.QuestComplete(locations[locationy][locationx]);
             
             // If Quest not complete, Start it
             if (!locations[locationy][locationx].isQuestComplete()) {
                 String questType = locations[locationy][locationx].getQuestType();
                 switch(questType) {
                     case "artifact":
-                        System.out.println("*** call artifact quest ***");
+                        this.console.println("*** call artifact quest ***");
                         break;
                     case "container":
                         StorageContainerQuestView storageContainerQuestView = new StorageContainerQuestView();
@@ -134,20 +135,19 @@ public class GameMenuView extends View {
                         riddleQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "shipment":
-                        ShipmentQuestView shipmentQuestView = new ShipmentQuestView();
                         shipmentQuestView.displayMenu(locations[locationy][locationx]);
                         break;
                     case "strength":
-                        System.out.println("*** call strength quest ***");
+                        this.console.println("*** call strength quest ***");
                         return;
                     default:
-                        System.out.println("\n Invalid Selection, Try Again");
+                        this.console.println("\n Invalid Selection, Try Again");
                         break;
                 }
 
             }
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            ErrorView.display(this.getClass().getName(), me.getMessage());
         }
         
     }
@@ -180,38 +180,41 @@ public class GameMenuView extends View {
         Location[][] locations = map.getLocations();
         
         // Display title
-        System.out.println("\n\n  The Revenge of Merek");
+        this.console.println("\n\n  The Revenge of Merek");
         
         // Display map
-        System.out.println("    1   2   3   4   5");
-        System.out.println("  ---------------------");
+        this.console.println("    1   2   3   4   5");
+        this.console.println("  ---------------------");
         for (int i=0; i < rows; i++) {
-            System.out.print((i+1) + " |");
+            this.console.print((i+1) + " |");
             for (int j=0; j < columns; j++) {
                 if (locations[i][j].isPlayerPresent()) {
-                    System.out.print(" X |");
+                    this.console.print(" X |");
                 } else if (locations[i][j].isQuestComplete()) {
-                    System.out.print(" C |");
+                    this.console.print(" C |");
                 } else {
-                    System.out.print(" O |");
+                    this.console.print(" O |");
                 }
             }
-            System.out.println("\n  ---------------------");
+            this.console.println("\n  ---------------------");
         }
     }
     
     private Integer getInputInteger() {
         Integer value = null;
-        Scanner keyboard = new Scanner(System.in);
-        String input;
+        String input = null;
         
         while (value == null) {
             try {
-                // parse and convert number from text to integer
-                input = keyboard.nextLine();
+                try {
+                    // parse and convert number from text to integer
+                    input = this.keyboard.readLine();
+                } catch (IOException ex) {
+                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                }
                 value = Integer.parseInt(input);
             } catch (NumberFormatException nf) {
-                System.out.println("\nYou must enter a valid number. Please try again.");
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
             }
         }
             

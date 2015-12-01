@@ -5,7 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import java.util.Scanner;
+import java.io.IOException;
 
 /**
  *
@@ -40,7 +40,7 @@ public class HelpMenuView extends View {
             case 'E':
                 return;
             default:
-                System.out.println("\n Invalid Selection, Try Again");
+                this.console.println("\n Invalid Selection, Try Again");
                 break;
         }
     }
@@ -48,7 +48,7 @@ public class HelpMenuView extends View {
     private void displayGoalHelp() {
         
         // Display the Goal of the Game help text
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n------------------------------------"
                 + "\n|         Goal of the Game         |"
                 + "\n|----------------------------------|"
@@ -67,15 +67,18 @@ public class HelpMenuView extends View {
         
         // Wait for the user to press any key
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        input = keyboard.nextLine();
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nYou must enter a valid selection. Please try again.");
+        }
         
     }
     
     private void displayUserConsoleHelp() {
         
         // Display the Goal of the Game help text
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\n------------------------------------"
                 + "\n|        User Console Help         |"
                 + "\n|----------------------------------|"
@@ -102,8 +105,11 @@ public class HelpMenuView extends View {
         
         // Wait for the user to press any key
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        input = keyboard.nextLine();
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nYou must enter a valid selection. Please try again.");
+        }
         
     }
 

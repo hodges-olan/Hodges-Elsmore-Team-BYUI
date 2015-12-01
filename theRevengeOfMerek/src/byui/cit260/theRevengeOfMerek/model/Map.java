@@ -22,12 +22,6 @@ public class Map implements Serializable {
     // default constructor
     public Map(int noOfRows, int noOfColumns) {
         
-        // Error Checking
-        if (noOfRows < 1 || noOfColumns < 1) {
-            System.out.println("The number of rows and columns must be > zero");
-            return;
-        }
-        
         // Set rows and columns values
         this.rowCount = noOfRows;
         this.columnCount = noOfColumns;
