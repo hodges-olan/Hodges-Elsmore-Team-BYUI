@@ -67,13 +67,19 @@ public class MainMenuView extends View {
 
     // Method to retrieve a saved game
     private void retrieveGame() {
-        this.console.println("The retrieveGame method was called!");
+        
+        // Create and display the save menu
+        SaveMenuView saveMenu = new SaveMenuView();
+        saveMenu.displayContinueProgram();
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
+        
     }
 
     // Method to save a game
     private void saveGame() {
         
-        //Create and display the save menu
+        // Create and display the save menu
         SaveMenuView saveMenu = new SaveMenuView();
         saveMenu.display();
         

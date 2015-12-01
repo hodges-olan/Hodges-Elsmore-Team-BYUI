@@ -5,7 +5,9 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
+import byui.cit260.theRevengeOfMerek.control.GameControl;
 import java.io.IOException;
+import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *From the Game Play Menu, the user will select the Save option.  This will bring up this menu, which will 
@@ -30,7 +32,7 @@ public class SaveMenuView extends View {
         + "\n|Do you wish to save your progress?|"
         + "\n|----------------------------------|"
         + "\n| (Y)es                            |"
-        + "\n| (N)o                             |"
+        + "\n| (E)xit                           |"
         + "\n------------------------------------");
     }
 
@@ -43,7 +45,7 @@ public class SaveMenuView extends View {
             case 'Y':
                 this.displaySaveProgram();
                 break;
-            case 'N':
+            case 'E':
                 return;
             default:
                 this.console.println("\n Invalid Selection, Try Again");
@@ -69,6 +71,42 @@ public class SaveMenuView extends View {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
             ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+        }
+        
+        // Save the game to the specified file
+        try {
+            GameControl.saveGame(TheRevengeOfMerek.getCurrentGame(), input);
+        } catch (Exception ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
+        }
+        
+    }
+    
+    public void displayContinueProgram() {
+        
+        // Display where to Save Game
+        this.console.println("\n"
+                + "\n------------------------------------"
+                + "\n|         Continue Game            |"
+                + "\n|----------------------------------|"
+                + "\n| Please enter the location of the |"
+                + "\n| game you would like to continue: |"
+                + "\n|                                  |"
+                + "\n------------------------------------");
+        
+        // Wait for the user to press any key
+        String input = null;
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+        }
+        
+        // Save the game to the specified file
+        try {
+            GameControl.continueGame(input);
+        } catch (Exception ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
         }
         
     }

@@ -9,6 +9,25 @@ package byui.cit260.theRevengeOfMerek.exceptions;
  *
  * @author maryelsmore
  */
-public class ArtifactQuestControlException {
-    
+public class ArtifactQuestControlException extends Exception {
+
+    public ArtifactQuestControlException() {
+    }
+
+    public ArtifactQuestControlException(String message) {
+        super(message);
+    }
+
+    public ArtifactQuestControlException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ArtifactQuestControlException(Throwable cause) {
+        super(cause);
+    }
+
+    public ArtifactQuestControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
 }
