@@ -34,7 +34,7 @@ public class ArtifactQuestView {
     
     // Method to display the welcome banner
     void displayMenu(Location location) {
-    
+    System.out.println("*** call artifact quest ***");
     // Declare variables
     char selection = ' ';
     
