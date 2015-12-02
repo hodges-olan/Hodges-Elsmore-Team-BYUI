@@ -387,7 +387,7 @@ public class InventoryMenuView {
         
         try (PrintWriter out = new PrintWriter(filePath)) {
         
-            // Display items of specific type and ask if they want to wear an item
+            // Create an inventory report and save it to the specified file.
             out.println("---------------------------------------------\n"
                       + "| Inventory Report                          |\n"
                       + "---------------------------------------------");
@@ -401,6 +401,9 @@ public class InventoryMenuView {
                 out.printf("%-24s%-8s%-12.0f%1s%n", name, inventoryType, quantity, "|");
             }
             out.println("---------------------------------------------");
+            
+            // Display the same report to the screen
+            this.displayAll();
             
         } catch (IOException ex) {
             throw new InventoryControlException("Failed to save inventory report.");
