@@ -54,6 +54,7 @@ public class SaveMenuView extends View {
     }
 
     private void displaySaveProgram() {
+        
         // Display where to Save Game
         this.console.println("\n"
                 + "\n------------------------------------"
@@ -63,7 +64,7 @@ public class SaveMenuView extends View {
                 + "\n| would like to save your game:    |"
                 + "\n|                                  |"
                 + "\n------------------------------------"
-                + "\n\nPress any key to return to the Save Menu");
+                + "\n");
         
         // Wait for the user to press any key
         String input = null;
