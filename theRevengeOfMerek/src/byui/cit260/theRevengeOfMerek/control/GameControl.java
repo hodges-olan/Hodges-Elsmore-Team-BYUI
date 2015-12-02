@@ -82,7 +82,8 @@ public class GameControl {
         inventory.add(new InventoryItem("weapon",1.0,InventoryItem.weapon.venomSilverAxe.getName()));
         
         // Equip Character with original equipment
-        Player player = TheRevengeOfMerek.getPlayer();
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Player player = game.getPlayer();
         player.setArmor("None");
         player.setShield("None");
         player.setWeapon("Venom Silver Axe");

@@ -7,6 +7,7 @@ package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.InventoryControl;
 import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
+import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import java.io.BufferedReader;
@@ -40,7 +41,8 @@ public class InventoryMenuView {
         
         // Declare variables
         char selection = ' ';
-        Player player = TheRevengeOfMerek.getPlayer();
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Player player = game.getPlayer();
         String playerName = player.getName();
         String equippedWeapon;
         String equippedArmor;
@@ -204,7 +206,8 @@ public class InventoryMenuView {
     private void changeWAS(String wasItemType) {
         
         // Get the player and sorted list of weapons for the current game
-        Player player = TheRevengeOfMerek.getPlayer();
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Player player = game.getPlayer();
         ArrayList<InventoryItem> inventory;
         inventory = this.getSortedInventoryList(wasItemType);
         

@@ -6,6 +6,7 @@
 package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.exceptions.InventoryControlException;
+import byui.cit260.theRevengeOfMerek.model.Game;
 import byui.cit260.theRevengeOfMerek.model.InventoryItem;
 import byui.cit260.theRevengeOfMerek.model.Player;
 import java.util.ArrayList;
@@ -60,7 +61,8 @@ public class InventoryControl {
     
     public static void useBandagePotion(String item) throws InventoryControlException {
         // Get current player, their current health, and figure out how much you can heal them by
-        Player player = TheRevengeOfMerek.getPlayer();
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Player player = game.getPlayer();
         double health = player.getHealth();
         double maxHeal = 100 - health;
         int index = -1;
@@ -116,7 +118,8 @@ public class InventoryControl {
     public static void equipItem(String was, String name) {
         
         // Get current player
-        Player player = TheRevengeOfMerek.getPlayer();
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Player player = game.getPlayer();
         
         // Equip weapon
         if (was.equals("weapon")) {
