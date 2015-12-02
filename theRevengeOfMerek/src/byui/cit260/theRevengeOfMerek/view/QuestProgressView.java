@@ -43,7 +43,7 @@ public class QuestProgressView extends View {
             case 'E':
                 return;
             default:
-                this.console.println("\n Invalid Selection, Try Again");
+                ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
     }
@@ -114,7 +114,7 @@ public class QuestProgressView extends View {
         }
         this.console.println("----------------");
         if ((outstanding < 0) || (total < 0) || (total < outstanding)) {
-            this.console.println("ERROR IN CALCULATING TOTALS");
+            ErrorView.display(this.getClass().getName(), "ERROR IN CALCULATING TOTALS");
         } else {
             double percentage = 100 * outstanding/total;
             this.console.println("Total Outstanding: " + outstanding);

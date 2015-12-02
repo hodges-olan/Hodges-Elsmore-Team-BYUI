@@ -1,4 +1,1 @@
-byui.cit260.theRevengeOfMerek.view.GameMenuView - 
-You must enter a valid number. Please try again.
-byui.cit260.theRevengeOfMerek.view.GameMenuView - 
-You must enter a valid number. Please try again.
+byui.cit260.theRevengeOfMerek.view.GameMenuView - Invalid Selection, Try Again

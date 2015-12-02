@@ -103,7 +103,7 @@ public class RiddleQuestView {
                 return ' ';
             }
         } else {
-            this.console.println("Invalid option - please select Y or N");
+            ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
         }
         return ' ';
     }
@@ -141,7 +141,7 @@ public class RiddleQuestView {
             input = input.trim();
             
             if (input.length() == 0 || input.length() > 1) {
-                this.console.println("Invalid option - please select Y or N");
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
             } else {
                 valid = true;
             }

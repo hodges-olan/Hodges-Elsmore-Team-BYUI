@@ -101,7 +101,7 @@ public class InventoryMenuView {
             try {
                 selection = Character.toUpperCase(value.charAt(0));
             } catch (IndexOutOfBoundsException ioo) {
-                this.console.println("Invalid option - please select from the menu above");
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
             }
             
             // Invoke the switches to execute the appropriate action
@@ -196,7 +196,7 @@ public class InventoryMenuView {
             case 'E':
                 return;
             default:
-                this.console.println("\n Invalid Selection, Try Again");
+                ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
     }
@@ -250,7 +250,7 @@ public class InventoryMenuView {
                         player.setShield(newWAS.getName());
                     }
                 } catch (IndexOutOfBoundsException ioo) {
-                    this.console.println("\nYou must enter a valid number. Please try again.");
+                    ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
                 }
             } else {
                 valid = true;

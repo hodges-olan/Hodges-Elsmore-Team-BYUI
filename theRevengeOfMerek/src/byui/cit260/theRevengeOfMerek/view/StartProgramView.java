@@ -90,7 +90,7 @@ public class StartProgramView {
             playersName = playersName.trim();
             
             if (playersName.length() < 2) {
-                this.console.println("Invalid name - the name must be over one character long");
+                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
             } else {
                 valid = true;
             }

@@ -48,7 +48,7 @@ public class SaveMenuView extends View {
             case 'E':
                 return;
             default:
-                this.console.println("\n Invalid Selection, Try Again");
+                ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
     }

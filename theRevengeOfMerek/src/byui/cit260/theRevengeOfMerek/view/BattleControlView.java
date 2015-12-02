@@ -115,7 +115,7 @@ public class BattleControlView {
                     return ' ';
                 }
             default:
-                this.console.println("\n Invalid Selection, Try Again");
+                ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
         return ' ';
