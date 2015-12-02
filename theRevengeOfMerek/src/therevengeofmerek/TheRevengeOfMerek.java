@@ -21,7 +21,6 @@ public class TheRevengeOfMerek {
 
     // Variable declaration
     private static Game currentGame = null;
-    private static Player player = null;
     
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
@@ -78,10 +77,6 @@ public class TheRevengeOfMerek {
     public static Game getCurrentGame() {
         return currentGame;
     }
-    
-    public static Player getPlayer() {
-        return player;
-    }
 
     public static PrintWriter getOutFile() {
         return outFile;
@@ -98,10 +93,6 @@ public class TheRevengeOfMerek {
     // Setter methods
     public static void setCurrentGame(Game currentGame) {
         TheRevengeOfMerek.currentGame = currentGame;
-    }
-
-    public static void setPlayer(Player player) {
-        TheRevengeOfMerek.player = player;
     }
 
     public static void setOutFile(PrintWriter outFile) {

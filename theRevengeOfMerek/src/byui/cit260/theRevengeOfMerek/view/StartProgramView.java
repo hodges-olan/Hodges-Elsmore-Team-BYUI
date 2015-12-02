@@ -32,15 +32,6 @@ public class StartProgramView {
         // Display the opening banner
         this.displayBanner();
         
-        // Get the players name
-        String playersName = this.getPlayersName();
-        
-        // Create a new Player instance from the player's name
-        Player player = GameControl.createNewPlayer(playersName);
-        
-        // Display the welcome message
-        this.displayWelcomeMessage(player);
-        
         // Display the main menu
         MainMenuView mainMenu = new MainMenuView();
         mainMenu.display();
@@ -73,47 +64,5 @@ public class StartProgramView {
                 + "\n* dethrone Worthag and win the game!                                *"
                 + "\n*********************************************************************");
     }
-
-    // Method to gather input from user for their name
-    private String getPlayersName() {
-        boolean valid = false;
-        String playersName = null;
-        
-        do { 
-            this.console.println("Enter the player's name below");
-            
-            try {
-                playersName = this.keyboard.readLine();
-            } catch (IOException ex) {
-                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
-            }
-            playersName = playersName.trim();
-            
-            if (playersName.length() < 2) {
-                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
-            } else {
-                valid = true;
-            }
-        
-        } while(!valid);
-        
-        return playersName;
-    } 
-
-    // Method for displaying the welcome message to the user
-    private void displayWelcomeMessage(Player player) {
-        int length = player.getName().length();
-        int space = (40 - length)/2;
-        this.console.println("\n\n========================================"
-                + "\n          Welcome to the game");
-        for (int i = 0; i < space; i++) {
-            this.console.print(" ");
-        }
-        this.console.print(player.getName());
-        this.console.println("\n               Have fun!"
-                + "\n========================================");
-    }
     
 }
-
-

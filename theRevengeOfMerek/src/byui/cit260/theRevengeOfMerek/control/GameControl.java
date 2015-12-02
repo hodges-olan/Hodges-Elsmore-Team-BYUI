@@ -33,6 +33,9 @@ public class GameControl {
             return null;
         }
         
+        // Get current game
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        
         // Create new player instance
         Player player = new Player();
         
@@ -41,27 +44,24 @@ public class GameControl {
         player.setHealth(100);
         
         // Save the player instance to the main class
-        TheRevengeOfMerek.setPlayer(player);
+        game.setPlayer(player);
+        
+        // Create the inventory list and save in the game
+        ArrayList<InventoryItem> inventoryList = GameControl.createInventoryList();
+        game.setInventory(inventoryList);
         
         // Return the player instance created
         return player;
         
     }
 
-    public static void createNewGame(Player player) {
+    public static void createNewGame() {
         
         // Create new game
         Game game = new Game();
         
         // Save the game in TheRevengeOfMerek
         TheRevengeOfMerek.setCurrentGame(game);
-        
-        // Save player in game
-        game.setPlayer(player);
-        
-        // Create the inventory list and save in the game
-        ArrayList<InventoryItem> inventoryList = GameControl.createInventoryList();
-        game.setInventory(inventoryList);
         
         // Create the map and save in the game
         Map map = MapControl.createMap();

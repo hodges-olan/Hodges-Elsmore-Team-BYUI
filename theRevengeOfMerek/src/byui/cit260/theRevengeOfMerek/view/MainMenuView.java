@@ -6,6 +6,8 @@
 package byui.cit260.theRevengeOfMerek.view;
 
 import byui.cit260.theRevengeOfMerek.control.GameControl;
+import byui.cit260.theRevengeOfMerek.model.Player;
+import java.io.IOException;
 import therevengeofmerek.TheRevengeOfMerek;
 
 /**
@@ -30,6 +32,7 @@ public class MainMenuView extends View {
     // Execute the appropriate action based on input from user
     @Override
     public void doAction(Object obj) {
+        
         char selection = (char) obj;
         
         switch(selection) {
@@ -51,13 +54,18 @@ public class MainMenuView extends View {
                 ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
+        
     }
 
     // Method to start a new game
     private void startNewGame() {
         
         // Create a new game
-        GameControl.createNewGame(TheRevengeOfMerek.getPlayer());
+        GameControl.createNewGame();
+        
+        // Create a new Player instance from the player's name
+        String player = this.getPlayersName();
+        GameControl.createNewPlayer(player);
         
         // Create and display the game menu
         GameMenuView gameMenu = new GameMenuView();
@@ -93,5 +101,31 @@ public class MainMenuView extends View {
         helpMenu.display();
         
     }
+    
+    // Method to gather input from user for their name
+    private String getPlayersName() {
+        boolean valid = false;
+        String playersName = null;
+        
+        do { 
+            this.console.println("Enter the player's name below");
+            
+            try {
+                playersName = this.keyboard.readLine();
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
+            }
+            playersName = playersName.trim();
+            
+            if (playersName.length() < 2) {
+                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
+            } else {
+                valid = true;
+            }
+        
+        } while(!valid);
+        
+        return playersName;
+    } 
     
 }
