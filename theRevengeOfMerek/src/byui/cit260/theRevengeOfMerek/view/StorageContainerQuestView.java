@@ -173,11 +173,11 @@ public class StorageContainerQuestView {
                     // parse and convert number from text to double
                     input = this.keyboard.readLine();
                 } catch (IOException ex) {
-                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                    ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
                 }
                 value = Double.parseDouble(input);
             } catch (NumberFormatException nf) {
-                this.console.println("\nYou must enter a valid number. Please try again.");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
             }
         }
             

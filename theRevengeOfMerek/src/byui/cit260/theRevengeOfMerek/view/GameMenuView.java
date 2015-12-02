@@ -212,11 +212,11 @@ public class GameMenuView extends View {
                     // parse and convert number from text to integer
                     input = this.keyboard.readLine();
                 } catch (IOException ex) {
-                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                    ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
                 }
                 value = Integer.parseInt(input);
             } catch (NumberFormatException nf) {
-                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
             }
         }
             

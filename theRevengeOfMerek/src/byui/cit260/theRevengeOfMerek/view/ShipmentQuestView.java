@@ -94,7 +94,7 @@ public class ShipmentQuestView {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nInvalid option - please select Y or N");
+            ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
         }
         input = input.trim();
             
@@ -148,7 +148,7 @@ public class ShipmentQuestView {
                 try {
                     input = this.keyboard.readLine();
                 } catch (IOException ex) {
-                    ErrorView.display(this.getClass().getName(), "\nInvalid option, please try again.");
+                    ErrorView.display(this.getClass().getName(), "Invalid option, please try again.");
                 }
             }
         } catch (InventoryControlException ice) {

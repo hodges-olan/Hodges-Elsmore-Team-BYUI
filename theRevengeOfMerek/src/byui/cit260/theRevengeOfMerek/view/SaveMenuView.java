@@ -71,7 +71,7 @@ public class SaveMenuView extends View {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+            ErrorView.display(this.getClass().getName(), "Invalid selection, please try again.");
         }
         
         // Save the game to the specified file
@@ -100,7 +100,7 @@ public class SaveMenuView extends View {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+            ErrorView.display(this.getClass().getName(), "Invalid selection, please try again.");
         }
         
         // Save the game to the specified file

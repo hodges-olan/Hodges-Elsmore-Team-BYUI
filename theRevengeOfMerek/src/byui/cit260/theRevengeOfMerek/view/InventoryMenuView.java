@@ -125,12 +125,12 @@ public class InventoryMenuView {
             try {
                 value = this.keyboard.readLine();
             } catch (IOException ex) {
-                ErrorView.display(this.getClass().getName(), "\nInvalid option - please select from the menu above");
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
             }
             value = value.trim();
             
             if (value.length() == 0 || value.length() > 1) {
-                this.console.println("Invalid option - please select from the menu above");
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
             } else {
                 valid = true;
             }
@@ -151,11 +151,11 @@ public class InventoryMenuView {
                     // parse and convert number from text to double
                     input = this.keyboard.readLine();
                 } catch (IOException ex) {
-                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number. Please try again.");
+                    ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
                 }
                 value = Integer.parseInt(input);
             } catch (NumberFormatException nf) {
-                this.console.println("\nYou must enter a valid number. Please try again.");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
             }
         }
             
@@ -361,7 +361,7 @@ public class InventoryMenuView {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+            ErrorView.display(this.getClass().getName(), "Invalid selection, please try again.");
         }
         
         // Save the game to the specified file

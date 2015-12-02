@@ -70,7 +70,7 @@ public class HelpMenuView extends View {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nYou must enter a valid selection. Please try again.");
+            ErrorView.display(this.getClass().getName(), "You must enter a valid selection. Please try again.");
         }
         
     }
@@ -108,7 +108,7 @@ public class HelpMenuView extends View {
         try {
             input = this.keyboard.readLine();
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "\nYou must enter a valid selection. Please try again.");
+            ErrorView.display(this.getClass().getName(), "You must enter a valid selection. Please try again.");
         }
         
     }
