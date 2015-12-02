@@ -29,6 +29,7 @@ public class InventoryMenuView {
                             + "\n| (S) Change Shields                        |"
                             + "\n| (B) Use Bandage                           |"
                             + "\n| (P) Use Potion                            |"
+                            + "\n| (D) Display/Save Inventory Report         |"
                             + "\n| (E) Exit                                  |"
                             + "\n---------------------------------------------\n";
     private final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
@@ -189,6 +190,9 @@ public class InventoryMenuView {
                     ErrorView.display(this.getClass().getName(), ice.getMessage());
                 }
                 break;
+            case 'D':
+                this.inventoryReport();
+                break;
             case 'E':
                 return;
             default:
@@ -347,6 +351,10 @@ public class InventoryMenuView {
         // Return the sorted inventory list
         return inventoryList;
         
+    }
+
+    private void inventoryReport() {
+        this.console.println("*** inventoryReport method called ***");
     }
     
 }
