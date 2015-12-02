@@ -272,28 +272,18 @@ public class InventoryMenuView {
         
         // Display items of specific type and ask if they want to wear an item
         this.console.println("---------------------------------------------\n"
-                           + "| List of All Items                         |\n"
-                           + "---------------------------------------------\n"
-                           + "| Name" + "\t\t\t" + "Type" + "\t" + "Quantity    |\n"
+                           + "| List of all items                         |\n"
                            + "---------------------------------------------");
-        for (InventoryItem inventoryItem: inventory) {
-            name = inventoryItem.getName();
-            inventoryType = inventoryItem.getInventoryType();
-            quantity = inventoryItem.getQuantity();
-            this.console.print("| " + name);
-            int space = 22 - name.length();
-            for (int i = 0; i < space; i++) {
-                this.console.print(" ");
+            this.console.printf("%-24s%-8s%-12s%1s%n", "| Name", "Type", "Quantity", "|");
+            this.console.println("---------------------------------------------");
+            for (InventoryItem inventoryItem : inventory) {
+                name = inventoryItem.getName();
+                inventoryType = inventoryItem.getInventoryType();
+                quantity = inventoryItem.getQuantity();
+                name = "| " + name;
+                this.console.printf("%-24s%-8s%-12.0f%1s%n", name, inventoryType, quantity, "|");
             }
-            this.console.print(inventoryType + "\t" + quantity);
-            space = 12 - String.valueOf(quantity).length();
-            for (int i = 0; i < space; i++) {
-                this.console.print(" ");
-            }
-            this.console.print("|\n");
-            
-        }
-        this.console.println("---------------------------------------------");
+            this.console.println("---------------------------------------------");
         
     }
 
@@ -354,7 +344,68 @@ public class InventoryMenuView {
     }
 
     private void inventoryReport() {
-        this.console.println("*** inventoryReport method called ***");
+        
+        // Display where to Save Game
+        this.console.println("\n"
+                + "\n------------------------------------"
+                + "\n|      Save Inventory Report       |"
+                + "\n|----------------------------------|"
+                + "\n| Please enter the location you    |"
+                + "\n| would like to save the           |"
+                + "\n| inventory report:                |"
+                + "\n------------------------------------"
+                + "\n");
+        
+        // Wait for the user to press any key
+        String input = null;
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "\nInvalid selection, please try again.");
+        }
+        
+        // Save the game to the specified file
+        try {
+            this.saveInventoryReport(input);
+            this.console.println("Report saved successfully!");
+        } catch (Exception ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
+        }
+        
+    }
+
+    private void saveInventoryReport(String filePath) throws InventoryControlException {
+        
+        // Get the sorted list of weapons for the current game
+        ArrayList<InventoryItem> inventory;
+        inventory = this.getSortedInventoryList("all");
+        
+        // Declare variables
+        String name;
+        String inventoryType;
+        double quantity;
+        
+        try (PrintWriter out = new PrintWriter(filePath)) {
+        
+            // Display items of specific type and ask if they want to wear an item
+            out.println("---------------------------------------------\n"
+                      + "| Inventory Report                          |\n"
+                      + "---------------------------------------------");
+            out.printf("%-24s%-8s%-12s%1s%n", "| Name", "Type", "Quantity", "|");
+            out.println("---------------------------------------------");
+            for (InventoryItem inventoryItem : inventory) {
+                name = inventoryItem.getName();
+                inventoryType = inventoryItem.getInventoryType();
+                quantity = inventoryItem.getQuantity();
+                name = "| " + name;
+                out.printf("%-24s%-8s%-12.0f%1s%n", name, inventoryType, quantity, "|");
+            }
+            out.println("---------------------------------------------");
+            
+        } catch (IOException ex) {
+            throw new InventoryControlException("Failed to save inventory report.");
+        }
+        
     }
     
 }
