@@ -35,6 +35,40 @@ public class GameMenuView extends View {
             + "\n-----------------------------------");
     } 
     
+    // Method to display the main menu
+    @Override
+    public void display() {
+        
+        // Declare variables
+        char selection = ' ';
+        
+        // Loop to show and gather input from user in main menu
+        do {
+            // Print the main menu
+            this.console.println(this.promptMessage);
+            
+            // Gather input from the player
+            String value = this.getInput();
+            
+            // Gather the first char from the input and capitalize it
+            try {
+                selection = Character.toUpperCase(value.charAt(0));
+            } catch (IndexOutOfBoundsException ioo) {
+                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
+            }
+            
+            // Invoke the switches to execute the appropriate action
+            this.doAction(selection);
+            
+            if (this.checkGameComplete()) {
+                this.closingSequence();
+                selection = 'E';
+            }
+       
+        } while (selection != 'E');
+        
+    }
+    
     // Execute the appropriate action based on input from user
     @Override
     public void doAction(Object obj) {
@@ -65,6 +99,7 @@ public class GameMenuView extends View {
                 ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
                 break;
         }
+        
     }
 
     // Display the players inventory    
@@ -221,6 +256,54 @@ public class GameMenuView extends View {
         }
             
         return value;
+    }
+
+    private boolean checkGameComplete() {
+        
+        // Declare variables
+        boolean complete = true;
+        Game game = TheRevengeOfMerek.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        
+        // Check to see if all locations have completed their quests
+        for (Location[] columns : locations) {
+            for (Location location : columns) {
+                if (!location.isQuestComplete()) {
+                    complete = false;
+                }
+            }
+        }
+        
+        // Return result
+        return complete;
+        
+    }
+
+    private void closingSequence() {
+        
+        // Display the closing sequence
+        this.console.println("\n"
+                + "\n*********************************************************************"
+                + "\n*                      The Revenge of Merek                         *"
+                + "\n*********************************************************************"
+                + "\n* You and all of the Lord's in the realm have banned together and   *"
+                + "\n* overthrown Worthag!  You have re-established Merek as king and    *"
+                + "\n* all of the people are rejoicing!                                  *"
+                + "\n*                                                                   *"
+                + "\n*                      You have won the game!                       *"
+                + "\n*                                                                   *"
+                + "\n*********************************************************************"
+                + "\n\nPress any key to continue");
+        
+        // Wait for the user to press any key
+        String input = null;
+        try {
+            input = this.keyboard.readLine();
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "You must enter a valid selection. Please try again.");
+        }
+        
     }
        
 }

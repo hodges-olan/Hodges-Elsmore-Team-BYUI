@@ -6,7 +6,6 @@
 package therevengeofmerek;
 
 import byui.cit260.theRevengeOfMerek.model.Game;
-import byui.cit260.theRevengeOfMerek.model.Player;
 import byui.cit260.theRevengeOfMerek.view.StartProgramView;
 import java.io.BufferedReader;
 import java.io.IOException;
