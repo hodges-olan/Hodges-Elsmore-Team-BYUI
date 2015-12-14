@@ -144,7 +144,7 @@ public class ShipmentQuestView {
                 this.console.println("\n\nThank you so much for getting this package to us!\n"
                              + "Quest Complete!");
                 // Wait for the user to press any key
-                String input = null;
+                String input;
                 try {
                     input = this.keyboard.readLine();
                 } catch (IOException ex) {
