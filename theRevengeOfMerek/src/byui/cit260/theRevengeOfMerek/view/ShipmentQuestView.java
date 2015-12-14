@@ -93,10 +93,10 @@ public class ShipmentQuestView {
         this.console.println(message);
         try {
             input = this.keyboard.readLine();
+            input = input.trim();
         } catch (IOException ex) {
             ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
         }
-        input = input.trim();
             
         return input;
         
