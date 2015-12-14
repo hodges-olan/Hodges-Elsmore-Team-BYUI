@@ -126,15 +126,15 @@ public class InventoryMenuView {
             
             try {
                 value = this.keyboard.readLine();
+                value = value.trim();
+
+                if (value.length() == 0 || value.length() > 1) {
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
-            }
-            value = value.trim();
-            
-            if (value.length() == 0 || value.length() > 1) {
-                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the menu above");
-            } else {
-                valid = true;
             }
         
         }
@@ -245,12 +245,19 @@ public class InventoryMenuView {
                 try {
                     InventoryItem newWAS = inventory.get(input);
                     valid = true;
-                    if (wasItemType.toLowerCase().equals("weapon")) {
-                        player.setWeapon(newWAS.getName());
-                    } else if (wasItemType.toLowerCase().equals("armor")) {
-                        player.setArmor(newWAS.getName());
-                    } else if (wasItemType.toLowerCase().equals("shield")) {
-                        player.setShield(newWAS.getName());
+                    switch (wasItemType.toLowerCase()) {
+                        case "weapon":
+                            player.setWeapon(newWAS.getName());
+                            break;
+                        case "armor":
+                            player.setArmor(newWAS.getName());
+                            break;
+                        case "shield":
+                            player.setShield(newWAS.getName());
+                            break;
+                        default:
+                            ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
+                            break;
                     }
                 } catch (IndexOutOfBoundsException ioo) {
                     ErrorView.display(this.getClass().getName(), "You must enter a valid number. Please try again.");
