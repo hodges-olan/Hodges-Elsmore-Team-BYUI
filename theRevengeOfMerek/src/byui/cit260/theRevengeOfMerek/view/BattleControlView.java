@@ -75,15 +75,14 @@ public class BattleControlView {
             
             try {
                 input = this.keyboard.readLine();
+                input = input.trim();
+                if (input.length() == 0 || input.length() > 1) {
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select from the Menu Above");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Invalid option - please select from the Menu Above");
-            }
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                ErrorView.display(this.getClass().getName(), "Invalid option - please select from the Menu Above");
-            } else {
-                valid = true;
             }
         
         } while(!valid);
@@ -148,15 +147,15 @@ public class BattleControlView {
 
             try {
                 input = this.keyboard.readLine();
+                input = input.trim();
+
+                if (input.length() == 0 || input.length() > 1) {
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
-            }
-            input = input.trim();
-
-            if (input.length() == 0 || input.length() > 1) {
-                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
-            } else {
-                valid = true;
             }
 
         } while (!valid);
