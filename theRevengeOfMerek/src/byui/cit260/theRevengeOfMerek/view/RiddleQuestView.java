@@ -73,15 +73,15 @@ public class RiddleQuestView {
             
             try {
                 input = this.keyboard.readLine();
+                input = input.trim();
+
+                if (input.length() == 0 || input.length() > 1) {
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
-            }
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
-            } else {
-                valid = true;
             }
         
         } while(!valid);
@@ -135,15 +135,15 @@ public class RiddleQuestView {
             
             try {
                 input = this.keyboard.readLine();
+                input = input.trim();
+
+                if (input.length() == 0 || input.length() > 1) {
+                    ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Please enter an answer.");
-            }
-            input = input.trim();
-            
-            if (input.length() == 0 || input.length() > 1) {
-                ErrorView.display(this.getClass().getName(), "Invalid option - please select Y or N");
-            } else {
-                valid = true;
             }
         
         } while(!valid);
@@ -206,7 +206,7 @@ public class RiddleQuestView {
         while (!location.isQuestComplete()) {
             this.console.println(riddle);
             String playerAnswer = this.getInputString();
-            boolean correct = false;
+            boolean correct;
             try {
                 correct = RiddleQuestControl.isRiddleAnswerCorrect(answer, playerAnswer);
                 if (correct) {
