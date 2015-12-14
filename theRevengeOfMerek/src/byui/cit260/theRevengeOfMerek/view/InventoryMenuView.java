@@ -403,7 +403,8 @@ public class InventoryMenuView {
                       + "---------------------------------------------");
             out.printf("%-24s%-8s%-12s%1s%n", "| Name", "Type", "Quantity", "|");
             out.println("---------------------------------------------");
-            for (InventoryItem inventoryItem : inventory) {
+            for (int i = 0; i < inventory.size(); i++) {
+                InventoryItem inventoryItem = inventory.get(i);
                 name = inventoryItem.getName();
                 inventoryType = inventoryItem.getInventoryType();
                 quantity = inventoryItem.getQuantity();
