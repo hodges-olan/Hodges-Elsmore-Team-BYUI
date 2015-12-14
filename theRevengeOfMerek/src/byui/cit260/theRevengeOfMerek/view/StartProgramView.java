@@ -5,10 +5,7 @@
  */
 package byui.cit260.theRevengeOfMerek.view;
 
-import byui.cit260.theRevengeOfMerek.control.GameControl;
-import byui.cit260.theRevengeOfMerek.model.Player;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import therevengeofmerek.TheRevengeOfMerek;
 
