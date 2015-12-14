@@ -6,19 +6,12 @@
 package byui.cit260.theRevengeOfMerek.control;
 
 import byui.cit260.theRevengeOfMerek.exceptions.RiddleQuestControlException;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
-import therevengeofmerek.TheRevengeOfMerek;
 
 /**
  *
  * @author co075oh
  */
 public class RiddleQuestControl {
-    
-    // Declare variables
-    private static final BufferedReader keyboard = TheRevengeOfMerek.getInFile();
-    private static final PrintWriter console = TheRevengeOfMerek.getOutFile();
     
     // Method for verifying the answer the player gave is correct
     public static boolean isRiddleAnswerCorrect (String answer, String playerAnswer) throws RiddleQuestControlException {
