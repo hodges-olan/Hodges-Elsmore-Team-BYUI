@@ -112,15 +112,15 @@ public class MainMenuView extends View {
             
             try {
                 playersName = this.keyboard.readLine();
+                playersName = playersName.trim();
+
+                if (playersName.length() < 2) {
+                    ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
+                } else {
+                    valid = true;
+                }
             } catch (IOException ex) {
                 ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
-            }
-            playersName = playersName.trim();
-            
-            if (playersName.length() < 2) {
-                ErrorView.display(this.getClass().getName(), "Invalid name - the name must be over one character long");
-            } else {
-                valid = true;
             }
         
         } while(!valid);
