@@ -29,6 +29,7 @@ public class Location implements Serializable {
     private ShipmentQuest shipmentQuest;
     private StorageContainerQuest storageContainerQuest;
 
+
     private enum towns {
         Ballinamallard,
         Armagh,
@@ -98,7 +99,7 @@ public class Location implements Serializable {
     public ArtifactStrengthQuest getStrengthQuest() {
         return strengthQuest;
     }
-
+    
     public RiddleQuest getRiddleQuest() {
         return riddleQuest;
     }

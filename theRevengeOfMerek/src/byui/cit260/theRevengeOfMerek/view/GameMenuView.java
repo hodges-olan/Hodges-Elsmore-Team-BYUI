@@ -175,7 +175,7 @@ public class GameMenuView extends View {
                         break;
                     case "strength":
                         StrengthQuestView strengthQuestView = new StrengthQuestView();
-                        strengthQuestView.displaymenu(locations[locationy][locationx]);
+                        strengthQuestView.displayMenu(locations[locationy][locationx]);
                         return;
                     default:
                         ErrorView.display(this.getClass().getName(), "Invalid Selection, Try Again");
