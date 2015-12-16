@@ -378,7 +378,7 @@ public class InventoryMenuView {
         try {
             this.saveInventoryReport(input);
             this.console.println("Report saved successfully!");
-        } catch (Exception ex) {
+        } catch (InventoryControlException ex) {
             ErrorView.display(this.getClass().getName(), ex.getMessage());
         }
         

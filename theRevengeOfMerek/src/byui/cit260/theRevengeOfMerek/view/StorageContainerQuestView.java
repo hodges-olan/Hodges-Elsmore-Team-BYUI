@@ -143,7 +143,7 @@ public class StorageContainerQuestView {
         }
         
         while (!location.isQuestComplete()) {
-            this.console.println("We need a barrel that will fit " + reqVolume + " square feet of water.\n"
+            this.console.println("We need a barrel that will fit " + reqVolume + " cubic feet of water.\n"
                                + "Use the equation for the volume of a cylinder to get the appropriate measurements.");
             double radius = this.getInputDouble("radius");
             double height = this.getInputDouble("height");
