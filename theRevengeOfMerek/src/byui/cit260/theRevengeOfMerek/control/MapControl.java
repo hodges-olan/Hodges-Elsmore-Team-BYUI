@@ -100,6 +100,14 @@ public class MapControl {
         locations[4][3].setQuestType("shipment");
         locations[4][4].setQuestType("shipment");
         
+        // Temporarily complete the strength and artifact quests for presentation only, since they are not functional yet.
+        for (Location[] columns : locations) {
+            for (Location location : columns) {
+                if (location.getQuestType() == "artifact" || location.getQuestType() == "strength") {
+                    location.setQuestComplete(true);
+                }
+            }
+        }
     }
 
 }
